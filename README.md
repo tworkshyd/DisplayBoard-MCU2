@@ -1,10 +1,10 @@
-The Arduino project in this folder contains functionality for the following functions:
+This folder contains all the projects for the P2 version of the Ventilator project. Several projects attempting variopus methods of accomplishing the project goals have been tried and all these folders contain the artefacts related to each one of those attempts.
 
-1. Display
-2. Parameter change and storage
-3. Alarms
-4. Sensor data acquisition
+Every folder is a submodule of the main BVM_P2 and contains its own README.md which explains the goal of the project, the tools used, steps to compile and run the project and artefacts like Assumptions, Testcases and deployment instructions
 
-The project can be burnt and executed only on an ATMega2650, on the mother board created by version xyz of the Electronic module
+Best practices:
 
-Code documentation is contained in the docs folder.
+1. If you need to change any code in the Arduino modules, please follow the Arduino codding guidelines
+2. After changing the code in any module, please regenerate the documentation
+3. Please document thoroughly, the set up and execution instruction and test procedures for your module
+4. 
