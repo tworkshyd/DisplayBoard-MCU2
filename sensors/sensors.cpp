@@ -19,7 +19,7 @@
 #include "pressure_sensor.cpp"
 #include "O2_sensor.cpp"
 #include "ads1115_utils.c"
-#include "./../libraries/MsTimer2/MsTimer2.cpp"
+#include "./../3plibs/MsTimer2/MsTimer2.cpp"
 
 #define MAX_PS2_SAMPLES 			10
 #define THRESHOLD_COMPARE_INDEX 	2

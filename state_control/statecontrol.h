@@ -1,6 +1,6 @@
 /**************************************************************************/
 /*!
-    @file     Control_StateMachine.h
+    @file     statecontrol.h
 
     @brief     Control StateMachine Module defines the state 
 

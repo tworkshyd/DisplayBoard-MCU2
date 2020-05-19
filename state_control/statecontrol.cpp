@@ -1,4 +1,4 @@
-#include "StateControl.h"
+#include "statecontrol.h"
 #include "../sensors/sensors.h"
 
 bool bSendInitCommand = false;

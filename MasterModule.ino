@@ -5,8 +5,8 @@
 #include "./sensors/sensors.h"
 #include "./sensors/sensors.cpp"
 #include "Service_Mode.h"
-#include "./StateControl/StateControl.h"
-#include "./StateControl/StateControl.cpp"
+#include "./state_control/statecontrol.h"
+#include "./state_control/statecontrol.cpp"
 
 int TimeSeries = 0;
 volatile short currPos = 1;

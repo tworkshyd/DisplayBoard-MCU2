@@ -1,7 +1,7 @@
 #ifndef __ADS1115_UTILS_H__
 #define __ADS1115_UTILS_H__
 
-#include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h"
+#include "./../3plibs/Adafruit_ADS1X15/Adafruit_ADS1015.h"
 
 #ifdef __cplusplus
 extern "C" {

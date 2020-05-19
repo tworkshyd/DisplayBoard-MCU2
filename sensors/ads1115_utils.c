@@ -15,7 +15,7 @@
 /**************************************************************************/
 
 #include "ads1115_utils.h"
-#include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.cpp"
+#include "./../3plibs/Adafruit_ADS1X15/Adafruit_ADS1015.cpp"
 /*
  * I2C ADC configurations
  */

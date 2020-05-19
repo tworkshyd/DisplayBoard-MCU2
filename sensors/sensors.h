@@ -17,8 +17,8 @@
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
-#include "./../libraries/MsTimer2/MsTimer2.h"
-#include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h"
+#include "./../3plibs/MsTimer2/MsTimer2.h"
+#include "./../3plibs/Adafruit_ADS1X15/Adafruit_ADS1015.h"
 
 #define MAX_SENSOR_SAMPLES		5   /*!< maximum number of sensor samples to be taken */
 #define I2C_TIMEOUT             120        /*!< I2C timeout value */
