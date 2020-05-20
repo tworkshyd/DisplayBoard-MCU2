@@ -1,3 +1,17 @@
+/**************************************************************************/
+/*!
+    @file     ads1115_utils.h
+
+    @brief 	  ADS utility functions
+
+    @author   Tworks
+
+	@defgroup ADS1115UtilsModule
+
+    Contains the utility functions to interface with ADS board
+	@{
+*/
+/**************************************************************************/
 #ifndef __ADS1115_UTILS_H__
 #define __ADS1115_UTILS_H__
 
@@ -12,49 +26,59 @@ extern "C" {
 
     @brief  Function to read the sensor samples and average
 	
-	@param ads - ads board used for reading samples
+	@param ads ads board used for reading samples
 	
-	@param channel - channel in ads board for reading samples
+	@param channel channel in ads board for reading samples
 
-    @return returns the average of all samples read
+	@param vout vout read from the sensors as digital value
+
+    @return returns 0 for success and error code for other errors
 */
 /**************************************************************************/
-int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel);
+int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vout);
 /**************************************************************************/
 /*!
 
     @brief  Function to return average error corrected samples
 	
-	@param ads - ads board used for reading samples
+	@param ads ads board used for reading samples
 	
-	@param channel - channel in ads board for reading samples
+	@param channel channel in ads board for reading samples
 	
-	@param base - actual value expected from sensor @ zero activity
+	@param base actual value expected from sensor @ zero activity
 	
-	@param error - (base - actual) returned from sensor @ zero activity
+	@param error (base - actual) returned from sensor @ zero activity
 
-    @return returns the average of all samples read
+	@param vout vout read from the sensors as digital value
+
+    @return returns 0 for success and error code for other errors
 */
 /**************************************************************************/
-float ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int Channel, int base, int error);
+int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int error, float *vout);
 /**************************************************************************/
 /*!
 
     @brief  Function to read the O2 sensor samples and average
 	
-	@param ads - ads board used for reading samples
+	@param ads ads board used for reading samples
 	
-	@param channel - channel in ads board for reading samples
+	@param channel channel in ads board for reading samples
 	
-	@param error - error correction needed for the samples
+	@param error error correction needed for the samples
 
-    @return returns the average of all samples read
+	@param error error correction needed for the samples
+
+	@param vout vout read from the sensors as digital value
+
+    @return returns 0 for success and error code for other errors
 */
 /**************************************************************************/
-float ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int Channel, int error);
+int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int error, float *vout);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /*__ADS1115_UTILS_H__*/
+
+/**@}*/

@@ -1,1 +1,0 @@
-This folder contains sensor header and program files.

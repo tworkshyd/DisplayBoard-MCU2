@@ -311,7 +311,7 @@ void loop() {
   
   enable_sensor(PRESSURE_A0 | DP_A2);
   for(int index = 0; index < MAX_SENSORS; index++) {
-    sensor_data[index] = read_sensor_data(index);
+    sensor_data[index] = read_sensor_data(index, (float *)&(sensor_data[index]));
   }
   displayRunTime();
   //checkSendDataToGraphicsDisplay();

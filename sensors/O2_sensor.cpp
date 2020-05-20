@@ -118,7 +118,7 @@ int o2_sensor::calibrate_o2_sensor()
     m_slope = 0;
     m_const = 0;
     Serial.println("Error: O2 calibration failed!!");
-    return -1;
+    return ERROR_SENSOR_CALIBRATION;
   }
 }
 
@@ -144,7 +144,15 @@ void o2_sensor::reset_sensor_data() {
  */
 void o2_sensor::update_sensor_data() {
   float vout = 0.0;
-  vout = ADC_ReadVolageOnATMega2560(m_ads, m_adc_channel, m_data.error_at_zero);
+  int err = 0;
+  
+  err = ADC_ReadVolageOnATMega2560(m_ads, m_adc_channel, m_data.error_at_zero, &vout);
+  if(err) {
+	  this->set_error(ERROR_SENSOR_READ);
+	  return;
+  } else {
+	  this->set_error(SUCCESS);
+  }
   if (m_slope != 0) {
 	this->m_data.current_data.O2 = (vout - m_const) / m_slope;
   }

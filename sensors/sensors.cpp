@@ -21,10 +21,10 @@
 #include "ads1115_utils.c"
 #include "./../3plibs/MsTimer2/MsTimer2.cpp"
 
-#define MAX_PS2_SAMPLES 			10
+#define MAX_PS2_SAMPLES 		10
 #define THRESHOLD_COMPARE_INDEX 	2
-#define DIP_THRESHOLD 				15 //better to be lower than PEEP
-#define ADS115_INT_PIN          6
+#define DIP_THRESHOLD 			15 //better to be lower than PEEP
+#define ADS115_INT_PIN          	6
 
 
 Adafruit_ADS1115 ads(ADS1015_ADDRESS, ADS115_INT_PIN);
@@ -76,6 +76,10 @@ void loop() {
  */
 int sensor::read_sensor_samples(float *samples, int sample_count) {
 	int index = 0, sample_index = 0;
+	if(samples == NULL || sample_count > MAX_SENSOR_SAMPLES) {
+		Serial.println("ERROR: Sample is null or sample_count > MAX_SENSOR_SAMPLES");
+		return ERROR_BAD_PARAM;
+	}
 	for(index = 0, sample_index = m_sample_index; index < MAX_SENSOR_SAMPLES && index < sample_count; index++, sample_index++) {
 		if(sample_index >= MAX_SENSOR_SAMPLES) {
 			sample_index = 0;
@@ -91,6 +95,7 @@ int sensor::read_sensor_samples(float *samples, int sample_count) {
 int ads1115_init() {
     ads.begin();
 	ads.setGain(GAIN_ONE);
+	return 0;
 }
 
 /*
@@ -106,7 +111,7 @@ int sensors_init() {
 	err += g_dp2.init();
 	err += g_o2.init();
 
-    MsTimer2::set(60, read_and_update_sensor_data);
+    MsTimer2::set(120, read_and_update_sensor_data);
     MsTimer2::start();
 	return err;
 }
@@ -116,11 +121,20 @@ int sensors_init() {
  * Takes a parameter of different sensor combinations
  */
 void enable_sensor(unsigned int flag) {
+  if((enabled_sensors & PRESSURE_A0) && !(flag & PRESSURE_A0)) {
+	g_p1.reset_sensor_data();
+  }
+  if((enabled_sensors & PRESSURE_A1) && !(flag & PRESSURE_A1)) {
+	g_p2.reset_sensor_data();
+  }
   if((enabled_sensors & DP_A2) && !(flag & DP_A2)) {
 	g_dp1.reset_sensor_data();
   }
   if((enabled_sensors & DP_A3) && !(flag & DP_A3)) {
 	g_dp2.reset_sensor_data();
+  }
+  if((enabled_sensors & O2) && !(flag & O2)) {
+	g_o2.reset_sensor_data();
   }
   enabled_sensors = flag;
 }
@@ -128,9 +142,9 @@ void enable_sensor(unsigned int flag) {
 /*
  * Wrapper API to get specific sensor readings
  */
-float read_sensor_data(sensor_e s) {
+int read_sensor_data(sensor_e s, float *data) {
   sensor *p_sensor = NULL;
-  float data = 0.0;
+  int err = 0;
 
   switch(s) {
     case SENSOR_DP_A2:
@@ -154,8 +168,14 @@ float read_sensor_data(sensor_e s) {
 	  return 0.0;
 	break;
   }
-  data = p_sensor->read_sensor_data();
-  return data;
+  err = p_sensor->get_error();
+  if(err) {
+	  Serial.print("ERROR: Sensor read error for ");
+	  Serial.println(s);
+	  return err;
+  }
+  *data = p_sensor->read_sensor_data();
+  return SUCCESS;
 }
 /*
  * Function to aggregate or read sensor data
@@ -199,7 +219,7 @@ int check_for_dip_in_pressure(sensor_e sensor) {
 	} else if(sensor == SENSOR_PRESSURE_A1) {
 		count = g_p2.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
 	} else {
-		return -1;
+		return ERROR_SENSOR_UNSUPPORTED;
 	}
 	for(int index = 1; index < count; index++) {
 		float diff = (sensor_data[index] - sensor_data[index - 1]);

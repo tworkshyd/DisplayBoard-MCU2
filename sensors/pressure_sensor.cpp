@@ -17,13 +17,6 @@
 #include "pressure_sensor.h"
 #include "ads1115_utils.h"
 
-/**
- * @def 	Defines 
- * @brief 	Defines used in this file
- */
-#define ERROR_I2C_TIMEOUT   1
-#define ERROR_TIMER_INIT    2
-
 /*
  * Macros to enable the sensor functionalities
  */
@@ -39,6 +32,7 @@
 #define MPX5010_VFSS            (0.0)
 #define MPX5010_ACCURACY        (0.05 * MPX5010_VFSS)
 #define MPX5010_ZERO_READING    2000
+#define MPX5010_ERROR_THRESHOLD 20
 #endif
 
 #ifdef MPXV7002DP
@@ -46,6 +40,7 @@
 #define MPXV7002DP_VFSS         (4.0)
 #define MPXV7002DP_ACCURACY     (0.06250)
 #define MPX7002DP_ZERO_READING  22000 // for Vs 5.0 -> 2.75v(@zero pressure) * ADS115_MULTIPLIER = 22000
+#define MPX7002DP_ERROR_THRESHOLD 20
 #endif
 
 /*
@@ -55,7 +50,7 @@
 #define FLOWRATE_MIN_THRESHOLD  4.0
 #define CALIBRATION_COUNT       5
 
-int _debug = 1;
+int _debug = 0;
 
 /*
  * Initialization routine to setup the sensors
@@ -69,12 +64,15 @@ int pressure_sensor::init() {
   // Initialize the data
   this->m_data.current_data.pressure = 0.0;
   this->m_data.previous_data.pressure = 0.0;
-  if(m_dp == 1)
+  if(m_dp == 1) {
 	this->m_data.actual_at_zero = MPX7002DP_ZERO_READING;
-  else
+	this->m_data.error_threshold = MPX7002DP_ERROR_THRESHOLD;
+  } else {
 	this->m_data.actual_at_zero = MPX5010_ZERO_READING;
+	this->m_data.error_threshold = MPX5010_ERROR_THRESHOLD;
+  }
   // Calibrate the sensors
-  err += sensor_zero_calibration();
+  err = sensor_zero_calibration();
   if(err) {
     Serial.println("ERROR: Initializing pressure sensors");
     return err;
@@ -137,9 +135,17 @@ float pressure_sensor::read_sensor_data() {
 float pressure_sensor::get_pressure_MPX5010() {
   float pressure = 0.0;
   float vout = 0.0;
+  int err = 0;
 
-  vout = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero);
+  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+  if(ERROR_I2C_TIMEOUT == err) {
+	  Serial.println("ERROR: Sensor read I2C timeout failure\n");
+	  this->set_error(ERROR_SENSOR_READ);
+	  return 0.0;
+  }
   pressure = ((vout - (MPX5010_ACCURACY) - (MPX5010_VS * 0.04))/(MPX5010_VS * 0.09));
+  // Error correction on the pressure, based on the H2O calibration
+  pressure = ((pressure - 0.07)/0.09075);
   if(_debug) {
     Serial.print("C");
     Serial.print(" ");
@@ -160,16 +166,25 @@ float pressure_sensor::get_pressure_MPX5010() {
  * Function to calculate sensor errors during boot
  */
 int pressure_sensor::sensor_zero_calibration() {
+  float sample = 0.0;
   float avg = 0.0;
+  int err = 0;
 
   for(int index = 0; index < CALIBRATION_COUNT; index++) {
-    avg += ADS1115_ReadAvgSamplesOverI2C(m_ads, m_adc_channel);
-	Serial.print("voltage : ");
-	Serial.println(avg);
-
+    err = ADS1115_ReadAvgSamplesOverI2C(m_ads, m_adc_channel, &sample);
+    if(err) {
+	  Serial.println("ERROR: Sensor calibration failure\n");
+	  return ERROR_SENSOR_CALIBRATION;
+    }
+	avg += sample;
     delay(10);
   }
   this->m_data.error_at_zero = ((avg/CALIBRATION_COUNT) - this->m_data.actual_at_zero);
+  
+  if(abs(this->m_data.error_at_zero) > this->m_data.error_threshold) {
+	  Serial.println("ERROR: calibration error is more than the threshold value");
+	  return ERROR_SENSOR_CALIBRATION;
+  }
   if(_debug) {
     Serial.print("ZE");
     Serial.print(" ");
@@ -186,8 +201,14 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   float vout = 0.0;
   float pressure = 0.0;
   float flowrate = 0.0, accflow = 0.0;
+  int err = 0;
 
-  vout = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero);
+  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+  if(ERROR_I2C_TIMEOUT == err) {
+	  Serial.println("ERROR: Sensor read failure\n");
+	  this->set_error(ERROR_SENSOR_READ);
+	  return 0.0;
+  }
   pressure = get_pressure_MPXV7002DP(vout);
   flowrate = get_flowrate_spyro(pressure);
   if(flowrate > FLOWRATE_MIN_THRESHOLD) {

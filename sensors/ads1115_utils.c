@@ -43,7 +43,7 @@ float get_sample_average(int *samples, int sample_count) {
   return (avg/sample_count);
 }
 
-int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel) {
+int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vout) {
   int samples[MAX_SAMPLE_COUNT] = {0};
   float PressSensorVolts = 0.0;
   long int timeout;
@@ -57,6 +57,7 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel) {
     }
     if((millis()-timeout) >= I2C_TIMEOUT) {
       Serial.println("ERROR: I2C timed out, please check connection.");
+	  *vout = 0;
       return ERROR_I2C_TIMEOUT;
     }
     samples[i] = ads->readADC_ConvertedSample();
@@ -67,16 +68,23 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel) {
     Serial.print(" ");
     Serial.println(PressSensorVolts) ;
   }
-  return PressSensorVolts;
+  *vout = PressSensorVolts;
+  return 0;
 }
 
-float ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int correction) {
-  int PressSensorVolts = ADS1115_ReadAvgSamplesOverI2C(ads, channel);
+int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int correction, float *value) {
+  float PressSensorVolts = 0.0;
+  int err = ADS1115_ReadAvgSamplesOverI2C(ads, channel, &PressSensorVolts);
+  if (err) {
+	  *value = 0;
+	  return err;
+  }
   PressSensorVolts -= correction;
-  return(PressSensorVolts * ADS115_MULTIPLIER);
+  *value = (PressSensorVolts * ADS115_MULTIPLIER);
+  return 0;
 }
 
-float ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correction) {
+int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correction, float *vout) {
   int ADCSampleBuff[MAX_SAMPLE_COUNT] = {0};
   int ADCCount, AvgSampleCount;
   float Avg10Samples;
@@ -107,6 +115,7 @@ float ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correct
 		}
 		if((millis()-timeout) >= I2C_TIMEOUT) {
 		  Serial.println("ERROR: I2C timed out, please check connection.");
+		  *vout = 0;
 		  return ERROR_I2C_TIMEOUT;
 		}
 		ADCSampleBuff[i] = ads->readADC_ConvertedSample();
@@ -123,8 +132,8 @@ float ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correct
     Serial.print("Oxygen ADC Value= ");
     Serial.println(OxygenSensorVolts);
   }
-
-  return(OxygenSensorVolts);
+  *vout = OxygenSensorVolts;
+  return 0;
 }
 #if AVCC_DYNAMIC
 int getVrefVoltage(void)

@@ -6,7 +6,7 @@
 
     @author   Tworks
 
-	@defgroup VentilatorModule
+	@defgroup OxygenSensorModule
 
     O2 sensor module - allows clients to read sensor readings
 	sensor data is updated to local data structure in a timer
@@ -22,27 +22,29 @@
 
 /**************************************************************************/
 /*!
-    @brief  Class to handle O2 sensor, inherits base sensor class
+    @brief  Class to handle oxygen sensor, inherits base sensor class
 */
 /**************************************************************************/
 class o2_sensor : public sensor {
-	protected:
+	protected: /* protected variables */
 		float m_slope;		/*!< Stores the slope measured from the sensor voltage at different water level  */
 		float m_const;		/*!< Stores the const measured from the sensor voltage at different water level  */
 		int m_adc_channel;	/*!< adc channel where the sensor is connected to */
 		Adafruit_ADS1115 *m_ads;	/*!< ADS board where the sensor is connected to */
-	protected:
+	protected: /* protected functions */
 		/**
 		 *   @brief  Stores the default calibrated values to memory during boot
-		 *   @return returns 0 on success and -1 on failure
+		 *   @param  None
+		 *   @return returns 0 on success and -1 on failure as integer
 		 **/
-		int store_default_o2_calibration_data();
+		int store_default_o2_calibration_data(void);
 		/**
 		 *   @brief  Calibrate the O2 sensor during boot
-		 *   @return returns 0 on success and -1 on failure
+		 *   @param  None
+		 *   @return returns 0 on success and -1 on failure as integer
 		 **/
-		int calibrate_o2_sensor();
-	public:
+		int calibrate_o2_sensor(void);
+	public: /* public functions */
 		/**
 		 *   @brief  Constructor for O2 sensors
 		 *           Initializes O2 sensor variables
@@ -50,24 +52,30 @@ class o2_sensor : public sensor {
 		o2_sensor(Adafruit_ADS1115 *ads, int adc_channel) : sensor() { m_adc_channel = adc_channel; m_ads = ads; };
        /**
 		 *   @brief  Function to initialize the O2 sensor
+		 *   @param  None
 		 *   @return 0 on success and -1 on error
 		 **/
-		int init();
+		int init(void);
         /**
 		 *   @brief  Function to read sensor data
-		 *   @return Returns the readings from sensor
+		 *   @param  None
+		 *   @return Returns the float readings from sensor
 		 **/
-		float read_sensor_data();
+		float read_sensor_data(void);
         /**
 		 *   @brief  Function to reset sensor data
+		 *   @param  None
 		 *   @return None
 		 **/
-		void reset_sensor_data();
+		void reset_sensor_data(void);
         /**
 		 *   @brief  Function to read and update sensor data in local data structures (called in timer interrupt)
+		 *   @param  None
 		 *   @return None
 		 **/
-		void update_sensor_data();
+		void update_sensor_data(void);
 };
 
 #endif /*__O2_SENSOR_H__*/
+
+/**@}*/
