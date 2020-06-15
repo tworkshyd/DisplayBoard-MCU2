@@ -1,0 +1,43 @@
+\hypertarget{_o2__sensor_8cpp}{}\section{sensors/\+O2\+\_\+sensor.cpp File Reference}
+\label{_o2__sensor_8cpp}\index{sensors/\+O2\+\_\+sensor.\+cpp@{sensors/\+O2\+\_\+sensor.\+cpp}}
+
+
+O2 sensor module.  
+
+
+{\ttfamily \#include \char`\"{}O2\+\_\+sensor.\+h\char`\"{}}\newline
+Include dependency graph for O2\+\_\+sensor.\+cpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries O\+X\+Y\+G\+E\+N\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+P\+IN}~A4
+\item 
+\#define {\bfseries A\+V\+O\+I\+D\+\_\+\+E\+E\+P\+R\+OM}~0
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2}~5
+\item 
+\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+O2\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0xC
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries write\+\_\+to\+\_\+eeprom} (unsigned int num\+Of\+Int\+Writes, int $\ast$addr, int $\ast$val)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int const {\bfseries x\+\_\+samples} \mbox{[}N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2\mbox{]} = \{0, 216, 280, 400, 1000\}
+\item 
+int const {\bfseries y\+O2\+Volt\+X1000} \mbox{[}N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2\mbox{]} = \{377, 1088, 1750, 2110, 4812\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O2 sensor module. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}

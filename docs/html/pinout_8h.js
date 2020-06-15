@@ -1,0 +1,26 @@
+var pinout_8h =
+[
+    [ "ADS115_INT_PIN", "pinout_8h.html#a523b7e982dca567dfe2f8ba0f446c7fd", null ],
+    [ "ASSISTED_MODE", "pinout_8h.html#a39841eb6125c47e6cd521774b7b79abf", null ],
+    [ "AUTO_MODE", "pinout_8h.html#a5b4aa60d3f2682ac17d84a435735dbf5", null ],
+    [ "BUZZER_PIN", "pinout_8h.html#ab61d0981ed42df9e18211b273d22cfcd", null ],
+    [ "DISP_ENC_CLK", "pinout_8h.html#aa1c05bf24b34b1f24e091abaaec55af7", null ],
+    [ "DISP_ENC_DT", "pinout_8h.html#a5b6090c9b17070011e3f60deb83b9778", null ],
+    [ "DISP_ENC_SW", "pinout_8h.html#a4b0d91204ca253b52a542f497808ec52", null ],
+    [ "DISPLAY_1_PIN", "pinout_8h.html#a85d16d29a4a4822766a38232838e03de", null ],
+    [ "DISPLAY_2_PIN", "pinout_8h.html#a9a866c9176da0bf225467ec553797217", null ],
+    [ "DISPLAY_3_PIN", "pinout_8h.html#a726fd06295873dcd28fbe02c176b5f10", null ],
+    [ "DISPLAY_4_PIN", "pinout_8h.html#aa66c923c7a687d2b443bcad25aacc09c", null ],
+    [ "DISPLAY_EN_PIN", "pinout_8h.html#a2bef1a7ea560a6a83fbd855bb0d8b020", null ],
+    [ "DISPLAY_RS_PIN", "pinout_8h.html#a5a42686dae1b6abe45f72e15f936a197", null ],
+    [ "FiO2_PIN", "pinout_8h.html#a276121b66bf992e87a09ee150d41fcc5", null ],
+    [ "GAS_SUPPLY_FAILURE", "pinout_8h.html#aff42d97701ebbbed03d21adb23a323a9", null ],
+    [ "I2C_SCL_PIN", "pinout_8h.html#a0e4e08bab2fb484136d18b067bef372c", null ],
+    [ "I2C_SDA_PIN", "pinout_8h.html#a2cade698267beb86ccaa38c14d35ab0f", null ],
+    [ "MECH_FAILSAFE_VALVE", "pinout_8h.html#a776a286c1fcb7efd9714fd439c181aaf", null ],
+    [ "PMAX_PIN", "pinout_8h.html#adefeee01ccc63b980052a18a46afdb53", null ],
+    [ "POWER_SUPPLY_FAILURE", "pinout_8h.html#a77f9769d1e9d759f0e4cd950462ca9b6", null ],
+    [ "RESET_SWITCH", "pinout_8h.html#a2990721a3c115bcdcca55589f8e80a70", null ],
+    [ "RR_PIN", "pinout_8h.html#ab64651328862dc0caae827bcb2b6688c", null ],
+    [ "TIDAL_VOLUME_PIN", "pinout_8h.html#a67386add8d36ad8fdcebf598e024f2d1", null ]
+];

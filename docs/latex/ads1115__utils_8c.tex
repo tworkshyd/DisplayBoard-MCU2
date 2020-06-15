@@ -1,0 +1,48 @@
+\hypertarget{ads1115__utils_8c}{}\section{sensors/ads1115\+\_\+utils.c File Reference}
+\label{ads1115__utils_8c}\index{sensors/ads1115\+\_\+utils.\+c@{sensors/ads1115\+\_\+utils.\+c}}
+
+
+Utility functions to read the samples from I2C.  
+
+
+{\ttfamily \#include \char`\"{}ads1115\+\_\+utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./../3plibs/\+Adafruit\+\_\+\+A\+D\+S1\+X15/\+Adafruit\+\_\+\+A\+D\+S1015.\+cpp\char`\"{}}\newline
+Include dependency graph for ads1115\+\_\+utils.\+c\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+C\+O\+U\+NT}~5
+\item 
+\#define {\bfseries I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~120
+\item 
+\#define {\bfseries A\+D\+S115\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+ER}~(0.\+000125)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries A\+D\+C\+\_\+\+Apply\+Avg\+Filter} (int $\ast$Sample\+Buf, int Sample\+Count, float Multiplier)
+\item 
+float {\bfseries get\+\_\+sample\+\_\+average} (int $\ast$samples, int sample\+\_\+count)
+\item 
+int \hyperlink{group___ventilator_module_gaa714b102f0e19f887c62e649837d0a49}{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to read the sensor samples and average. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gafcad7e09c08806cd2ce59ea2be30d435}{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, int base, int correction, float $\ast$value)
+\begin{DoxyCompactList}\small\item\em Function to return average error corrected samples. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gaca25626de26b2e71ffd3ee4d0632fd6d}{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, int correction, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to read the O2 sensor samples and average. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const float {\bfseries O2\+Sens\+Multiplier} = 0.\+00488
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utility functions to read the samples from I2C. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}

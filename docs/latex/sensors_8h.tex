@@ -1,0 +1,97 @@
+\hypertarget{sensors_8h}{}\section{sensors/sensors.h File Reference}
+\label{sensors_8h}\index{sensors/sensors.\+h@{sensors/sensors.\+h}}
+
+
+Base sensor class.  
+
+
+{\ttfamily \#include \char`\"{}./../3plibs/\+Ms\+Timer2/\+Ms\+Timer2.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./../3plibs/\+Adafruit\+\_\+\+A\+D\+S1\+X15/\+Adafruit\+\_\+\+A\+D\+S1015.\+h\char`\"{}}\newline
+Include dependency graph for sensors.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t}
+\begin{DoxyCompactList}\small\item\em \hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t} where the sensor reading is stored \end{DoxyCompactList}\item 
+struct \hyperlink{structsensor__t}{sensor\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Structure contains sensor specific data. Calibration data, previous and current data read from sensors. \end{DoxyCompactList}\item 
+class \hyperlink{classsensor}{sensor}
+\begin{DoxyCompactList}\small\item\em Base class for all sensors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+U\+C\+C\+E\+SS}~0
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET}~(-\/1)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+U\+N\+K\+N\+O\+WN}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+1)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+2)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+IT}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+3)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+E\+AD}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+4)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+B\+A\+D\+\_\+\+P\+A\+R\+AM}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+5)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+U\+N\+S\+U\+P\+P\+O\+R\+T\+ED}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+6)
+\item 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+ON}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+7)
+\item 
+\#define \hyperlink{group___base_sensors_module_ga758742adca8f7b427482748255303be6}{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}~5
+\item 
+\#define \hyperlink{group___base_sensors_module_gafa3215f0aa766367f5d34bee80929152}{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~120
+\item 
+\#define \hyperlink{group___base_sensors_module_ga611d7dd5e373a17db1c7ed6b2d4cea68}{S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS}~60
+\item 
+\#define {\bfseries A\+C\+C\+U\+M\+U\+L\+A\+T\+O\+R\+\_\+\+R\+E\+S\+E\+T\+\_\+\+P\+IN}~3
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \{ \newline
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caf4f61c74d9854fd3e1bf9ea3fb7a5ee1}{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0} = 0, 
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288cab69326d4e373231c30a9df2b477c8915}{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1}, 
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caed300612104cc61507b8477aeb70cb52}{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2}, 
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca2e8e417b7dca906a4b390ed2734829e7}{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3}, 
+\newline
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca141026376526a491127cef3e3278a293}{S\+E\+N\+S\+O\+R\+\_\+\+O2}, 
+{\bfseries M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+RS}
+ \}\begin{DoxyCompactList}\small\item\em Identifier for all sensors present in the system. \end{DoxyCompactList}
+\item 
+enum \{ \newline
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7a7e111502193be8cb3b94538ee3e02bab}{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0} = 1, 
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ae846257033f50daef0aa99ec519fc9b9}{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1} = 2, 
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ac61629f7fe2523e7237e9df8374a09b8}{D\+P\+\_\+\+A2} = 4, 
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7aa0413d62c9299da2757c4000dfea4cc0}{D\+P\+\_\+\+A3} = 8, 
+\newline
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} = 16
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___base_sensors_module_ga5671eda6cef44f562fc5546701bad52b}{sensors\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize all modules in sensors. \end{DoxyCompactList}\item 
+void \hyperlink{group___base_sensors_module_ga882a0452720480e06504493292f2f0e2}{enable\+\_\+sensor} (unsigned int flag)
+\begin{DoxyCompactList}\small\item\em Function to enable specific sensors or Takes a parameter of different sensor combinations. \end{DoxyCompactList}\item 
+int \hyperlink{group___base_sensors_module_gae8aa32a2ceb9ce2a8dc6d9df9ef8ffd2}{read\+\_\+sensor\+\_\+data} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \hyperlink{classsensor}{sensor}, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Wrapper A\+PI to get specific sensor readings. \end{DoxyCompactList}\item 
+int \hyperlink{group___base_sensors_module_gad44ae3ff179318970b2a99be7500db74}{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \hyperlink{classsensor}{sensor})
+\begin{DoxyCompactList}\small\item\em Function Checks the previous pressure readings and find if there are any dip in pressure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+enum  \{ ... \}  {\bfseries sensor\+\_\+flags\+\_\+e}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base sensor class. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}

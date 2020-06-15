@@ -1,0 +1,14 @@
+digraph "sensors/sensors.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="sensors/sensors.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="./../3plibs/MsTimer2\l/MsTimer2.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_ms_timer2_8h_source.html"];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="./../3plibs/Adafruit\l_ADS1X15/Adafruit_ADS1015.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_adafruit___a_d_s1015_8h.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="WProgram.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Wire.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+}

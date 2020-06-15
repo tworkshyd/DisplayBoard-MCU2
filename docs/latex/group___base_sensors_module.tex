@@ -1,0 +1,253 @@
+\hypertarget{group___base_sensors_module}{}\section{Base\+Sensors\+Module}
+\label{group___base_sensors_module}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t}
+\begin{DoxyCompactList}\small\item\em \hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t} where the sensor reading is stored \end{DoxyCompactList}\item 
+struct \hyperlink{structsensor__t}{sensor\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Structure contains sensor specific data. Calibration data, previous and current data read from sensors. \end{DoxyCompactList}\item 
+class \hyperlink{classsensor}{sensor}
+\begin{DoxyCompactList}\small\item\em Base class for all sensors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_gaa90cac659d18e8ef6294c7ae337f6b58}\label{group___base_sensors_module_gaa90cac659d18e8ef6294c7ae337f6b58}} 
+\#define {\bfseries S\+U\+C\+C\+E\+SS}~0
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_ga34da2490156c0fde3a3a9e8b658e6639}\label{group___base_sensors_module_ga34da2490156c0fde3a3a9e8b658e6639}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET}~(-\/1)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_gade5d86f955604ec489f0c144f47226fc}\label{group___base_sensors_module_gade5d86f955604ec489f0c144f47226fc}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+U\+N\+K\+N\+O\+WN}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+1)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_gaba40c0c761ca246f8a9142158af8bf3c}\label{group___base_sensors_module_gaba40c0c761ca246f8a9142158af8bf3c}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+2)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_ga9a179f25b9f06c45083dc64b4e5915c2}\label{group___base_sensors_module_ga9a179f25b9f06c45083dc64b4e5915c2}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+IT}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+3)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_ga3f1d35afc7c80acc7707e6d3525ac162}\label{group___base_sensors_module_ga3f1d35afc7c80acc7707e6d3525ac162}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+E\+AD}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+4)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_ga63a823f81897c011cdae5d765a12f379}\label{group___base_sensors_module_ga63a823f81897c011cdae5d765a12f379}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+B\+A\+D\+\_\+\+P\+A\+R\+AM}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+5)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_ga6ad7c93bd79b954be3a51a855111a3c4}\label{group___base_sensors_module_ga6ad7c93bd79b954be3a51a855111a3c4}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+U\+N\+S\+U\+P\+P\+O\+R\+T\+ED}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+6)
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_gab8b74c7fa45cf689a9ab880e550e33d8}\label{group___base_sensors_module_gab8b74c7fa45cf689a9ab880e550e33d8}} 
+\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+ON}~(E\+R\+R\+O\+R\+\_\+\+O\+F\+F\+S\+ET+7)
+\item 
+\#define \hyperlink{group___base_sensors_module_ga758742adca8f7b427482748255303be6}{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}~5
+\item 
+\#define \hyperlink{group___base_sensors_module_gafa3215f0aa766367f5d34bee80929152}{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~120
+\item 
+\#define \hyperlink{group___base_sensors_module_ga611d7dd5e373a17db1c7ed6b2d4cea68}{S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS}~60
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_gaf6401ecaef3aa18d868431a6dd538bc0}\label{group___base_sensors_module_gaf6401ecaef3aa18d868431a6dd538bc0}} 
+\#define {\bfseries A\+C\+C\+U\+M\+U\+L\+A\+T\+O\+R\+\_\+\+R\+E\+S\+E\+T\+\_\+\+P\+IN}~3
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \{ \newline
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caf4f61c74d9854fd3e1bf9ea3fb7a5ee1}{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0} = 0, 
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288cab69326d4e373231c30a9df2b477c8915}{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1}, 
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caed300612104cc61507b8477aeb70cb52}{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2}, 
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca2e8e417b7dca906a4b390ed2734829e7}{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3}, 
+\newline
+\hyperlink{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca141026376526a491127cef3e3278a293}{S\+E\+N\+S\+O\+R\+\_\+\+O2}, 
+{\bfseries M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+RS}
+ \}\begin{DoxyCompactList}\small\item\em Identifier for all sensors present in the system. \end{DoxyCompactList}
+\item 
+enum \{ \newline
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7a7e111502193be8cb3b94538ee3e02bab}{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0} = 1, 
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ae846257033f50daef0aa99ec519fc9b9}{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1} = 2, 
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ac61629f7fe2523e7237e9df8374a09b8}{D\+P\+\_\+\+A2} = 4, 
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7aa0413d62c9299da2757c4000dfea4cc0}{D\+P\+\_\+\+A3} = 8, 
+\newline
+\hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} = 16
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___base_sensors_module_ga5671eda6cef44f562fc5546701bad52b}{sensors\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize all modules in sensors. \end{DoxyCompactList}\item 
+void \hyperlink{group___base_sensors_module_ga882a0452720480e06504493292f2f0e2}{enable\+\_\+sensor} (unsigned int flag)
+\begin{DoxyCompactList}\small\item\em Function to enable specific sensors or Takes a parameter of different sensor combinations. \end{DoxyCompactList}\item 
+int \hyperlink{group___base_sensors_module_gae8aa32a2ceb9ce2a8dc6d9df9ef8ffd2}{read\+\_\+sensor\+\_\+data} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \hyperlink{classsensor}{sensor}, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Wrapper A\+PI to get specific sensor readings. \end{DoxyCompactList}\item 
+int \hyperlink{group___base_sensors_module_gad44ae3ff179318970b2a99be7500db74}{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \hyperlink{classsensor}{sensor})
+\begin{DoxyCompactList}\small\item\em Function Checks the previous pressure readings and find if there are any dip in pressure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___base_sensors_module_gab94b29ffe4f7354bcdd031f2d90cc2d7}\label{group___base_sensors_module_gab94b29ffe4f7354bcdd031f2d90cc2d7}} 
+enum  \{ ... \}  {\bfseries sensor\+\_\+flags\+\_\+e}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Sensor module that interfaces with other modules. Allows other modules to enable/read and reset the sensors available. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group___base_sensors_module_gafa3215f0aa766367f5d34bee80929152}\label{group___base_sensors_module_gafa3215f0aa766367f5d34bee80929152}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT@{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}}
+\index{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT@{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}{I2C\_TIMEOUT}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT~120}
+
+I2C timeout value \mbox{\Hypertarget{group___base_sensors_module_ga758742adca8f7b427482748255303be6}\label{group___base_sensors_module_ga758742adca8f7b427482748255303be6}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES@{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}}
+\index{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES@{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}{MAX\_SENSOR\_SAMPLES}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES~5}
+
+maximum number of sensor samples to be taken \mbox{\Hypertarget{group___base_sensors_module_ga611d7dd5e373a17db1c7ed6b2d4cea68}\label{group___base_sensors_module_ga611d7dd5e373a17db1c7ed6b2d4cea68}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS@{S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS}}
+\index{S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS@{S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS}{SENSOR\_TIMER\_IN\_MS}}
+{\footnotesize\ttfamily \#define S\+E\+N\+S\+O\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+\_\+\+MS~60}
+
+Timer for reading the sensor data 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group___base_sensors_module_gadf764cbdea00d65edcd07bb9953ad2b7}\label{group___base_sensors_module_gadf764cbdea00d65edcd07bb9953ad2b7}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0@{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0@{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0}}}\mbox{\Hypertarget{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7a7e111502193be8cb3b94538ee3e02bab}\label{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7a7e111502193be8cb3b94538ee3e02bab}} 
+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0&flag to select peak pressure sensor \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1@{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1@{P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1}}}\mbox{\Hypertarget{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ae846257033f50daef0aa99ec519fc9b9}\label{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ae846257033f50daef0aa99ec519fc9b9}} 
+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1&flag to select peep pressure sensor \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+P\+\_\+\+A2@{D\+P\+\_\+\+A2}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!D\+P\+\_\+\+A2@{D\+P\+\_\+\+A2}}}\mbox{\Hypertarget{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ac61629f7fe2523e7237e9df8374a09b8}\label{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ac61629f7fe2523e7237e9df8374a09b8}} 
+D\+P\+\_\+\+A2&flag to select differential pressure sensor for Peak pressure \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+P\+\_\+\+A3@{D\+P\+\_\+\+A3}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!D\+P\+\_\+\+A3@{D\+P\+\_\+\+A3}}}\mbox{\Hypertarget{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7aa0413d62c9299da2757c4000dfea4cc0}\label{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7aa0413d62c9299da2757c4000dfea4cc0}} 
+D\+P\+\_\+\+A3&flag to select differential pressure sensor for Peek pressure \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O2@{O2}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!O2@{O2}}}\mbox{\Hypertarget{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}\label{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}} 
+O2&flag to select oxygen sensor \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}\label{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!sensor\+\_\+e@{sensor\+\_\+e}}
+\index{sensor\+\_\+e@{sensor\+\_\+e}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{sensor\+\_\+e}{sensor\_e}}
+{\footnotesize\ttfamily enum \hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e}}
+
+
+
+Identifier for all sensors present in the system. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0@{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0@{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0}}}\mbox{\Hypertarget{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caf4f61c74d9854fd3e1bf9ea3fb7a5ee1}\label{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caf4f61c74d9854fd3e1bf9ea3fb7a5ee1}} 
+S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A0&peak pressure sensor M\+P\+X5010 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1@{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1@{S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1}}}\mbox{\Hypertarget{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288cab69326d4e373231c30a9df2b477c8915}\label{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288cab69326d4e373231c30a9df2b477c8915}} 
+S\+E\+N\+S\+O\+R\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+A1&peep pressure sensor M\+P\+X5010 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2@{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2@{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2}}}\mbox{\Hypertarget{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caed300612104cc61507b8477aeb70cb52}\label{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288caed300612104cc61507b8477aeb70cb52}} 
+S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A2&differential pressure sensor for Peak pressure M\+P\+X\+V7002\+DP \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3@{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3@{S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3}}}\mbox{\Hypertarget{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca2e8e417b7dca906a4b390ed2734829e7}\label{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca2e8e417b7dca906a4b390ed2734829e7}} 
+S\+E\+N\+S\+O\+R\+\_\+\+D\+P\+\_\+\+A3&differential pressure sensor for Peek pressure M\+P\+X\+V7002\+DP \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+E\+N\+S\+O\+R\+\_\+\+O2@{S\+E\+N\+S\+O\+R\+\_\+\+O2}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!S\+E\+N\+S\+O\+R\+\_\+\+O2@{S\+E\+N\+S\+O\+R\+\_\+\+O2}}}\mbox{\Hypertarget{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca141026376526a491127cef3e3278a293}\label{group___base_sensors_module_gga241bbfb8b20d2f411c4c10bb9703288ca141026376526a491127cef3e3278a293}} 
+S\+E\+N\+S\+O\+R\+\_\+\+O2&oxygen sensor \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___base_sensors_module_gad44ae3ff179318970b2a99be7500db74}\label{group___base_sensors_module_gad44ae3ff179318970b2a99be7500db74}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure@{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure}}
+\index{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure@{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure()}{check\_for\_dip\_in\_pressure()}}
+{\footnotesize\ttfamily int check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure (\begin{DoxyParamCaption}\item[{\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e}}]{sensor }\end{DoxyParamCaption})}
+
+
+
+Function Checks the previous pressure readings and find if there are any dip in pressure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paran\+Name} & paramter is used to specify the\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 for invlaid sensors, 0 for no dip 1 for a dip in pressure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___base_sensors_module_ga882a0452720480e06504493292f2f0e2}\label{group___base_sensors_module_ga882a0452720480e06504493292f2f0e2}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!enable\+\_\+sensor@{enable\+\_\+sensor}}
+\index{enable\+\_\+sensor@{enable\+\_\+sensor}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{enable\+\_\+sensor()}{enable\_sensor()}}
+{\footnotesize\ttfamily void enable\+\_\+sensor (\begin{DoxyParamCaption}\item[{unsigned int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Function to enable specific sensors or Takes a parameter of different sensor combinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & defines which sensor or a combination of sensors to be enabled\\
+\hline
+{\em source} & parameter to set the source of input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___base_sensors_module_gae8aa32a2ceb9ce2a8dc6d9df9ef8ffd2}\label{group___base_sensors_module_gae8aa32a2ceb9ce2a8dc6d9df9ef8ffd2}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}}
+\index{read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{read\+\_\+sensor\+\_\+data()}{read\_sensor\_data()}}
+{\footnotesize\ttfamily int read\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e}}]{sensor,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Wrapper A\+PI to get specific sensor readings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+e} & sensor describes which sensor to be read.\\
+\hline
+{\em data} & returns the sensor data read from sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for success and error code for any failures 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___base_sensors_module_ga5671eda6cef44f562fc5546701bad52b}\label{group___base_sensors_module_ga5671eda6cef44f562fc5546701bad52b}} 
+\index{Base\+Sensors\+Module@{Base\+Sensors\+Module}!sensors\+\_\+init@{sensors\+\_\+init}}
+\index{sensors\+\_\+init@{sensors\+\_\+init}!Base\+Sensors\+Module@{Base\+Sensors\+Module}}
+\subsubsection{\texorpdfstring{sensors\+\_\+init()}{sensors\_init()}}
+{\footnotesize\ttfamily int sensors\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to initialize all modules in sensors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indicates 0 for S\+U\+C\+C\+E\+SS and -\/1 for F\+A\+I\+L\+U\+RE 
+\end{DoxyReturn}

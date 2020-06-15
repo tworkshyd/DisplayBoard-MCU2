@@ -1,0 +1,276 @@
+\hypertarget{ctrl__display_8h}{}\section{ctrl\+\_\+display.\+h File Reference}
+\label{ctrl__display_8h}\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+
+
+This Module contains.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Structure describes each control parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ctrl__display_8h_a2ac7f24b25e542981dc817d05e0091e9}{M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS}~6
+\item 
+\#define \hyperlink{ctrl__display_8h_a209d504e2d3101771addb11e6597bc69}{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW}~500
+\item 
+\#define \hyperlink{ctrl__display_8h_a03471ecc2312f41e19fb8cc952361929}{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT}~100
+\item 
+\#define \hyperlink{ctrl__display_8h_adf4c0c0dfd5644ed11ef320fe576cc39}{M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL}~10000000
+\item 
+\#define \hyperlink{ctrl__display_8h_a91b28c13b8c84400cfceb2bf5aa2c4e5}{P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS}~2000
+\item 
+\#define \hyperlink{ctrl__display_8h_ae2b4bc72a89a7d23d1efe5b3f70b43f0}{D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE}~0
+\item 
+\#define \hyperlink{ctrl__display_8h_a760baecba12f41b28e046c39f36b705e}{E\+D\+I\+T\+\_\+\+M\+O\+DE}~1
+\item 
+\#define \hyperlink{ctrl__display_8h_a2ab3a5829282eed1c941766afbda9f57}{P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE}~2
+\item 
+\#define \hyperlink{ctrl__display_8h_a8edc4512653ce19b4e52fa5c8c3317e8}{P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE}~3
+\item 
+\#define \hyperlink{ctrl__display_8h_a1ba71eeabfe9ba85c91393f562db6a33}{P\+O\+T\+\_\+\+H\+I\+GH}~1000
+\item 
+\mbox{\Hypertarget{ctrl__display_8h_a84b6be9e99a6efa257f145ad7f2999fd}\label{ctrl__display_8h_a84b6be9e99a6efa257f145ad7f2999fd}} 
+\#define {\bfseries P\+A\+R\+A\+M\+\_\+\+S\+T\+O\+R\+\_\+\+S\+I\+ZE}~4
+\item 
+\mbox{\Hypertarget{ctrl__display_8h_a653c862bee490fc0683756e3c2f84498}\label{ctrl__display_8h_a653c862bee490fc0683756e3c2f84498}} 
+\#define {\bfseries P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+U\+C\+FG}~1
+\item 
+\mbox{\Hypertarget{ctrl__display_8h_ab98eb41504519dbf4b24ddf7ab185ca3}\label{ctrl__display_8h_ab98eb41504519dbf4b24ddf7ab185ca3}} 
+\#define {\bfseries P\+A\+R\+A\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+E\+NS}~2
+\item 
+\mbox{\Hypertarget{ctrl__display_8h_afbdefb4b5f53b0644758d5bef762949c}\label{ctrl__display_8h_afbdefb4b5f53b0644758d5bef762949c}} 
+\#define {\bfseries U\+N\+I\+T\+\_\+\+C\+M\+H2O}~\char`\"{}cm\+H20\char`\"{}
+\item 
+\#define \hyperlink{ctrl__display_8h_affc662a5585e1c2d4253b2f639844beb}{S\+A\+V\+E\+\_\+\+F\+L\+AG}~\char`\"{} S\+A\+VE \char`\"{}
+\item 
+\#define \hyperlink{ctrl__display_8h_aa995fc1cac6eeee35d5807792d2f2352}{S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}~\char`\"{}$<$S\+A\+VE$>$\char`\"{}
+\item 
+\#define \hyperlink{ctrl__display_8h_a2bea6eba7e3f78006c2cf9c76996c85a}{C\+A\+N\+C\+\_\+\+F\+L\+AG}~\char`\"{} C\+A\+N\+C\+EL \char`\"{}
+\item 
+\#define \hyperlink{ctrl__display_8h_a15f939fa5ae797041d107d6740fbeff3}{C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}~\char`\"{}$<$C\+A\+N\+C\+EL$>$\char`\"{}
+\item 
+\#define \hyperlink{ctrl__display_8h_a07b731b9dfb7f3988bca14dc39fa7f80}{E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR}~\char`\"{}                    \char`\"{}
+\item 
+\#define \hyperlink{ctrl__display_8h_ad028a55e2b3cf588f935ba04edb6d138}{E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR}~\char`\"{}     \char`\"{}
+\item 
+\mbox{\Hypertarget{ctrl__display_8h_a06fc87d81c62e9abb8790b6e5713c55b}\label{ctrl__display_8h_a06fc87d81c62e9abb8790b6e5713c55b}} 
+enum \{ \newline
+{\bfseries T\+I\+D\+A\+L\+\_\+\+V\+OL} =0, 
+{\bfseries B\+PM}, 
+{\bfseries P\+E\+A\+K\+\_\+\+P\+R\+ES}, 
+{\bfseries F\+I\+O2\+\_\+\+P\+E\+RC}, 
+\newline
+{\bfseries I\+E\+\_\+\+R\+A\+T\+IO}, 
+{\bfseries P\+E\+E\+P\+\_\+\+P\+R\+ES}
+ \}
+\item 
+const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} \hyperlink{ctrl__display_8h_a9a8ce67822b3d69380d982923d12a320}{tidl\+\_\+volu}
+\item 
+const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} \hyperlink{ctrl__display_8h_a3da8581412cc217ae7bbe97e6b02dfa8}{resp\+\_\+rate}
+\item 
+const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} \hyperlink{ctrl__display_8h_ac989f1b193f3160f99af62fe5205c39f}{peak\+\_\+press}
+\item 
+const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} \hyperlink{ctrl__display_8h_aa323165552475eea75b5d5c43ffb69d6}{fio2\+\_\+perc}
+\item 
+const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} \hyperlink{ctrl__display_8h_a504f32cc8b89e43108749a94779421c5}{inex\+\_\+rati}
+\item 
+const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} \hyperlink{ctrl__display_8h_a49d455b6df0a2bc2e6c7dc611ae6833a}{peep\+\_\+pres}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This Module contains. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ctrl__display_8h_a2bea6eba7e3f78006c2cf9c76996c85a}\label{ctrl__display_8h_a2bea6eba7e3f78006c2cf9c76996c85a}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!C\+A\+N\+C\+\_\+\+F\+L\+AG@{C\+A\+N\+C\+\_\+\+F\+L\+AG}}
+\index{C\+A\+N\+C\+\_\+\+F\+L\+AG@{C\+A\+N\+C\+\_\+\+F\+L\+AG}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+N\+C\+\_\+\+F\+L\+AG}{CANC\_FLAG}}
+{\footnotesize\ttfamily \#define C\+A\+N\+C\+\_\+\+F\+L\+AG~\char`\"{} C\+A\+N\+C\+EL \char`\"{}}
+
+defines the String for C\+A\+N\+C\+\_\+\+F\+L\+AG \mbox{\Hypertarget{ctrl__display_8h_a15f939fa5ae797041d107d6740fbeff3}\label{ctrl__display_8h_a15f939fa5ae797041d107d6740fbeff3}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN@{C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}}
+\index{C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN@{C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}{CANC\_FLAG\_CHOSEN}}
+{\footnotesize\ttfamily \#define C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN~\char`\"{}$<$C\+A\+N\+C\+EL$>$\char`\"{}}
+
+defines the String for C\+A\+N\+C\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN \mbox{\Hypertarget{ctrl__display_8h_a03471ecc2312f41e19fb8cc952361929}\label{ctrl__display_8h_a03471ecc2312f41e19fb8cc952361929}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT@{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT}}
+\index{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT@{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT}{DBNC\_INTVL\_ROT}}
+{\footnotesize\ttfamily \#define D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+R\+OT~100}
+
+millisecs delay before rotation debounce \mbox{\Hypertarget{ctrl__display_8h_a209d504e2d3101771addb11e6597bc69}\label{ctrl__display_8h_a209d504e2d3101771addb11e6597bc69}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW@{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW}}
+\index{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW@{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW}{DBNC\_INTVL\_SW}}
+{\footnotesize\ttfamily \#define D\+B\+N\+C\+\_\+\+I\+N\+T\+V\+L\+\_\+\+SW~500}
+
+millisecs delay before switch debounce \mbox{\Hypertarget{ctrl__display_8h_ae2b4bc72a89a7d23d1efe5b3f70b43f0}\label{ctrl__display_8h_ae2b4bc72a89a7d23d1efe5b3f70b43f0}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE}{DISPLAY\_MODE}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+\+M\+O\+DE~0}
+
+value for Display mode is 0 \mbox{\Hypertarget{ctrl__display_8h_a760baecba12f41b28e046c39f36b705e}\label{ctrl__display_8h_a760baecba12f41b28e046c39f36b705e}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!E\+D\+I\+T\+\_\+\+M\+O\+DE@{E\+D\+I\+T\+\_\+\+M\+O\+DE}}
+\index{E\+D\+I\+T\+\_\+\+M\+O\+DE@{E\+D\+I\+T\+\_\+\+M\+O\+DE}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{E\+D\+I\+T\+\_\+\+M\+O\+DE}{EDIT\_MODE}}
+{\footnotesize\ttfamily \#define E\+D\+I\+T\+\_\+\+M\+O\+DE~1}
+
+value for edit mode is 1 \mbox{\Hypertarget{ctrl__display_8h_ad028a55e2b3cf588f935ba04edb6d138}\label{ctrl__display_8h_ad028a55e2b3cf588f935ba04edb6d138}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR@{E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR}}
+\index{E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR@{E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR}{EMPTY\_FIVE\_STR}}
+{\footnotesize\ttfamily \#define E\+M\+P\+T\+Y\+\_\+\+F\+I\+V\+E\+\_\+\+S\+TR~\char`\"{}     \char`\"{}}
+
+Empty five space Str mode\+\_\+headers array difines all the modes \mbox{\Hypertarget{ctrl__display_8h_a07b731b9dfb7f3988bca14dc39fa7f80}\label{ctrl__display_8h_a07b731b9dfb7f3988bca14dc39fa7f80}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR@{E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR}}
+\index{E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR@{E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR}{EMPTY\_TWENTY\_STR}}
+{\footnotesize\ttfamily \#define E\+M\+P\+T\+Y\+\_\+\+T\+W\+E\+N\+T\+Y\+\_\+\+S\+TR~\char`\"{}                    \char`\"{}}
+
+Twenty space Str \mbox{\Hypertarget{ctrl__display_8h_a2ac7f24b25e542981dc817d05e0091e9}\label{ctrl__display_8h_a2ac7f24b25e542981dc817d05e0091e9}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS@{M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS}}
+\index{M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS@{M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS}{MAX\_CTRL\_PARAMS}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+A\+R\+A\+MS~6}
+
+Total number of control parameters \mbox{\Hypertarget{ctrl__display_8h_adf4c0c0dfd5644ed11ef320fe576cc39}\label{ctrl__display_8h_adf4c0c0dfd5644ed11ef320fe576cc39}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL@{M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL}}
+\index{M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL@{M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL}{MAX\_IDLE\_AFTER\_SEL}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+I\+D\+L\+E\+\_\+\+A\+F\+T\+E\+R\+\_\+\+S\+EL~10000000}
+
+maximum idle time after edit selection \mbox{\Hypertarget{ctrl__display_8h_a8edc4512653ce19b4e52fa5c8c3317e8}\label{ctrl__display_8h_a8edc4512653ce19b4e52fa5c8c3317e8}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE@{P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE}}
+\index{P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE@{P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE}{PAR\_SAVE\_MODE}}
+{\footnotesize\ttfamily \#define P\+A\+R\+\_\+\+S\+A\+V\+E\+\_\+\+M\+O\+DE~3}
+
+value for param save mode is 3 \mbox{\Hypertarget{ctrl__display_8h_a2ab3a5829282eed1c941766afbda9f57}\label{ctrl__display_8h_a2ab3a5829282eed1c941766afbda9f57}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE@{P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE}}
+\index{P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE@{P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE}{PAR\_SELECTED\_MODE}}
+{\footnotesize\ttfamily \#define P\+A\+R\+\_\+\+S\+E\+L\+E\+C\+T\+E\+D\+\_\+\+M\+O\+DE~2}
+
+value for param selection mode is 2 \mbox{\Hypertarget{ctrl__display_8h_a1ba71eeabfe9ba85c91393f562db6a33}\label{ctrl__display_8h_a1ba71eeabfe9ba85c91393f562db6a33}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!P\+O\+T\+\_\+\+H\+I\+GH@{P\+O\+T\+\_\+\+H\+I\+GH}}
+\index{P\+O\+T\+\_\+\+H\+I\+GH@{P\+O\+T\+\_\+\+H\+I\+GH}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{P\+O\+T\+\_\+\+H\+I\+GH}{POT\_HIGH}}
+{\footnotesize\ttfamily \#define P\+O\+T\+\_\+\+H\+I\+GH~1000}
+
+maximum pot high value \mbox{\Hypertarget{ctrl__display_8h_a91b28c13b8c84400cfceb2bf5aa2c4e5}\label{ctrl__display_8h_a91b28c13b8c84400cfceb2bf5aa2c4e5}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS@{P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS}}
+\index{P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS@{P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS}{POT\_TURN\_MAX\_WAIT\_MILLIS}}
+{\footnotesize\ttfamily \#define P\+O\+T\+\_\+\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+W\+A\+I\+T\+\_\+\+M\+I\+L\+L\+IS~2000}
+
+maximum waiting time for turning pot \mbox{\Hypertarget{ctrl__display_8h_affc662a5585e1c2d4253b2f639844beb}\label{ctrl__display_8h_affc662a5585e1c2d4253b2f639844beb}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!S\+A\+V\+E\+\_\+\+F\+L\+AG@{S\+A\+V\+E\+\_\+\+F\+L\+AG}}
+\index{S\+A\+V\+E\+\_\+\+F\+L\+AG@{S\+A\+V\+E\+\_\+\+F\+L\+AG}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{S\+A\+V\+E\+\_\+\+F\+L\+AG}{SAVE\_FLAG}}
+{\footnotesize\ttfamily \#define S\+A\+V\+E\+\_\+\+F\+L\+AG~\char`\"{} S\+A\+VE \char`\"{}}
+
+defines the String for S\+A\+V\+E\+\_\+\+F\+L\+AG \mbox{\Hypertarget{ctrl__display_8h_aa995fc1cac6eeee35d5807792d2f2352}\label{ctrl__display_8h_aa995fc1cac6eeee35d5807792d2f2352}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN@{S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}}
+\index{S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN@{S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN}{SAVE\_FLAG\_CHOSEN}}
+{\footnotesize\ttfamily \#define S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN~\char`\"{}$<$S\+A\+VE$>$\char`\"{}}
+
+defines the String for S\+A\+V\+E\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+O\+S\+EN 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ctrl__display_8h_aa323165552475eea75b5d5c43ffb69d6}\label{ctrl__display_8h_aa323165552475eea75b5d5c43ffb69d6}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!fio2\+\_\+perc@{fio2\+\_\+perc}}
+\index{fio2\+\_\+perc@{fio2\+\_\+perc}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{fio2\+\_\+perc}{fio2\_perc}}
+{\footnotesize\ttfamily const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} fio2\+\_\+perc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=    \{3, \textcolor{stringliteral}{"FiO2"}, \hyperlink{pinout_8h_a276121b66bf992e87a09ee150d41fcc5}{FiO2\_PIN},
+                                       20, 100,
+                                       \textcolor{stringliteral}{"%    "}, 20,
+                                       0, 0
+                                      \}
+\end{DoxyCode}
+default values assigned according to the \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} Structure variables for I\+ER Ratio \mbox{\Hypertarget{ctrl__display_8h_a504f32cc8b89e43108749a94779421c5}\label{ctrl__display_8h_a504f32cc8b89e43108749a94779421c5}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!inex\+\_\+rati@{inex\+\_\+rati}}
+\index{inex\+\_\+rati@{inex\+\_\+rati}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{inex\+\_\+rati}{inex\_rati}}
+{\footnotesize\ttfamily const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} inex\+\_\+rati}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=    \{4, \textcolor{stringliteral}{"IER "}, \hyperlink{pinout_8h_aa1c05bf24b34b1f24e091abaaec55af7}{DISP\_ENC\_CLK}, 
+                                       1, 3,
+                                       \textcolor{stringliteral}{"ratio"}, 1,
+                                       0, 0
+                                      \}
+\end{DoxyCode}
+default values assigned according to the \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} Structure variables for PeeP \mbox{\Hypertarget{ctrl__display_8h_ac989f1b193f3160f99af62fe5205c39f}\label{ctrl__display_8h_ac989f1b193f3160f99af62fe5205c39f}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!peak\+\_\+press@{peak\+\_\+press}}
+\index{peak\+\_\+press@{peak\+\_\+press}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{peak\+\_\+press}{peak\_press}}
+{\footnotesize\ttfamily const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} peak\+\_\+press}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=   \{2, \textcolor{stringliteral}{"PIP "}, \hyperlink{pinout_8h_adefeee01ccc63b980052a18a46afdb53}{PMAX\_PIN},
+                                       29, 59,
+                                       UNIT\_CMH2O, 1,
+                                       0, 0
+                                      \}
+\end{DoxyCode}
+default values assigned according to the \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} Structure variables for Fio2 \mbox{\Hypertarget{ctrl__display_8h_a49d455b6df0a2bc2e6c7dc611ae6833a}\label{ctrl__display_8h_a49d455b6df0a2bc2e6c7dc611ae6833a}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!peep\+\_\+pres@{peep\+\_\+pres}}
+\index{peep\+\_\+pres@{peep\+\_\+pres}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{peep\+\_\+pres}{peep\_pres}}
+{\footnotesize\ttfamily const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} peep\+\_\+pres}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=    \{5, \textcolor{stringliteral}{"PEEP"}, \hyperlink{pinout_8h_aa1c05bf24b34b1f24e091abaaec55af7}{DISP\_ENC\_CLK}, 
+                                       5, 20,
+                                       UNIT\_CMH2O, 5,
+                                       0, 0
+                                      \}
+\end{DoxyCode}
+Array contains all the control parameter values \mbox{\Hypertarget{ctrl__display_8h_a3da8581412cc217ae7bbe97e6b02dfa8}\label{ctrl__display_8h_a3da8581412cc217ae7bbe97e6b02dfa8}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!resp\+\_\+rate@{resp\+\_\+rate}}
+\index{resp\+\_\+rate@{resp\+\_\+rate}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{resp\+\_\+rate}{resp\_rate}}
+{\footnotesize\ttfamily const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} resp\+\_\+rate}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=    \{1, \textcolor{stringliteral}{"BPM "}, \hyperlink{pinout_8h_ab64651328862dc0caae827bcb2b6688c}{RR\_PIN},
+                                       2, 35,
+                                       \textcolor{stringliteral}{"BPM  "}, 1,
+                                       0, 0
+                                      \}
+\end{DoxyCode}
+default values assigned according to the \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} Structure variables for Peak\+Pressure \mbox{\Hypertarget{ctrl__display_8h_a9a8ce67822b3d69380d982923d12a320}\label{ctrl__display_8h_a9a8ce67822b3d69380d982923d12a320}} 
+\index{ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}!tidl\+\_\+volu@{tidl\+\_\+volu}}
+\index{tidl\+\_\+volu@{tidl\+\_\+volu}!ctrl\+\_\+display.\+h@{ctrl\+\_\+display.\+h}}
+\subsubsection{\texorpdfstring{tidl\+\_\+volu}{tidl\_volu}}
+{\footnotesize\ttfamily const \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} tidl\+\_\+volu}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{0, \textcolor{stringliteral}{"TV  "}, \hyperlink{pinout_8h_a67386add8d36ad8fdcebf598e024f2d1}{TIDAL\_VOLUME\_PIN},
+                                    150, 750,
+                                    \textcolor{stringliteral}{"ml   "}, 50,
+                                    0, 0
+                                   \}
+\end{DoxyCode}
+default values assigned according to the \hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} Structure variables for B\+PM 

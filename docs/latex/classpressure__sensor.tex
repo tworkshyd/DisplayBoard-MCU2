@@ -1,0 +1,86 @@
+\hypertarget{classpressure__sensor}{}\section{pressure\+\_\+sensor Class Reference}
+\label{classpressure__sensor}\index{pressure\+\_\+sensor@{pressure\+\_\+sensor}}
+
+
+Class to handle Pressure sensor, inherits base sensor class.  
+
+
+
+
+{\ttfamily \#include $<$pressure\+\_\+sensor.\+h$>$}
+
+
+
+Inheritance diagram for pressure\+\_\+sensor\+:
+% FIG 0
+
+
+Collaboration diagram for pressure\+\_\+sensor\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classpressure__sensor_a3c60a7e473ce0057419d3c1c0c215019}\label{classpressure__sensor_a3c60a7e473ce0057419d3c1c0c215019}} 
+\hyperlink{classpressure__sensor_a3c60a7e473ce0057419d3c1c0c215019}{pressure\+\_\+sensor} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int adc\+\_\+channel)
+\begin{DoxyCompactList}\small\item\em Constructor for pressure sensors Initializes pressure sensor variables. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_ga12b267b360a27d82a85f0b5276d433ed}{init} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize the O2 sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga06b5da2de0abf739405ca3c48aa0119c}{read\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read sensor data. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_ga19fa695e059a50b732d54d1e4325ee99}{reset\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to reset sensor data. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_gac8d67444e99afbc866b1d759cbfde3c5}{update\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read and update sensor data in local data structures (called in timer interrupt) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{group___ventilator_module_ga5f113f838045ef7cd582cebfcd00c4f0}{get\+\_\+pressure\+\_\+\+M\+P\+X5010} (void)
+\begin{DoxyCompactList}\small\item\em Utility function to read the pressure from M\+P\+X5010 sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga5eb61c5fdc62a4a0b494a518fc7273ba}{get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP} (float vout)
+\begin{DoxyCompactList}\small\item\em Utility function to read the differential pressure from M\+P\+X\+V7002 sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_gab51f616f215d3b4ade2bdd9a3958622d}{get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP} (void)
+\begin{DoxyCompactList}\small\item\em Utility function to read volume of air from spyro for specific sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga4a650b2c4cb1b55f8be3a4c129d4f12a}{get\+\_\+flowrate\+\_\+spyro} (float pressure)
+\begin{DoxyCompactList}\small\item\em Utility function to read volume of air from spyro. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gafd69d3a07ff97d3b68bd952d5286b11a}{sensor\+\_\+zero\+\_\+calibration} (void)
+\begin{DoxyCompactList}\small\item\em Calibrates pressure sensor during boot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classpressure__sensor_a10d72913265c157d3c0f0fbbceb937e7}{m\+\_\+dp}
+\item 
+int \hyperlink{classpressure__sensor_a8dcf68ecb088159c4cd9f390ff6e556d}{m\+\_\+adc\+\_\+channel}
+\item 
+\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ \hyperlink{classpressure__sensor_ac07bb98b1f166cff5d144f9c4abfe0ae}{m\+\_\+ads}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class to handle Pressure sensor, inherits base sensor class. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classpressure__sensor_a8dcf68ecb088159c4cd9f390ff6e556d}\label{classpressure__sensor_a8dcf68ecb088159c4cd9f390ff6e556d}} 
+\index{pressure\+\_\+sensor@{pressure\+\_\+sensor}!m\+\_\+adc\+\_\+channel@{m\+\_\+adc\+\_\+channel}}
+\index{m\+\_\+adc\+\_\+channel@{m\+\_\+adc\+\_\+channel}!pressure\+\_\+sensor@{pressure\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+adc\+\_\+channel}{m\_adc\_channel}}
+{\footnotesize\ttfamily int pressure\+\_\+sensor\+::m\+\_\+adc\+\_\+channel\hspace{0.3cm}{\ttfamily [protected]}}
+
+adc channel where the sensor is connected to \mbox{\Hypertarget{classpressure__sensor_ac07bb98b1f166cff5d144f9c4abfe0ae}\label{classpressure__sensor_ac07bb98b1f166cff5d144f9c4abfe0ae}} 
+\index{pressure\+\_\+sensor@{pressure\+\_\+sensor}!m\+\_\+ads@{m\+\_\+ads}}
+\index{m\+\_\+ads@{m\+\_\+ads}!pressure\+\_\+sensor@{pressure\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+ads}{m\_ads}}
+{\footnotesize\ttfamily \hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115}$\ast$ pressure\+\_\+sensor\+::m\+\_\+ads\hspace{0.3cm}{\ttfamily [protected]}}
+
+A\+DS board where the sensor is connected to \mbox{\Hypertarget{classpressure__sensor_a10d72913265c157d3c0f0fbbceb937e7}\label{classpressure__sensor_a10d72913265c157d3c0f0fbbceb937e7}} 
+\index{pressure\+\_\+sensor@{pressure\+\_\+sensor}!m\+\_\+dp@{m\+\_\+dp}}
+\index{m\+\_\+dp@{m\+\_\+dp}!pressure\+\_\+sensor@{pressure\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+dp}{m\_dp}}
+{\footnotesize\ttfamily int pressure\+\_\+sensor\+::m\+\_\+dp\hspace{0.3cm}{\ttfamily [protected]}}
+
+Flag to store whether the object is pressure sensor or differential pressure sensor 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sensors/\hyperlink{pressure__sensor_8h}{pressure\+\_\+sensor.\+h}\item 
+sensors/\hyperlink{pressure__sensor_8cpp}{pressure\+\_\+sensor.\+cpp}\end{DoxyCompactItemize}

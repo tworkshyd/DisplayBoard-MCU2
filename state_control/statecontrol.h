@@ -1,12 +1,12 @@
 /**************************************************************************/
 /*!
-    @file     statecontrol.h
+    @file     Control_StateMachine.h
 
     @brief     Control StateMachine Module defines the state 
 
     @author   Tworks
     
-  @defgroup StateControlModule  
+  @defgroup StateControlModule  StateControlModule
 
     Module is a stateMachine where sensors data and UI parameters data is read to take appropriate decision in the respective state. 
   @{
@@ -42,8 +42,8 @@
 #define INIT_VALV_BLK  21              /**<it gives the index value of the commands array  to  initialize stepper module*/
 #define INIT_BREATH_DET  22            /**<it gives the index value of the commands array  to  initialize breath detection*/
 
-#define SYNCH "SY"       /**< Flag to check whether the request is for synchronization */
-#define VENTSLAVE "VS"   /**< Flag to know whether the packet request is from Ventilator slave */
+#define SYNCH "SY"       /**< Unknown State is used when request structure is valid but makes no sense semantically */
+#define VENTSLAVE "VS"   /**< Unknown State is used when request structure is valid but makes no sense semantically */
 
 #define START_DELIM '$'  /**< Start Delimeter for the Command Structure*/
 #define END_DELIM '&'    /**< End Delimeter for the Command Structure*/
@@ -98,7 +98,7 @@ String Ctrl_CreateCommand(String paramName, int value);
     @return indicates true for SUCCESS and false for FAILURE
 */
 /**************************************************************************/
-bool Ctrl_StateMachine_Manager(void);
+bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, displayManager &dM);
 
 /**************************************************************************/
 /*!
@@ -116,9 +116,9 @@ void Ctrl_ProcessRxData(void);
 
     @brief  Function to store the bufferred data into the local variable
 
-    @param data parameter is the bufferred data 
+    @param data parameter is the bufferred data
 
-    @return none
+    @return none 
 
 */
 /**************************************************************************/
@@ -129,6 +129,7 @@ void Ctrl_store_received_packet(String data);
     @brief  Function to send the command from commands array based on the index
 
     @param commandIndex parameter is used to index in the commands array
+
 
     @return indicates 0 for SUCCESS and -1 for FAILURE
 */
@@ -151,22 +152,22 @@ int  Ctrl_send_packet(String name, int value);
 /*!
 
    @brief  Function to change the state to INIT 
-    
+   
    @param none
  
-   @return none 
-*/
+   @return none
 
+*/
 /**************************************************************************/
 void Ctrl_Start();
 /**************************************************************************/
 /*!
 
     @brief  Function to change the state to stop the stepper motor
-    
+
     @param none
  
-    @return none
+   @return none
 
 */
 /**************************************************************************/

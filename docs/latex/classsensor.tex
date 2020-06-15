@@ -1,0 +1,230 @@
+\hypertarget{classsensor}{}\section{sensor Class Reference}
+\label{classsensor}\index{sensor@{sensor}}
+
+
+Base class for all sensors.  
+
+
+
+
+{\ttfamily \#include $<$sensors.\+h$>$}
+
+
+
+Inheritance diagram for sensor\+:
+% FIG 0
+
+
+Collaboration diagram for sensor\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classsensor_aeaa38c2a2b5e33314a4fe9ff905dc0c6}{sensor} ()
+\begin{DoxyCompactList}\small\item\em Constructor for sensors Initializes all sensor variables. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gaa646dcf1c12ed21dd027a49721e27b04}{read\+\_\+sensor\+\_\+samples} (float $\ast$\hyperlink{classsensor_a795220a22d60a8babb9383b002342220}{samples}, int sample\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Function to read the sensor samples. \end{DoxyCompactList}\item 
+void \hyperlink{classsensor_af88b299557e0ac58b9fee93bfc2e5e22}{set\+\_\+error} (int err)
+\begin{DoxyCompactList}\small\item\em setter function for m\+\_\+error \end{DoxyCompactList}\item 
+int \hyperlink{classsensor_ac1312bdb1b0e23c215af87224a54e550}{get\+\_\+error} (void)
+\begin{DoxyCompactList}\small\item\em getter function for m\+\_\+error \end{DoxyCompactList}\item 
+virtual int \hyperlink{classsensor_aae55152b437f83053eb018b5ebac874e}{init} (void)=0
+\begin{DoxyCompactList}\small\item\em Function to initialize the sensors Pure virtual function, child class should implement this. \end{DoxyCompactList}\item 
+virtual float \hyperlink{classsensor_a682adbfb20854e2bce40b8a5c0aa6232}{read\+\_\+sensor\+\_\+data} (void)=0
+\begin{DoxyCompactList}\small\item\em Function to read sensor data Pure virtual function, child class should implement this. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classsensor_a71fccbf71cc771db4775443bf899a5d3}{reset\+\_\+sensor\+\_\+data} (void)=0
+\begin{DoxyCompactList}\small\item\em Function to reset sensor data Pure virtual function, child class should implement this. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classsensor_a8a8cdbc1c82a4089bf0a70f980fb37d4}{update\+\_\+sensor\+\_\+data} (void)=0
+\begin{DoxyCompactList}\small\item\em Function to update sensor data (called in timer interrupt) Pure virtual function, child class should implement this. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classsensor_ae5e47730d9287ad3c933472361478adc}{m\+\_\+error}
+\item 
+\hyperlink{structsensor__t}{sensor\+\_\+t} \hyperlink{classsensor_ac3e288dfa5563c9ea1acfb2316815618}{m\+\_\+data}
+\item 
+float \hyperlink{classsensor_a795220a22d60a8babb9383b002342220}{samples} \mbox{[}\hyperlink{group___base_sensors_module_ga758742adca8f7b427482748255303be6}{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}\mbox{]}
+\item 
+int \hyperlink{classsensor_a4216ce667ad8873d1a45f2a1505209da}{m\+\_\+sample\+\_\+index}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for all sensors. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsensor_aeaa38c2a2b5e33314a4fe9ff905dc0c6}\label{classsensor_aeaa38c2a2b5e33314a4fe9ff905dc0c6}} 
+\index{sensor@{sensor}!sensor@{sensor}}
+\index{sensor@{sensor}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{sensor()}{sensor()}}
+{\footnotesize\ttfamily sensor\+::sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for sensors Initializes all sensor variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classsensor_ac1312bdb1b0e23c215af87224a54e550}\label{classsensor_ac1312bdb1b0e23c215af87224a54e550}} 
+\index{sensor@{sensor}!get\+\_\+error@{get\+\_\+error}}
+\index{get\+\_\+error@{get\+\_\+error}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{get\+\_\+error()}{get\_error()}}
+{\footnotesize\ttfamily int sensor\+::get\+\_\+error (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+getter function for m\+\_\+error 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error code stored in m\+\_\+error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsensor_aae55152b437f83053eb018b5ebac874e}\label{classsensor_aae55152b437f83053eb018b5ebac874e}} 
+\index{sensor@{sensor}!init@{init}}
+\index{init@{init}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily virtual int sensor\+::init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Function to initialize the sensors Pure virtual function, child class should implement this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success and -\/1 on error 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{group___ventilator_module_ga12b267b360a27d82a85f0b5276d433ed}{pressure\+\_\+sensor}, and \hyperlink{group___ventilator_module_ga913dbc20ebbe78e12f33075d8b0b4b1a}{o2\+\_\+sensor}.
+
+\mbox{\Hypertarget{classsensor_a682adbfb20854e2bce40b8a5c0aa6232}\label{classsensor_a682adbfb20854e2bce40b8a5c0aa6232}} 
+\index{sensor@{sensor}!read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}}
+\index{read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{read\+\_\+sensor\+\_\+data()}{read\_sensor\_data()}}
+{\footnotesize\ttfamily virtual float sensor\+::read\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Function to read sensor data Pure virtual function, child class should implement this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the readings from sensor as float 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{group___ventilator_module_ga06b5da2de0abf739405ca3c48aa0119c}{pressure\+\_\+sensor}, and \hyperlink{group___ventilator_module_ga9601927ed36f205bdc9a8dfb55cf9657}{o2\+\_\+sensor}.
+
+\mbox{\Hypertarget{classsensor_a71fccbf71cc771db4775443bf899a5d3}\label{classsensor_a71fccbf71cc771db4775443bf899a5d3}} 
+\index{sensor@{sensor}!reset\+\_\+sensor\+\_\+data@{reset\+\_\+sensor\+\_\+data}}
+\index{reset\+\_\+sensor\+\_\+data@{reset\+\_\+sensor\+\_\+data}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{reset\+\_\+sensor\+\_\+data()}{reset\_sensor\_data()}}
+{\footnotesize\ttfamily virtual void sensor\+::reset\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Function to reset sensor data Pure virtual function, child class should implement this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{group___ventilator_module_ga19fa695e059a50b732d54d1e4325ee99}{pressure\+\_\+sensor}, and \hyperlink{group___ventilator_module_gacc2551ecc6e2b9542a747aed535eda43}{o2\+\_\+sensor}.
+
+\mbox{\Hypertarget{classsensor_af88b299557e0ac58b9fee93bfc2e5e22}\label{classsensor_af88b299557e0ac58b9fee93bfc2e5e22}} 
+\index{sensor@{sensor}!set\+\_\+error@{set\+\_\+error}}
+\index{set\+\_\+error@{set\+\_\+error}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{set\+\_\+error()}{set\_error()}}
+{\footnotesize\ttfamily void sensor\+::set\+\_\+error (\begin{DoxyParamCaption}\item[{int}]{err }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+setter function for m\+\_\+error 
+
+
+\begin{DoxyParams}{Parameters}
+{\em err} & error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsensor_a8a8cdbc1c82a4089bf0a70f980fb37d4}\label{classsensor_a8a8cdbc1c82a4089bf0a70f980fb37d4}} 
+\index{sensor@{sensor}!update\+\_\+sensor\+\_\+data@{update\+\_\+sensor\+\_\+data}}
+\index{update\+\_\+sensor\+\_\+data@{update\+\_\+sensor\+\_\+data}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{update\+\_\+sensor\+\_\+data()}{update\_sensor\_data()}}
+{\footnotesize\ttfamily virtual void sensor\+::update\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Function to update sensor data (called in timer interrupt) Pure virtual function, child class should implement this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{group___ventilator_module_gac8d67444e99afbc866b1d759cbfde3c5}{pressure\+\_\+sensor}, and \hyperlink{group___ventilator_module_ga460fc40d059c217fa41e4539cdb3c11d}{o2\+\_\+sensor}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classsensor_ac3e288dfa5563c9ea1acfb2316815618}\label{classsensor_ac3e288dfa5563c9ea1acfb2316815618}} 
+\index{sensor@{sensor}!m\+\_\+data@{m\+\_\+data}}
+\index{m\+\_\+data@{m\+\_\+data}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+data}{m\_data}}
+{\footnotesize\ttfamily \hyperlink{structsensor__t}{sensor\+\_\+t} sensor\+::m\+\_\+data}
+
+Sensor calibration data and sensor readings stored here \mbox{\Hypertarget{classsensor_ae5e47730d9287ad3c933472361478adc}\label{classsensor_ae5e47730d9287ad3c933472361478adc}} 
+\index{sensor@{sensor}!m\+\_\+error@{m\+\_\+error}}
+\index{m\+\_\+error@{m\+\_\+error}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+error}{m\_error}}
+{\footnotesize\ttfamily int sensor\+::m\+\_\+error}
+
+Stores the last error in the sensor \mbox{\Hypertarget{classsensor_a4216ce667ad8873d1a45f2a1505209da}\label{classsensor_a4216ce667ad8873d1a45f2a1505209da}} 
+\index{sensor@{sensor}!m\+\_\+sample\+\_\+index@{m\+\_\+sample\+\_\+index}}
+\index{m\+\_\+sample\+\_\+index@{m\+\_\+sample\+\_\+index}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+sample\+\_\+index}{m\_sample\_index}}
+{\footnotesize\ttfamily int sensor\+::m\+\_\+sample\+\_\+index}
+
+index pointing to the lastest sensor reading \mbox{\Hypertarget{classsensor_a795220a22d60a8babb9383b002342220}\label{classsensor_a795220a22d60a8babb9383b002342220}} 
+\index{sensor@{sensor}!samples@{samples}}
+\index{samples@{samples}!sensor@{sensor}}
+\subsubsection{\texorpdfstring{samples}{samples}}
+{\footnotesize\ttfamily float sensor\+::samples\mbox{[}\hyperlink{group___base_sensors_module_ga758742adca8f7b427482748255303be6}{M\+A\+X\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+A\+M\+P\+L\+ES}\mbox{]}}
+
+recent sensor readings stored here 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sensors/\hyperlink{sensors_8h}{sensors.\+h}\item 
+sensors/\hyperlink{sensors_8cpp}{sensors.\+cpp}\end{DoxyCompactItemize}

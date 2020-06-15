@@ -1,0 +1,16 @@
+digraph "o2_sensor"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="o2_sensor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="sensor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classsensor.html",tooltip="Base class for all sensors. "];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" m_data" ];
+  Node4 [label="sensor_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structsensor__t.html",tooltip="Structure contains sensor specific data. Calibration data, previous and current data read from sensor..."];
+  Node5 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" current_data\nprevious_data" ];
+  Node5 [label="sensor_data_t",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$unionsensor__data__t.html",tooltip="sensor_data_t where the sensor reading is stored "];
+  Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" m_ads" ];
+  Node6 [label="Adafruit_ADS1115",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_adafruit___a_d_s1115.html",tooltip="Sensor driver for the Adafruit ADS1115 ADC breakout. "];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Adafruit_ADS1015",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_adafruit___a_d_s1015.html",tooltip="Sensor driver for the Adafruit ADS1015 ADC breakout. "];
+}

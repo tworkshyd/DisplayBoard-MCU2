@@ -1,0 +1,91 @@
+\hypertarget{group___a_d_s1115_utils_module}{}\section{A\+D\+S1115\+Utils\+Module}
+\label{group___a_d_s1115_utils_module}\index{A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___a_d_s1115_utils_module_gaa714b102f0e19f887c62e649837d0a49}{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to read the sensor samples and average. \end{DoxyCompactList}\item 
+int \hyperlink{group___a_d_s1115_utils_module_ga13fe4c2cc4af35c9b669c71657ce6d8d}{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, int base, int error, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to return average error corrected samples. \end{DoxyCompactList}\item 
+int \hyperlink{group___a_d_s1115_utils_module_ga9d55217c77d457c52c8d10dec9239066}{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, int error, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to read the O2 sensor samples and average. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains the utility functions to interface with A\+DS board 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___a_d_s1115_utils_module_ga9d55217c77d457c52c8d10dec9239066}\label{group___a_d_s1115_utils_module_ga9d55217c77d457c52c8d10dec9239066}} 
+\index{A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}!A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560@{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560}}
+\index{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560@{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560}!A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}}
+\subsubsection{\texorpdfstring{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560()}{ADC\_ReadVolageOnATMega2560()}}
+{\footnotesize\ttfamily int A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560 (\begin{DoxyParamCaption}\item[{\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$}]{ads,  }\item[{int}]{channel,  }\item[{int}]{error,  }\item[{float $\ast$}]{vout }\end{DoxyParamCaption})}
+
+
+
+Function to read the O2 sensor samples and average. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ads} & ads board used for reading samples\\
+\hline
+{\em channel} & channel in ads board for reading samples\\
+\hline
+{\em error} & error correction needed for the samples\\
+\hline
+{\em error} & error correction needed for the samples\\
+\hline
+{\em vout} & vout read from the sensors as digital value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success and error code for other errors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___a_d_s1115_utils_module_gaa714b102f0e19f887c62e649837d0a49}\label{group___a_d_s1115_utils_module_gaa714b102f0e19f887c62e649837d0a49}} 
+\index{A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}!A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C}}
+\index{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C}!A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}}
+\subsubsection{\texorpdfstring{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2\+C()}{ADS1115\_ReadAvgSamplesOverI2C()}}
+{\footnotesize\ttfamily int A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C (\begin{DoxyParamCaption}\item[{\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$}]{ads,  }\item[{int}]{channel,  }\item[{float $\ast$}]{vout }\end{DoxyParamCaption})}
+
+
+
+Function to read the sensor samples and average. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ads} & ads board used for reading samples\\
+\hline
+{\em channel} & channel in ads board for reading samples\\
+\hline
+{\em vout} & vout read from the sensors as digital value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success and error code for other errors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___a_d_s1115_utils_module_ga13fe4c2cc4af35c9b669c71657ce6d8d}\label{group___a_d_s1115_utils_module_ga13fe4c2cc4af35c9b669c71657ce6d8d}} 
+\index{A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}!A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C}}
+\index{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C}!A\+D\+S1115\+Utils\+Module@{A\+D\+S1115\+Utils\+Module}}
+\subsubsection{\texorpdfstring{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2\+C()}{ADS1115\_ReadVoltageOverI2C()}}
+{\footnotesize\ttfamily int A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C (\begin{DoxyParamCaption}\item[{\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$}]{ads,  }\item[{int}]{channel,  }\item[{int}]{base,  }\item[{int}]{error,  }\item[{float $\ast$}]{vout }\end{DoxyParamCaption})}
+
+
+
+Function to return average error corrected samples. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ads} & ads board used for reading samples\\
+\hline
+{\em channel} & channel in ads board for reading samples\\
+\hline
+{\em base} & actual value expected from sensor @ zero activity\\
+\hline
+{\em error} & (base -\/ actual) returned from sensor @ zero activity\\
+\hline
+{\em vout} & vout read from the sensors as digital value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success and error code for other errors 
+\end{DoxyReturn}

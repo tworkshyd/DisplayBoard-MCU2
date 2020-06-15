@@ -17,8 +17,8 @@
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
-#include "./../3plibs/MsTimer2/MsTimer2.h"
-#include "./../3plibs/Adafruit_ADS1X15/Adafruit_ADS1015.h"
+#include "./../libraries/MsTimer2/MsTimer2.h"
+#include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h"
 
 /**
  * @def 	Defines 
@@ -35,9 +35,10 @@
 #define ERROR_SENSOR_CALIBRATION	(ERROR_OFFSET+7)
 
 #define MAX_SENSOR_SAMPLES		5   /*!< maximum number of sensor samples to be taken */
-#define I2C_TIMEOUT             120        /*!< I2C timeout value */
-#define SENSOR_TIMER_IN_MS      60         /*!< Timer for reading the sensor data */
 #define ACCUMULATOR_RESET_PIN   3
+
+#define ADC_CONVERSIONTIME_PERSENSOR    (MAX_SAMPLE_COUNT*ADC_CONVERSTION_TIME)       /*!< Timer for reading the sensor data */
+#define MINREQUIRED_DISPLAYREFRESH_TIME 20
 /**
  * @brief sensor_data_t where the sensor reading is stored
  */
@@ -66,11 +67,12 @@ typedef struct {
 typedef enum {
   SENSOR_PRESSURE_A0 = 0, /**< peak pressure sensor MPX5010 */
   SENSOR_PRESSURE_A1, /**< peep pressure sensor MPX5010 */  
-  SENSOR_DP_A2,       /**< differential pressure sensor for Peak pressure MPXV7002DP */  
-  SENSOR_DP_A3,       /**< differential pressure sensor for Peek pressure MPXV7002DP */
+  SENSOR_DP_A0,       /**< differential pressure sensor for Peak pressure MPXV7002DP */  
+  SENSOR_DP_A1,       /**< differential pressure sensor for Peek pressure MPXV7002DP */
   SENSOR_O2,          /**< oxygen sensor */
   MAX_SENSORS
 } sensor_e;
+
 /**
  * @enum   sensor_flags_e flags to enable different sensors
  * @brief   Following are the flags to enable/disable specific sensors
@@ -78,10 +80,11 @@ typedef enum {
 enum {
   PRESSURE_A0 = 1, /**< flag to select  peak pressure sensor */
   PRESSURE_A1 = 2, /**< flag to select peep pressure sensor */
-  DP_A2 = 4,       /**< flag to select differential pressure sensor for Peak pressure */
-  DP_A3 = 8,       /**< flag to select differential pressure sensor for Peek pressure*/
+  DP_A0 = 4,       /**< flag to select differential pressure sensor for Peak pressure */
+  DP_A1 = 8,       /**< flag to select differential pressure sensor for Peek pressure*/
   O2 = 16          /**< flag to select oxygen sensor */
 } sensor_flags_e;
+
 
 /**************************************************************************/
 /*!
@@ -148,59 +151,28 @@ public:
 	 *   @param  none
 	 *   @return None
 	 **/
-	virtual void update_sensor_data(void) = 0;
+	virtual void capture_and_store(void) = 0;
+
+  int read_rawvoltage() {
+    return m_raw_voltage;
+  }
+
+  float read_sensorpressure() {
+    return m_value;
+  }
+  /**
+   *   @brief  Calibrate the sensor
+   *   @param  None
+   *   @return returns 0 on success and -1 on failure as integer
+   **/
+  virtual int sensor_zero_calibration(void) = 0;
+
+
+protected:
+  int m_raw_voltage;
+  float m_value = 0.0;
+  sensor_e m_sensor_id;
 };
-
-/**************************************************************************/
-/*!
-
-    @brief  Function to initialize all modules in sensors
-
-	@param  none
-
-    @return indicates 0 for SUCCESS and -1 for FAILURE
-*/
-/**************************************************************************/
-int sensors_init(void);
-/**************************************************************************/
-/*!
-
-    @brief   Function to enable specific sensors or Takes a parameter of different sensor combinations
- 
-    @param flag defines which sensor or a combination of sensors to be enabled
-
-    @param source parameter to set the source of input
-
-    @return none
-*/
-/**************************************************************************/
-void enable_sensor(unsigned int flag);
-/**************************************************************************/
-/*!
-
-    @brief Wrapper API to get specific sensor readings.
-
-    @param sensor_e sensor describes which sensor to be read.
-
-    @param data returns the sensor data read from sensor
-
-    @return 0 for success and error code for any failures
-*/
-/**************************************************************************/
-int read_sensor_data(sensor_e sensor, float *data);
-/**************************************************************************/
-/*!
-
-    @brief  Function  Checks the previous pressure readings and find if there are any dip in pressure 
-                    
-    @param paranName paramter is used to specify the 
-
-    @return -1 for invlaid sensors, 0 for no dip 1 for a dip in pressure
- 
-*/
-/**************************************************************************/
-int check_for_dip_in_pressure(sensor_e sensor);
-
 #endif /*__SENSORS_H__*/
 
 /**@}*/

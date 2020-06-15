@@ -15,19 +15,18 @@
 /**************************************************************************/
 
 #include "ads1115_utils.h"
-#include "./../3plibs/Adafruit_ADS1X15/Adafruit_ADS1015.cpp"
+#include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.cpp"
 /*
  * I2C ADC configurations
  */
-#define MAX_SAMPLE_COUNT		5
-#define I2C_TIMEOUT             120
+static unsigned int I2C_TIMEOUT = 12;
 #ifdef UNIT_TEST
 #define ADS115_MULTIPLIER       (0.000125)
 #else
 #define ADS115_MULTIPLIER       (0.000125)
 #endif
 
-
+//#define DEBUG_ADS 0
 const float  O2SensMultiplier = 0.00488;
 
 float ADC_ApplyAvgFilter(int *SampleBuf, int SampleCount, float Multiplier);
@@ -46,7 +45,13 @@ float get_sample_average(int *samples, int sample_count) {
 int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vout) {
   int samples[MAX_SAMPLE_COUNT] = {0};
   float PressSensorVolts = 0.0;
-  long int timeout;
+  unsigned long int timeout;
+
+#ifdef DEBUG_ADS
+  unsigned long int ctimeout = millis();
+   Serial.print("ADC:S C#");
+   Serial.println(MAX_SAMPLE_COUNT);
+#endif
 
   for(int i=0; i<MAX_SAMPLE_COUNT; i++) {
     timeout = millis();
@@ -56,18 +61,24 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vou
       delay(1);
     }
     if((millis()-timeout) >= I2C_TIMEOUT) {
-      Serial.println("ERROR: I2C timed out, please check connection.");
-	  *vout = 0;
+      Serial.print("ERROR: I2C timed out, please check connection i2c address:");
+      Serial.print(ads->m_i2cAddress);
+      Serial.print(", ads->m_intPin:");
+      Serial.print(ads->m_intPin);
+      Serial.print(", timeout value:");
+      Serial.println(I2C_TIMEOUT);
+      *vout = 0;
       return ERROR_I2C_TIMEOUT;
-    }
+    } 
     samples[i] = ads->readADC_ConvertedSample();
   } 
   PressSensorVolts = get_sample_average(samples, MAX_SAMPLE_COUNT);
-  if(_debug) {
-    Serial.print("S");
-    Serial.print(" ");
-    Serial.println(PressSensorVolts) ;
-  }
+#ifdef DEBUG_ADS
+  Serial.print("ADC:E t:");
+  Serial.print(millis()-ctimeout);
+  Serial.print(", mV= ");
+  Serial.println(PressSensorVolts) ;
+#endif
   *vout = PressSensorVolts;
   return 0;
 }
@@ -99,13 +110,18 @@ int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correctio
   DynacmicO2SensMult /= 1000; //Coversion of mV to V
 #endif
 
+#ifdef DEBUG_ADS
+  unsigned long int ctimeout = millis();
+  Serial.print("ADC:MS C#");
+  Serial.println(MAX_SAMPLE_COUNT);
+#endif
+
   if(ads == NULL) {
 	  for (int i = 0; i < MAX_SAMPLE_COUNT; i++) {
-		ADCSampleBuff[i] = analogRead(channel);
+  		ADCSampleBuff[i] = analogRead(channel);
 	  }
   } else {
-	  long int timeout = 0;
-
+	  unsigned long int timeout = 0;
 	  for(int i=0; i<MAX_SAMPLE_COUNT; i++) {
 		timeout = millis();
 		ads->readADC_SingleEnded(channel);
@@ -128,10 +144,13 @@ int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correctio
   OxygenSensorVolts = ADC_ApplyAvgFilter(ADCSampleBuff, MAX_SAMPLE_COUNT, O2SensMultiplier);
 #endif
 
-  if(_debug) {
-    Serial.print("Oxygen ADC Value= ");
+#ifdef DEBUG_ADS
+    Serial.print("ADC:ME t:");
+    Serial.print(millis()-ctimeout);
+    Serial.print(", mV= ");
     Serial.println(OxygenSensorVolts);
-  }
+#endif
+
   *vout = OxygenSensorVolts;
   return 0;
 }

@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['adafruit_5fads1015',['Adafruit_ADS1015',['../class_adafruit___a_d_s1015.html#a12dfb7b48af1a8e411c59f775c6457ab',1,'Adafruit_ADS1015']]],
+  ['adafruit_5fads1115',['Adafruit_ADS1115',['../class_adafruit___a_d_s1115.html#a7058cf2c75b673fb0b0a8936c3edd1fd',1,'Adafruit_ADS1115']]],
+  ['adc_5freadvolageonatmega2560',['ADC_ReadVolageOnATMega2560',['../group___ventilator_module.html#gaca25626de26b2e71ffd3ee4d0632fd6d',1,'ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correction, float *vout):&#160;ads1115_utils.c'],['../group___a_d_s1115_utils_module.html#ga9d55217c77d457c52c8d10dec9239066',1,'ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int error, float *vout):&#160;ads1115_utils.c']]],
+  ['ads1115_5freadavgsamplesoveri2c',['ADS1115_ReadAvgSamplesOverI2C',['../group___ventilator_module.html#gaa714b102f0e19f887c62e649837d0a49',1,'ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vout):&#160;ads1115_utils.c'],['../group___a_d_s1115_utils_module.html#gaa714b102f0e19f887c62e649837d0a49',1,'ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vout):&#160;ads1115_utils.c']]],
+  ['ads1115_5freadvoltageoveri2c',['ADS1115_ReadVoltageOverI2C',['../group___ventilator_module.html#gafcad7e09c08806cd2ce59ea2be30d435',1,'ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int correction, float *value):&#160;ads1115_utils.c'],['../group___a_d_s1115_utils_module.html#ga13fe4c2cc4af35c9b669c71657ce6d8d',1,'ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int error, float *vout):&#160;ads1115_utils.c']]]
+];

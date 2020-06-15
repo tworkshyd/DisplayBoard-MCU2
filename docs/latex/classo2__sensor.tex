@@ -1,0 +1,88 @@
+\hypertarget{classo2__sensor}{}\section{o2\+\_\+sensor Class Reference}
+\label{classo2__sensor}\index{o2\+\_\+sensor@{o2\+\_\+sensor}}
+
+
+Class to handle oxygen sensor, inherits base sensor class.  
+
+
+
+
+{\ttfamily \#include $<$O2\+\_\+sensor.\+h$>$}
+
+
+
+Inheritance diagram for o2\+\_\+sensor\+:
+% FIG 0
+
+
+Collaboration diagram for o2\+\_\+sensor\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classo2__sensor_add286a0177fdb82ffae18ae4b251eefb}\label{classo2__sensor_add286a0177fdb82ffae18ae4b251eefb}} 
+\hyperlink{classo2__sensor_add286a0177fdb82ffae18ae4b251eefb}{o2\+\_\+sensor} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int adc\+\_\+channel)
+\begin{DoxyCompactList}\small\item\em Constructor for O2 sensors Initializes O2 sensor variables. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_ga913dbc20ebbe78e12f33075d8b0b4b1a}{init} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize the O2 sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga9601927ed36f205bdc9a8dfb55cf9657}{read\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read sensor data. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_gacc2551ecc6e2b9542a747aed535eda43}{reset\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to reset sensor data. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_ga460fc40d059c217fa41e4539cdb3c11d}{update\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read and update sensor data in local data structures (called in timer interrupt) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group___ventilator_module_gabdf47205921998912383bd108cc1c417}{store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Stores the default calibrated values to memory during boot. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gaec727276605d9fef106d5115f711c037}{calibrate\+\_\+o2\+\_\+sensor} (void)
+\begin{DoxyCompactList}\small\item\em Calibrate the O2 sensor during boot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classo2__sensor_ae64844128c35556e8b5c26d025923640}{m\+\_\+slope}
+\item 
+float \hyperlink{classo2__sensor_afce94a82b320a6de471ccbdba88215dd}{m\+\_\+const}
+\item 
+int \hyperlink{classo2__sensor_adcf162976b67d9989df40adcf55ff26e}{m\+\_\+adc\+\_\+channel}
+\item 
+\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ \hyperlink{classo2__sensor_a3287c965f7e5fa40e01cf0f5441cd542}{m\+\_\+ads}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class to handle oxygen sensor, inherits base sensor class. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classo2__sensor_adcf162976b67d9989df40adcf55ff26e}\label{classo2__sensor_adcf162976b67d9989df40adcf55ff26e}} 
+\index{o2\+\_\+sensor@{o2\+\_\+sensor}!m\+\_\+adc\+\_\+channel@{m\+\_\+adc\+\_\+channel}}
+\index{m\+\_\+adc\+\_\+channel@{m\+\_\+adc\+\_\+channel}!o2\+\_\+sensor@{o2\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+adc\+\_\+channel}{m\_adc\_channel}}
+{\footnotesize\ttfamily int o2\+\_\+sensor\+::m\+\_\+adc\+\_\+channel\hspace{0.3cm}{\ttfamily [protected]}}
+
+adc channel where the sensor is connected to \mbox{\Hypertarget{classo2__sensor_a3287c965f7e5fa40e01cf0f5441cd542}\label{classo2__sensor_a3287c965f7e5fa40e01cf0f5441cd542}} 
+\index{o2\+\_\+sensor@{o2\+\_\+sensor}!m\+\_\+ads@{m\+\_\+ads}}
+\index{m\+\_\+ads@{m\+\_\+ads}!o2\+\_\+sensor@{o2\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+ads}{m\_ads}}
+{\footnotesize\ttfamily \hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115}$\ast$ o2\+\_\+sensor\+::m\+\_\+ads\hspace{0.3cm}{\ttfamily [protected]}}
+
+A\+DS board where the sensor is connected to \mbox{\Hypertarget{classo2__sensor_afce94a82b320a6de471ccbdba88215dd}\label{classo2__sensor_afce94a82b320a6de471ccbdba88215dd}} 
+\index{o2\+\_\+sensor@{o2\+\_\+sensor}!m\+\_\+const@{m\+\_\+const}}
+\index{m\+\_\+const@{m\+\_\+const}!o2\+\_\+sensor@{o2\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+const}{m\_const}}
+{\footnotesize\ttfamily float o2\+\_\+sensor\+::m\+\_\+const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Stores the const measured from the sensor voltage at different water level \mbox{\Hypertarget{classo2__sensor_ae64844128c35556e8b5c26d025923640}\label{classo2__sensor_ae64844128c35556e8b5c26d025923640}} 
+\index{o2\+\_\+sensor@{o2\+\_\+sensor}!m\+\_\+slope@{m\+\_\+slope}}
+\index{m\+\_\+slope@{m\+\_\+slope}!o2\+\_\+sensor@{o2\+\_\+sensor}}
+\subsubsection{\texorpdfstring{m\+\_\+slope}{m\_slope}}
+{\footnotesize\ttfamily float o2\+\_\+sensor\+::m\+\_\+slope\hspace{0.3cm}{\ttfamily [protected]}}
+
+Stores the slope measured from the sensor voltage at different water level 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sensors/\hyperlink{_o2__sensor_8h}{O2\+\_\+sensor.\+h}\item 
+sensors/\hyperlink{_o2__sensor_8cpp}{O2\+\_\+sensor.\+cpp}\end{DoxyCompactItemize}

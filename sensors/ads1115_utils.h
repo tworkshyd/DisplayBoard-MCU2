@@ -15,11 +15,15 @@
 #ifndef __ADS1115_UTILS_H__
 #define __ADS1115_UTILS_H__
 
-#include "./../3plibs/Adafruit_ADS1X15/Adafruit_ADS1015.h"
+#include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+// calculated on board and on average it is taking 4ms per sample
+const unsigned int ADC_CONVERSTION_TIME = 4;
+const unsigned int MAX_SAMPLE_COUNT = 3;
 
 /**************************************************************************/
 /*!

@@ -1,0 +1,864 @@
+\hypertarget{group___ventilator_module}{}\section{Ventilator\+Module}
+\label{group___ventilator_module}\index{Ventilator\+Module@{Ventilator\+Module}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classext__display}{ext\+\_\+display}
+\item 
+struct \hyperlink{structmenu_items_t}{menu\+ItemsT}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga4a749e5d02041e23eb6f20b6c0156590}\label{group___ventilator_module_ga4a749e5d02041e23eb6f20b6c0156590}} 
+\#define {\bfseries T\+O\+T\+A\+L\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+L\+EN}~40
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1e3feb4c4656b4eec92c4d5787554276}\label{group___ventilator_module_ga1e3feb4c4656b4eec92c4d5787554276}} 
+\#define {\bfseries M\+A\+X\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+C\+O\+U\+NT}~5
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gafa3215f0aa766367f5d34bee80929152}\label{group___ventilator_module_gafa3215f0aa766367f5d34bee80929152}} 
+\#define {\bfseries I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~120
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaf306279176a3055d1ce3be0df2f7da8f}\label{group___ventilator_module_gaf306279176a3055d1ce3be0df2f7da8f}} 
+\#define {\bfseries A\+D\+S115\+\_\+\+M\+U\+L\+T\+I\+P\+L\+I\+ER}~(0.\+000125)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga5c498cc2ed31f4c1dc12ca184115cbc9}\label{group___ventilator_module_ga5c498cc2ed31f4c1dc12ca184115cbc9}} 
+\#define {\bfseries O\+X\+Y\+G\+E\+N\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+P\+IN}~A4
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gae735dee8773507174652256df9bb9651}\label{group___ventilator_module_gae735dee8773507174652256df9bb9651}} 
+\#define {\bfseries A\+V\+O\+I\+D\+\_\+\+E\+E\+P\+R\+OM}~0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1dd912ed43ad9d914659374252aec284}\label{group___ventilator_module_ga1dd912ed43ad9d914659374252aec284}} 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2}~5
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga43f2f0190c9e0daa8bb5941202d82d3e}\label{group___ventilator_module_ga43f2f0190c9e0daa8bb5941202d82d3e}} 
+\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+O2\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0xC
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gab32900f36d2b5217ca6b20e1ca42b279}\label{group___ventilator_module_gab32900f36d2b5217ca6b20e1ca42b279}} 
+\#define {\bfseries M\+P\+X\+V7002\+DP}~1
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga04ef343cd36e7dea0fa4f506cc90e040}\label{group___ventilator_module_ga04ef343cd36e7dea0fa4f506cc90e040}} 
+\#define {\bfseries S\+P\+Y\+R\+O\+\_\+\+D\+L\+I\+TE}~1
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga50aa7b43a2ede585b211377c0dca1345}\label{group___ventilator_module_ga50aa7b43a2ede585b211377c0dca1345}} 
+\#define {\bfseries M\+P\+X5010}~1
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gad7c62b0dbabcdfa22880642ba2c4b9fd}\label{group___ventilator_module_gad7c62b0dbabcdfa22880642ba2c4b9fd}} 
+\#define {\bfseries M\+P\+X5010\+\_\+\+VS}~(5.\+0)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gabcca82ad4193a80b89050938e3496944}\label{group___ventilator_module_gabcca82ad4193a80b89050938e3496944}} 
+\#define {\bfseries M\+P\+X5010\+\_\+\+V\+F\+SS}~(0.\+0)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaef66565e053ef9a998e879e81421e2e0}\label{group___ventilator_module_gaef66565e053ef9a998e879e81421e2e0}} 
+\#define {\bfseries M\+P\+X5010\+\_\+\+A\+C\+C\+U\+R\+A\+CY}~(0.\+05 $\ast$ M\+P\+X5010\+\_\+\+V\+F\+SS)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gab012f26c76f30c0e29c96a69e5b2928e}\label{group___ventilator_module_gab012f26c76f30c0e29c96a69e5b2928e}} 
+\#define {\bfseries M\+P\+X5010\+\_\+\+Z\+E\+R\+O\+\_\+\+R\+E\+A\+D\+I\+NG}~2000
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gab86f6cdf16ad2b4ac02d1a4623512a71}\label{group___ventilator_module_gab86f6cdf16ad2b4ac02d1a4623512a71}} 
+\#define {\bfseries M\+P\+X5010\+\_\+\+E\+R\+R\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}~20
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga9860c0a2f840e1461650a88f5d5e0d7a}\label{group___ventilator_module_ga9860c0a2f840e1461650a88f5d5e0d7a}} 
+\#define {\bfseries M\+P\+X\+V7002\+D\+P\+\_\+\+VS}~(5.\+0)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gac3252f017dd0f63f7441d0e0d9cdcb8b}\label{group___ventilator_module_gac3252f017dd0f63f7441d0e0d9cdcb8b}} 
+\#define {\bfseries M\+P\+X\+V7002\+D\+P\+\_\+\+V\+F\+SS}~(4.\+0)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaa260f137294bac4fa8401aa1f661daa9}\label{group___ventilator_module_gaa260f137294bac4fa8401aa1f661daa9}} 
+\#define {\bfseries M\+P\+X\+V7002\+D\+P\+\_\+\+A\+C\+C\+U\+R\+A\+CY}~(0.\+06250)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gac3daf1855e2cc145ccc583f74162a2c9}\label{group___ventilator_module_gac3daf1855e2cc145ccc583f74162a2c9}} 
+\#define {\bfseries M\+P\+X7002\+D\+P\+\_\+\+Z\+E\+R\+O\+\_\+\+R\+E\+A\+D\+I\+NG}~22000
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaa7c1c966e47a60c31b57f8b1133d11ab}\label{group___ventilator_module_gaa7c1c966e47a60c31b57f8b1133d11ab}} 
+\#define {\bfseries M\+P\+X7002\+D\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}~20
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga457f7fbcd8a1d6af6e983092a8f2324d}\label{group___ventilator_module_ga457f7fbcd8a1d6af6e983092a8f2324d}} 
+\#define {\bfseries S\+P\+Y\+R\+O\+\_\+\+K\+S\+Y\+S\+T\+EM}~110
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga358ff678000319e95b3a4fb8025cdd8b}\label{group___ventilator_module_ga358ff678000319e95b3a4fb8025cdd8b}} 
+\#define {\bfseries F\+L\+O\+W\+R\+A\+T\+E\+\_\+\+M\+I\+N\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}~4.\+0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaa9d67c9cd494973a854e3c8e3a0e2b0a}\label{group___ventilator_module_gaa9d67c9cd494973a854e3c8e3a0e2b0a}} 
+\#define {\bfseries C\+A\+L\+I\+B\+R\+A\+T\+I\+O\+N\+\_\+\+C\+O\+U\+NT}~5
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga55128a493bfb12e1f93dcf4d41204605}\label{group___ventilator_module_ga55128a493bfb12e1f93dcf4d41204605}} 
+\#define {\bfseries M\+A\+X\+\_\+\+P\+S2\+\_\+\+S\+A\+M\+P\+L\+ES}~10
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga5ca45aefe4dc6f891e309ed7ef55926a}\label{group___ventilator_module_ga5ca45aefe4dc6f891e309ed7ef55926a}} 
+\#define {\bfseries T\+H\+R\+E\+S\+H\+O\+L\+D\+\_\+\+C\+O\+M\+P\+A\+R\+E\+\_\+\+I\+N\+D\+EX}~2
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga573df49862c06c88a491fb0f8de15312}\label{group___ventilator_module_ga573df49862c06c88a491fb0f8de15312}} 
+\#define {\bfseries D\+I\+P\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}~15
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga523b7e982dca567dfe2f8ba0f446c7fd}\label{group___ventilator_module_ga523b7e982dca567dfe2f8ba0f446c7fd}} 
+\#define {\bfseries A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN}~6
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga062f9aa61d0d0eccd1c049728941ba67}\label{group___ventilator_module_ga062f9aa61d0d0eccd1c049728941ba67}} 
+\#define {\bfseries S\+E\+R\+I\+A\+L\+\_\+\+P\+R\+I\+N\+TS}~0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga120382948bfac000620a8fc076fbfa7e}\label{group___ventilator_module_ga120382948bfac000620a8fc076fbfa7e}} 
+\#define {\bfseries M\+A\+I\+N\+\_\+\+M\+E\+N\+U\+\_\+\+L\+E\+N\+G\+TH}~4
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga7445156cd52aa54bfb70f3132a35d6f7}\label{group___ventilator_module_ga7445156cd52aa54bfb70f3132a35d6f7}} 
+\#define {\bfseries S\+U\+B\+\_\+\+M\+E\+N\+U1\+\_\+\+L\+E\+N\+G\+TH}~6
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga54f9aae8a37a9810c0af2a3448d6fdeb}\label{group___ventilator_module_ga54f9aae8a37a9810c0af2a3448d6fdeb}} 
+\#define {\bfseries S\+U\+B\+\_\+\+M\+E\+N\+U2\+\_\+\+L\+E\+N\+G\+TH}~2
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga2dd9a1fad9e26682948d5d30be0ccdf6}\label{group___ventilator_module_ga2dd9a1fad9e26682948d5d30be0ccdf6}} 
+\#define {\bfseries S\+U\+B\+\_\+\+M\+E\+N\+U3\+\_\+\+L\+E\+N\+G\+TH}~4
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1c94f2d77e3ab02f07b5b68016d9a24a}\label{group___ventilator_module_ga1c94f2d77e3ab02f07b5b68016d9a24a}} 
+enum {\bfseries R\+T\+\_\+\+Events\+\_\+T} \{ {\bfseries R\+T\+\_\+\+I\+NC} =0, 
+{\bfseries R\+T\+\_\+\+D\+EC}, 
+{\bfseries R\+T\+\_\+\+B\+T\+\_\+\+P\+R\+E\+SS}, 
+{\bfseries R\+T\+\_\+\+N\+O\+NE}
+ \}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga07b7149f82394109642a68e4ed984d31}\label{group___ventilator_module_ga07b7149f82394109642a68e4ed984d31}} 
+enum {\bfseries menu\+Index} \{ \newline
+{\bfseries main\+MenuE}, 
+{\bfseries sub\+Menu1E}, 
+{\bfseries sub\+Menu2E}, 
+{\bfseries sub\+Menu3E}, 
+\newline
+{\bfseries M\+A\+X\+\_\+\+M\+E\+N\+US}
+ \}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga6011a7e094920cec8197767df5be0553}\label{group___ventilator_module_ga6011a7e094920cec8197767df5be0553}} 
+enum {\bfseries menu\+LevelT} \{ {\bfseries M\+E\+N\+U\+\_\+\+L\+E\+V\+E\+L\+\_\+0}, 
+{\bfseries M\+E\+N\+U\+\_\+\+L\+E\+V\+E\+L\+\_\+1}, 
+{\bfseries M\+A\+X\+\_\+\+L\+E\+V\+EL}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga668fb84627a25585e1812e8d957b4391}\label{group___ventilator_module_ga668fb84627a25585e1812e8d957b4391}} 
+int {\bfseries ext\+\_\+display\+::init} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gac0cffd3b2daf581fde32c00353268cdc}\label{group___ventilator_module_gac0cffd3b2daf581fde32c00353268cdc}} 
+int {\bfseries ext\+\_\+display\+::enable} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gac511ca6a1485db2d5f133e7842fb906c}\label{group___ventilator_module_gac511ca6a1485db2d5f133e7842fb906c}} 
+int {\bfseries ext\+\_\+display\+::disable} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1790068e5672f3d2e839435509929024}\label{group___ventilator_module_ga1790068e5672f3d2e839435509929024}} 
+int {\bfseries ext\+\_\+display\+::setdata} (char $\ast$data, unsigned int data\+\_\+size)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gae811ffa784e27a12c5e3ad5c7ea206ca}\label{group___ventilator_module_gae811ffa784e27a12c5e3ad5c7ea206ca}} 
+int {\bfseries ext\+\_\+display\+::show} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaad68b95145642e8eec57b84b0c6c57bc}\label{group___ventilator_module_gaad68b95145642e8eec57b84b0c6c57bc}} 
+float {\bfseries A\+D\+C\+\_\+\+Apply\+Avg\+Filter} (int $\ast$Sample\+Buf, int Sample\+Count, float Multiplier)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga5048b97e236086b0810edfb8d3abc6a2}\label{group___ventilator_module_ga5048b97e236086b0810edfb8d3abc6a2}} 
+float {\bfseries get\+\_\+sample\+\_\+average} (int $\ast$samples, int sample\+\_\+count)
+\item 
+int \hyperlink{group___ventilator_module_gaa714b102f0e19f887c62e649837d0a49}{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to read the sensor samples and average. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gafcad7e09c08806cd2ce59ea2be30d435}{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, int base, int correction, float $\ast$value)
+\begin{DoxyCompactList}\small\item\em Function to return average error corrected samples. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gaca25626de26b2e71ffd3ee4d0632fd6d}{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560} (\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$ads, int channel, int correction, float $\ast$vout)
+\begin{DoxyCompactList}\small\item\em Function to read the O2 sensor samples and average. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___ventilator_module_ga43d30a6f7cb9d12d869ffdcce2f519f3}\label{group___ventilator_module_ga43d30a6f7cb9d12d869ffdcce2f519f3}} 
+void {\bfseries write\+\_\+to\+\_\+eeprom} (unsigned int num\+Of\+Int\+Writes, int $\ast$addr, int $\ast$val)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga61092ae211cf2ff31c238d0c3a76b06f}\label{group___ventilator_module_ga61092ae211cf2ff31c238d0c3a76b06f}} 
+void {\bfseries read\+\_\+and\+\_\+update\+\_\+sensor\+\_\+data} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga47f6e329526e773d5ff2b1bceb320d41}\label{group___ventilator_module_ga47f6e329526e773d5ff2b1bceb320d41}} 
+int {\bfseries ads1115\+\_\+init} ()
+\item 
+int \hyperlink{group___ventilator_module_ga91bed606336f32fd112a2a272bd33276}{sensors\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Function to initialize all modules in sensors. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_ga882a0452720480e06504493292f2f0e2}{enable\+\_\+sensor} (unsigned int flag)
+\begin{DoxyCompactList}\small\item\em Function to enable specific sensors or Takes a parameter of different sensor combinations. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_ga35a8f7056ae3545cbb3a69e993147fb3}{read\+\_\+sensor\+\_\+data} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} s, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Wrapper A\+PI to get specific sensor readings. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gad44ae3ff179318970b2a99be7500db74}{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \hyperlink{classsensor}{sensor})
+\begin{DoxyCompactList}\small\item\em Function Checks the previous pressure readings and find if there are any dip in pressure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group___ventilator_module_gad3872e1e471ed65880a4af46a7da3f04}\label{group___ventilator_module_gad3872e1e471ed65880a4af46a7da3f04}} 
+void {\bfseries Diagnostics\+\_\+\+Mode} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga3e384acb2fe36c218e7756c2b76e7086}\label{group___ventilator_module_ga3e384acb2fe36c218e7756c2b76e7086}} 
+R\+T\+\_\+\+Events\+\_\+T {\bfseries Encoder\+\_\+\+Scan} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga9e5deb168b1b08c02c3c84db7f605678}\label{group___ventilator_module_ga9e5deb168b1b08c02c3c84db7f605678}} 
+void {\bfseries diag\+O2\+Sensor} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga9de35e7db8fa02727ff68d17d6691f94}\label{group___ventilator_module_ga9de35e7db8fa02727ff68d17d6691f94}} 
+void {\bfseries diag\+Ads1115} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gae5fda696ed3670a85a02ab2c253b1aec}\label{group___ventilator_module_gae5fda696ed3670a85a02ab2c253b1aec}} 
+void {\bfseries diag\+Sol\+Status} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gabd908c81d93fb8bb1cceb31e9fe6cefc}\label{group___ventilator_module_gabd908c81d93fb8bb1cceb31e9fe6cefc}} 
+void {\bfseries setup\+\_\+service\+\_\+mode} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1556b5da7cefd352cde4ad052ee0d7a8}\label{group___ventilator_module_ga1556b5da7cefd352cde4ad052ee0d7a8}} 
+void {\bfseries print\+\_\+menu\+\_\+common} (menu\+Index menu\+Idx)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaf9a555246d65937f5dee44a1a8f9643c}\label{group___ventilator_module_gaf9a555246d65937f5dee44a1a8f9643c}} 
+void {\bfseries display\+Edit\+Menu} (void)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gae8f8010d24bd6682808aeab463602b25}\label{group___ventilator_module_gae8f8010d24bd6682808aeab463602b25}} 
+R\+T\+\_\+\+Events\+\_\+T {\bfseries encoder\+Scan\+Unblocked} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gab0413c18f212b50e826a3f71d0dedd6d}\label{group___ventilator_module_gab0413c18f212b50e826a3f71d0dedd6d}} 
+void {\bfseries loop\+\_\+\+\_\+} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga4778768c03ef5defbb97e042699f1f0f}\label{group___ventilator_module_ga4778768c03ef5defbb97e042699f1f0f}} 
+void {\bfseries move\+\_\+up} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga78f1eaf7be204b81c03899d4c8cbad6a}\label{group___ventilator_module_ga78f1eaf7be204b81c03899d4c8cbad6a}} 
+void {\bfseries move\+\_\+down} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga74ea28f28bd471e742862f758bd70adc}\label{group___ventilator_module_ga74ea28f28bd471e742862f758bd70adc}} 
+void {\bfseries selection} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga9555fd38ea56c0c8d4412b3aca3c5f40}\label{group___ventilator_module_ga9555fd38ea56c0c8d4412b3aca3c5f40}} 
+void {\bfseries move\+\_\+up\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gafbfa17a6f9fb6936632b004277fe9dff}\label{group___ventilator_module_gafbfa17a6f9fb6936632b004277fe9dff}} 
+void {\bfseries move\+\_\+down\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga4d6ac601d7391fcc17a6d9b7437048dd}\label{group___ventilator_module_ga4d6ac601d7391fcc17a6d9b7437048dd}} 
+void {\bfseries selection\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga615349f9fc07fbfe4c881de7c3b2c101}\label{group___ventilator_module_ga615349f9fc07fbfe4c881de7c3b2c101}} 
+void {\bfseries display\+Initial\+Screen} ()
+\item 
+int \hyperlink{group___ventilator_module_ga913dbc20ebbe78e12f33075d8b0b4b1a}{o2\+\_\+sensor\+::init} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize the O2 sensor. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gabdf47205921998912383bd108cc1c417}{o2\+\_\+sensor\+::store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Stores the default calibrated values to memory during boot. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gaec727276605d9fef106d5115f711c037}{o2\+\_\+sensor\+::calibrate\+\_\+o2\+\_\+sensor} (void)
+\begin{DoxyCompactList}\small\item\em Calibrate the O2 sensor during boot. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga9601927ed36f205bdc9a8dfb55cf9657}{o2\+\_\+sensor\+::read\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read sensor data. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_gacc2551ecc6e2b9542a747aed535eda43}{o2\+\_\+sensor\+::reset\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to reset sensor data. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_ga460fc40d059c217fa41e4539cdb3c11d}{o2\+\_\+sensor\+::update\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read and update sensor data in local data structures (called in timer interrupt) \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_ga12b267b360a27d82a85f0b5276d433ed}{pressure\+\_\+sensor\+::init} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize the O2 sensor. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_gac8d67444e99afbc866b1d759cbfde3c5}{pressure\+\_\+sensor\+::update\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read and update sensor data in local data structures (called in timer interrupt) \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_ga19fa695e059a50b732d54d1e4325ee99}{pressure\+\_\+sensor\+::reset\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to reset sensor data. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga06b5da2de0abf739405ca3c48aa0119c}{pressure\+\_\+sensor\+::read\+\_\+sensor\+\_\+data} (void)
+\begin{DoxyCompactList}\small\item\em Function to read sensor data. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga5f113f838045ef7cd582cebfcd00c4f0}{pressure\+\_\+sensor\+::get\+\_\+pressure\+\_\+\+M\+P\+X5010} (void)
+\begin{DoxyCompactList}\small\item\em Utility function to read the pressure from M\+P\+X5010 sensor. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gafd69d3a07ff97d3b68bd952d5286b11a}{pressure\+\_\+sensor\+::sensor\+\_\+zero\+\_\+calibration} (void)
+\begin{DoxyCompactList}\small\item\em Calibrates pressure sensor during boot. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_gab51f616f215d3b4ade2bdd9a3958622d}{pressure\+\_\+sensor\+::get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP} (void)
+\begin{DoxyCompactList}\small\item\em Utility function to read volume of air from spyro for specific sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga5eb61c5fdc62a4a0b494a518fc7273ba}{pressure\+\_\+sensor\+::get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP} (float vout)
+\begin{DoxyCompactList}\small\item\em Utility function to read the differential pressure from M\+P\+X\+V7002 sensor. \end{DoxyCompactList}\item 
+float \hyperlink{group___ventilator_module_ga4a650b2c4cb1b55f8be3a4c129d4f12a}{pressure\+\_\+sensor\+::get\+\_\+flowrate\+\_\+spyro} (float pressure)
+\begin{DoxyCompactList}\small\item\em Utility function to read volume of air from spyro. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gaa646dcf1c12ed21dd027a49721e27b04}{sensor\+::read\+\_\+sensor\+\_\+samples} (float $\ast$\hyperlink{classsensor_a795220a22d60a8babb9383b002342220}{samples}, int sample\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Function to read the sensor samples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gae8db0bd3935e57f7c0a5cb3a1480f562}\label{group___ventilator_module_gae8db0bd3935e57f7c0a5cb3a1480f562}} 
+const float {\bfseries O2\+Sens\+Multiplier} = 0.\+00488
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1118fcf36a4236a3247cb971ae47827f}\label{group___ventilator_module_ga1118fcf36a4236a3247cb971ae47827f}} 
+int const {\bfseries x\+\_\+samples} \mbox{[}N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2\mbox{]} = \{0, 216, 280, 400, 1000\}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gac308a00f2c7a8bb11c3d43c4d2123820}\label{group___ventilator_module_gac308a00f2c7a8bb11c3d43c4d2123820}} 
+int const {\bfseries y\+O2\+Volt\+X1000} \mbox{[}N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2\mbox{]} = \{377, 1088, 1750, 2110, 4812\}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga4859ebf3de3eada7338899d0f24d3c23}\label{group___ventilator_module_ga4859ebf3de3eada7338899d0f24d3c23}} 
+int {\bfseries \+\_\+debug} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga7fa901d9c81ed7aad7a744feae2bba55}\label{group___ventilator_module_ga7fa901d9c81ed7aad7a744feae2bba55}} 
+\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} {\bfseries ads} (\hyperlink{_adafruit___a_d_s1015_8h_ae55d158023984e8f0ddc80b58d5b30dc}{A\+D\+S1015\+\_\+\+A\+D\+D\+R\+E\+SS}, \hyperlink{pinout_8h_a523b7e982dca567dfe2f8ba0f446c7fd}{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN})
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaf602bf65bce528448768865be8f7a33d}\label{group___ventilator_module_gaf602bf65bce528448768865be8f7a33d}} 
+\hyperlink{classo2__sensor}{o2\+\_\+sensor} {\bfseries g\+\_\+o2} (N\+U\+LL, O\+X\+Y\+G\+E\+N\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+P\+IN)
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaab8e9b4eb2902a2691073cc63200f4b8}\label{group___ventilator_module_gaab8e9b4eb2902a2691073cc63200f4b8}} 
+unsigned int {\bfseries enabled\+\_\+sensors} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaf951f6e1ff9675b887dab1a77cbd3c36}\label{group___ventilator_module_gaf951f6e1ff9675b887dab1a77cbd3c36}} 
+char $\ast$ {\bfseries menu\+Items\+T\+::menu\+Name}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga6b22969432b954545404fb268a8078ea}\label{group___ventilator_module_ga6b22969432b954545404fb268a8078ea}} 
+char $\ast$$\ast$ {\bfseries menu\+Items\+T\+::menu}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gafd11cb7ad0cb67caef02079099c16fcb}\label{group___ventilator_module_gafd11cb7ad0cb67caef02079099c16fcb}} 
+int {\bfseries menu\+Items\+T\+::menu\+Length}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga74e60dc849f17c4ad7738ac590655c93}\label{group___ventilator_module_ga74e60dc849f17c4ad7738ac590655c93}} 
+menu\+LevelT {\bfseries menu\+Items\+T\+::menu\+Level}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga61bae8c293db8bcd330caeec3f421b3f}\label{group___ventilator_module_ga61bae8c293db8bcd330caeec3f421b3f}} 
+void($\ast$ {\bfseries menu\+Items\+T\+::function\+Ptr} )()
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga1085ae81946ce841f6e712c97f456c1e}\label{group___ventilator_module_ga1085ae81946ce841f6e712c97f456c1e}} 
+unsigned long {\bfseries last\+Button\+Press} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga9e8e0e88a054e206b4f7b775ca759538}\label{group___ventilator_module_ga9e8e0e88a054e206b4f7b775ca759538}} 
+int {\bfseries current\+State\+C\+LK}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga49d3ef38230ffdd01b7af558b3ee657c}\label{group___ventilator_module_ga49d3ef38230ffdd01b7af558b3ee657c}} 
+int {\bfseries last\+State\+C\+LK}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga05e8bd5ab8387b082cc79a5694db8bac}\label{group___ventilator_module_ga05e8bd5ab8387b082cc79a5694db8bac}} 
+menu\+Index {\bfseries current\+Menu\+Idx} = main\+MenuE
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga0e195dbc26d3bcf5aa22ee76fd298606}\label{group___ventilator_module_ga0e195dbc26d3bcf5aa22ee76fd298606}} 
+int {\bfseries current\+Menu\+Level} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga27c4a2d4a1070edeb9b0c28a315fb8e8}\label{group___ventilator_module_ga27c4a2d4a1070edeb9b0c28a315fb8e8}} 
+int {\bfseries Cursor\+Line} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gad21c7437f81fdff134595ec068fe4a63}\label{group___ventilator_module_gad21c7437f81fdff134595ec068fe4a63}} 
+int {\bfseries Display\+First\+Line} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga876f1920a0e78b8ee8f28366a8526f54}\label{group___ventilator_module_ga876f1920a0e78b8ee8f28366a8526f54}} 
+int {\bfseries selet\+Indicator} = 1
+\item 
+\mbox{\Hypertarget{group___ventilator_module_gaa640fa82ed1bb246316ba651c74b0220}\label{group___ventilator_module_gaa640fa82ed1bb246316ba651c74b0220}} 
+int {\bfseries scroll\+Index} = 0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga30faf460ad34051ad6f41ac6309cb2e2}\label{group___ventilator_module_ga30faf460ad34051ad6f41ac6309cb2e2}} 
+char $\ast$ {\bfseries main\+Menu} \mbox{[}M\+A\+I\+N\+\_\+\+M\+E\+N\+U\+\_\+\+L\+E\+N\+G\+TH\mbox{]} = \{\char`\"{} exit diag mode\char`\"{}, \char`\"{} \hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2}-\/Calib\char`\"{},\char`\"{} Check A\+D\+S1115\char`\"{},\char`\"{} Read S\+OL\char`\"{}\}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga8242802e29782b6e9d0ab6a2afdd6a5e}\label{group___ventilator_module_ga8242802e29782b6e9d0ab6a2afdd6a5e}} 
+char $\ast$ {\bfseries sub\+Menu1} \mbox{[}S\+U\+B\+\_\+\+M\+E\+N\+U1\+\_\+\+L\+E\+N\+G\+TH\mbox{]} = \{\char`\"{} go back\char`\"{}, \char`\"{} \hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} 0\%\char`\"{},\char`\"{} \hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} 21.\+6\%\char`\"{},\char`\"{} \hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} 28\%\char`\"{}, \char`\"{} \hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} 40\%\char`\"{},\char`\"{} \hyperlink{group___base_sensors_module_ggadf764cbdea00d65edcd07bb9953ad2b7ab6979f4597e3a5529778b427f7ea7e47}{O2} 100\%\char`\"{}\}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga4ba8658d45edef82aa9f32efb3084340}\label{group___ventilator_module_ga4ba8658d45edef82aa9f32efb3084340}} 
+char $\ast$ {\bfseries sub\+Menu2} \mbox{[}S\+U\+B\+\_\+\+M\+E\+N\+U2\+\_\+\+L\+E\+N\+G\+TH\mbox{]} = \{\char`\"{} go back\char`\"{}, \char`\"{} validate A\+DC\char`\"{}\}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga7fd76ab00500efd3adf16f9bef9761e3}\label{group___ventilator_module_ga7fd76ab00500efd3adf16f9bef9761e3}} 
+char $\ast$ {\bfseries sub\+Menu3} \mbox{[}S\+U\+B\+\_\+\+M\+E\+N\+U3\+\_\+\+L\+E\+N\+G\+TH\mbox{]} = \{\char`\"{} go back\char`\"{}, \char`\"{} Read S\+O\+L1\char`\"{},\char`\"{} Read S\+O\+L2\char`\"{},\char`\"{} Read S\+O\+L3\char`\"{}\}
+\item 
+\hyperlink{structmenu_items_t}{menu\+ItemsT} {\bfseries menu\+Items} \mbox{[}M\+A\+X\+\_\+\+M\+E\+N\+US\mbox{]}
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga98027e1c0f0d731f089be4b5082987c1}\label{group___ventilator_module_ga98027e1c0f0d731f089be4b5082987c1}} 
+boolean {\bfseries no\+\_\+input} = true
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga84c7a0331524f040af2e18595b441584}\label{group___ventilator_module_ga84c7a0331524f040af2e18595b441584}} 
+int {\bfseries Menu\+\_\+\+Sel} =0
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga2021324c56d21e2c52c3973911bf6d84}\label{group___ventilator_module_ga2021324c56d21e2c52c3973911bf6d84}} 
+boolean {\bfseries continue\+\_\+diag\+\_\+mode} = true
+\item 
+\mbox{\Hypertarget{group___ventilator_module_ga0ecc799ce4ee1713b4fe52e35e999bc9}\label{group___ventilator_module_ga0ecc799ce4ee1713b4fe52e35e999bc9}} 
+int {\bfseries init\+Select} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Module to initialize and deinitialize the ventilator
+
+Utility functions to handle A\+D\+S1115, functions to read analog samples and convert them digital
+
+Module to read and measure O2 \% from the sensor
+
+Module to read and measure pressure/flow rate from the pressure sensors
+
+All sensor interfaces are available in this file. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___ventilator_module_gaca25626de26b2e71ffd3ee4d0632fd6d}\label{group___ventilator_module_gaca25626de26b2e71ffd3ee4d0632fd6d}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560@{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560}}
+\index{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560@{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560()}{ADC\_ReadVolageOnATMega2560()}}
+{\footnotesize\ttfamily int A\+D\+C\+\_\+\+Read\+Volage\+On\+A\+T\+Mega2560 (\begin{DoxyParamCaption}\item[{\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$}]{ads,  }\item[{int}]{channel,  }\item[{int}]{error,  }\item[{float $\ast$}]{vout }\end{DoxyParamCaption})}
+
+
+
+Function to read the O2 sensor samples and average. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ads} & ads board used for reading samples\\
+\hline
+{\em channel} & channel in ads board for reading samples\\
+\hline
+{\em error} & error correction needed for the samples\\
+\hline
+{\em error} & error correction needed for the samples\\
+\hline
+{\em vout} & vout read from the sensors as digital value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success and error code for other errors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gaa714b102f0e19f887c62e649837d0a49}\label{group___ventilator_module_gaa714b102f0e19f887c62e649837d0a49}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C}}
+\index{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2\+C()}{ADS1115\_ReadAvgSamplesOverI2C()}}
+{\footnotesize\ttfamily int A\+D\+S1115\+\_\+\+Read\+Avg\+Samples\+Over\+I2C (\begin{DoxyParamCaption}\item[{\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$}]{ads,  }\item[{int}]{channel,  }\item[{float $\ast$}]{vout }\end{DoxyParamCaption})}
+
+
+
+Function to read the sensor samples and average. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ads} & ads board used for reading samples\\
+\hline
+{\em channel} & channel in ads board for reading samples\\
+\hline
+{\em vout} & vout read from the sensors as digital value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success and error code for other errors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gafcad7e09c08806cd2ce59ea2be30d435}\label{group___ventilator_module_gafcad7e09c08806cd2ce59ea2be30d435}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C}}
+\index{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C@{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2\+C()}{ADS1115\_ReadVoltageOverI2C()}}
+{\footnotesize\ttfamily int A\+D\+S1115\+\_\+\+Read\+Voltage\+Over\+I2C (\begin{DoxyParamCaption}\item[{\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} $\ast$}]{ads,  }\item[{int}]{channel,  }\item[{int}]{base,  }\item[{int}]{error,  }\item[{float $\ast$}]{vout }\end{DoxyParamCaption})}
+
+
+
+Function to return average error corrected samples. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ads} & ads board used for reading samples\\
+\hline
+{\em channel} & channel in ads board for reading samples\\
+\hline
+{\em base} & actual value expected from sensor @ zero activity\\
+\hline
+{\em error} & (base -\/ actual) returned from sensor @ zero activity\\
+\hline
+{\em vout} & vout read from the sensors as digital value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success and error code for other errors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gaec727276605d9fef106d5115f711c037}\label{group___ventilator_module_gaec727276605d9fef106d5115f711c037}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!calibrate\+\_\+o2\+\_\+sensor@{calibrate\+\_\+o2\+\_\+sensor}}
+\index{calibrate\+\_\+o2\+\_\+sensor@{calibrate\+\_\+o2\+\_\+sensor}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{calibrate\+\_\+o2\+\_\+sensor()}{calibrate\_o2\_sensor()}}
+{\footnotesize\ttfamily int o2\+\_\+sensor\+::calibrate\+\_\+o2\+\_\+sensor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Calibrate the O2 sensor during boot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 on success and -\/1 on failure as integer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gad44ae3ff179318970b2a99be7500db74}\label{group___ventilator_module_gad44ae3ff179318970b2a99be7500db74}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure@{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure}}
+\index{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure@{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure()}{check\_for\_dip\_in\_pressure()}}
+{\footnotesize\ttfamily int check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure (\begin{DoxyParamCaption}\item[{\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e}}]{sensor }\end{DoxyParamCaption})}
+
+
+
+Function Checks the previous pressure readings and find if there are any dip in pressure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paran\+Name} & paramter is used to specify the\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 for invlaid sensors, 0 for no dip 1 for a dip in pressure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga882a0452720480e06504493292f2f0e2}\label{group___ventilator_module_ga882a0452720480e06504493292f2f0e2}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!enable\+\_\+sensor@{enable\+\_\+sensor}}
+\index{enable\+\_\+sensor@{enable\+\_\+sensor}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{enable\+\_\+sensor()}{enable\_sensor()}}
+{\footnotesize\ttfamily void enable\+\_\+sensor (\begin{DoxyParamCaption}\item[{unsigned int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Function to enable specific sensors or Takes a parameter of different sensor combinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & defines which sensor or a combination of sensors to be enabled\\
+\hline
+{\em source} & parameter to set the source of input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga4a650b2c4cb1b55f8be3a4c129d4f12a}\label{group___ventilator_module_ga4a650b2c4cb1b55f8be3a4c129d4f12a}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!get\+\_\+flowrate\+\_\+spyro@{get\+\_\+flowrate\+\_\+spyro}}
+\index{get\+\_\+flowrate\+\_\+spyro@{get\+\_\+flowrate\+\_\+spyro}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{get\+\_\+flowrate\+\_\+spyro()}{get\_flowrate\_spyro()}}
+{\footnotesize\ttfamily float pressure\+\_\+sensor\+::get\+\_\+flowrate\+\_\+spyro (\begin{DoxyParamCaption}\item[{float}]{pressure }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Utility function to read volume of air from spyro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the spyro volume as float 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga5f113f838045ef7cd582cebfcd00c4f0}\label{group___ventilator_module_ga5f113f838045ef7cd582cebfcd00c4f0}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!get\+\_\+pressure\+\_\+\+M\+P\+X5010@{get\+\_\+pressure\+\_\+\+M\+P\+X5010}}
+\index{get\+\_\+pressure\+\_\+\+M\+P\+X5010@{get\+\_\+pressure\+\_\+\+M\+P\+X5010}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{get\+\_\+pressure\+\_\+\+M\+P\+X5010()}{get\_pressure\_MPX5010()}}
+{\footnotesize\ttfamily float pressure\+\_\+sensor\+::get\+\_\+pressure\+\_\+\+M\+P\+X5010 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Utility function to read the pressure from M\+P\+X5010 sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the pressure read from the sensor as float 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga5eb61c5fdc62a4a0b494a518fc7273ba}\label{group___ventilator_module_ga5eb61c5fdc62a4a0b494a518fc7273ba}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP@{get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP}}
+\index{get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP@{get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+D\+P()}{get\_pressure\_MPXV7002DP()}}
+{\footnotesize\ttfamily float pressure\+\_\+sensor\+::get\+\_\+pressure\+\_\+\+M\+P\+X\+V7002\+DP (\begin{DoxyParamCaption}\item[{float}]{vout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Utility function to read the differential pressure from M\+P\+X\+V7002 sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the differential pressure read from the sensor as float 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gab51f616f215d3b4ade2bdd9a3958622d}\label{group___ventilator_module_gab51f616f215d3b4ade2bdd9a3958622d}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP@{get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP}}
+\index{get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP@{get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+D\+P()}{get\_spyro\_volume\_MPX7002DP()}}
+{\footnotesize\ttfamily float pressure\+\_\+sensor\+::get\+\_\+spyro\+\_\+volume\+\_\+\+M\+P\+X7002\+DP (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Utility function to read volume of air from spyro for specific sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the spyro volume as float 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga913dbc20ebbe78e12f33075d8b0b4b1a}\label{group___ventilator_module_ga913dbc20ebbe78e12f33075d8b0b4b1a}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!init@{init}}
+\index{init@{init}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int o2\+\_\+sensor\+::init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to initialize the O2 sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success and -\/1 on error 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_aae55152b437f83053eb018b5ebac874e}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_ga12b267b360a27d82a85f0b5276d433ed}\label{group___ventilator_module_ga12b267b360a27d82a85f0b5276d433ed}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!init@{init}}
+\index{init@{init}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int pressure\+\_\+sensor\+::init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to initialize the O2 sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success and -\/1 on error 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_aae55152b437f83053eb018b5ebac874e}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_ga9601927ed36f205bdc9a8dfb55cf9657}\label{group___ventilator_module_ga9601927ed36f205bdc9a8dfb55cf9657}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}}
+\index{read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{read\+\_\+sensor\+\_\+data()}{read\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily float o2\+\_\+sensor\+::read\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to read sensor data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the float readings from sensor 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_a682adbfb20854e2bce40b8a5c0aa6232}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_ga06b5da2de0abf739405ca3c48aa0119c}\label{group___ventilator_module_ga06b5da2de0abf739405ca3c48aa0119c}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}}
+\index{read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{read\+\_\+sensor\+\_\+data()}{read\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily float pressure\+\_\+sensor\+::read\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to read sensor data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the readings from sensor as float 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_a682adbfb20854e2bce40b8a5c0aa6232}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_ga35a8f7056ae3545cbb3a69e993147fb3}\label{group___ventilator_module_ga35a8f7056ae3545cbb3a69e993147fb3}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}}
+\index{read\+\_\+sensor\+\_\+data@{read\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{read\+\_\+sensor\+\_\+data()}{read\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily int read\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e}}]{sensor,  }\item[{float $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Wrapper A\+PI to get specific sensor readings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+e} & sensor describes which sensor to be read.\\
+\hline
+{\em data} & returns the sensor data read from sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for success and error code for any failures 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gaa646dcf1c12ed21dd027a49721e27b04}\label{group___ventilator_module_gaa646dcf1c12ed21dd027a49721e27b04}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!read\+\_\+sensor\+\_\+samples@{read\+\_\+sensor\+\_\+samples}}
+\index{read\+\_\+sensor\+\_\+samples@{read\+\_\+sensor\+\_\+samples}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{read\+\_\+sensor\+\_\+samples()}{read\_sensor\_samples()}}
+{\footnotesize\ttfamily int sensor\+::read\+\_\+sensor\+\_\+samples (\begin{DoxyParamCaption}\item[{float $\ast$}]{samples,  }\item[{int}]{sample\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Function to read the sensor samples. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em samples} & -\/ Sensor readings \\
+\hline
+{\em sample\+\_\+count} & -\/ number of sensor readings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+average of all sensor samples 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gacc2551ecc6e2b9542a747aed535eda43}\label{group___ventilator_module_gacc2551ecc6e2b9542a747aed535eda43}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!reset\+\_\+sensor\+\_\+data@{reset\+\_\+sensor\+\_\+data}}
+\index{reset\+\_\+sensor\+\_\+data@{reset\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{reset\+\_\+sensor\+\_\+data()}{reset\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void o2\+\_\+sensor\+::reset\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to reset sensor data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_a71fccbf71cc771db4775443bf899a5d3}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_ga19fa695e059a50b732d54d1e4325ee99}\label{group___ventilator_module_ga19fa695e059a50b732d54d1e4325ee99}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!reset\+\_\+sensor\+\_\+data@{reset\+\_\+sensor\+\_\+data}}
+\index{reset\+\_\+sensor\+\_\+data@{reset\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{reset\+\_\+sensor\+\_\+data()}{reset\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void pressure\+\_\+sensor\+::reset\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to reset sensor data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_a71fccbf71cc771db4775443bf899a5d3}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_gafd69d3a07ff97d3b68bd952d5286b11a}\label{group___ventilator_module_gafd69d3a07ff97d3b68bd952d5286b11a}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!sensor\+\_\+zero\+\_\+calibration@{sensor\+\_\+zero\+\_\+calibration}}
+\index{sensor\+\_\+zero\+\_\+calibration@{sensor\+\_\+zero\+\_\+calibration}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{sensor\+\_\+zero\+\_\+calibration()}{sensor\_zero\_calibration()}}
+{\footnotesize\ttfamily int pressure\+\_\+sensor\+::sensor\+\_\+zero\+\_\+calibration (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Calibrates pressure sensor during boot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 on success and -\/1 on failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga91bed606336f32fd112a2a272bd33276}\label{group___ventilator_module_ga91bed606336f32fd112a2a272bd33276}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!sensors\+\_\+init@{sensors\+\_\+init}}
+\index{sensors\+\_\+init@{sensors\+\_\+init}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{sensors\+\_\+init()}{sensors\_init()}}
+{\footnotesize\ttfamily int sensors\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to initialize all modules in sensors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indicates 0 for S\+U\+C\+C\+E\+SS and -\/1 for F\+A\+I\+L\+U\+RE 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_gabdf47205921998912383bd108cc1c417}\label{group___ventilator_module_gabdf47205921998912383bd108cc1c417}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data@{store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data}}
+\index{store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data@{store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data()}{store\_default\_o2\_calibration\_data()}}
+{\footnotesize\ttfamily int o2\+\_\+sensor\+::store\+\_\+default\+\_\+o2\+\_\+calibration\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stores the default calibrated values to memory during boot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 on success and -\/1 on failure as integer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___ventilator_module_ga460fc40d059c217fa41e4539cdb3c11d}\label{group___ventilator_module_ga460fc40d059c217fa41e4539cdb3c11d}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!update\+\_\+sensor\+\_\+data@{update\+\_\+sensor\+\_\+data}}
+\index{update\+\_\+sensor\+\_\+data@{update\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{update\+\_\+sensor\+\_\+data()}{update\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void o2\+\_\+sensor\+::update\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to read and update sensor data in local data structures (called in timer interrupt) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_a8a8cdbc1c82a4089bf0a70f980fb37d4}{sensor}.
+
+\mbox{\Hypertarget{group___ventilator_module_gac8d67444e99afbc866b1d759cbfde3c5}\label{group___ventilator_module_gac8d67444e99afbc866b1d759cbfde3c5}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!update\+\_\+sensor\+\_\+data@{update\+\_\+sensor\+\_\+data}}
+\index{update\+\_\+sensor\+\_\+data@{update\+\_\+sensor\+\_\+data}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{update\+\_\+sensor\+\_\+data()}{update\_sensor\_data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void pressure\+\_\+sensor\+::update\+\_\+sensor\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function to read and update sensor data in local data structures (called in timer interrupt) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classsensor_a8a8cdbc1c82a4089bf0a70f980fb37d4}{sensor}.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group___ventilator_module_ga5986bfbbc6d7f88e4738a3d4b20b76f0}\label{group___ventilator_module_ga5986bfbbc6d7f88e4738a3d4b20b76f0}} 
+\index{Ventilator\+Module@{Ventilator\+Module}!menu\+Items@{menu\+Items}}
+\index{menu\+Items@{menu\+Items}!Ventilator\+Module@{Ventilator\+Module}}
+\subsubsection{\texorpdfstring{menu\+Items}{menuItems}}
+{\footnotesize\ttfamily \hyperlink{structmenu_items_t}{menu\+ItemsT} menu\+Items\mbox{[}M\+A\+X\+\_\+\+M\+E\+N\+US\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= 
+\{
+  [mainMenuE] = \{\textcolor{stringliteral}{"Main menu "}, mainMenu, MAIN\_MENU\_LENGTH, MENU\_LEVEL\_0, NULL\},
+  [subMenu1E] = \{\textcolor{stringliteral}{"SubMenu1 O2 "}, subMenu1, SUB\_MENU1\_LENGTH, MENU\_LEVEL\_1, &diagO2Sensor\},
+  [subMenu2E] = \{\textcolor{stringliteral}{"SubMenu2 PS "}, subMenu2, SUB\_MENU2\_LENGTH, MENU\_LEVEL\_1, &diagAds1115\},  
+  [subMenu3E] = \{\textcolor{stringliteral}{"SubMenu3 SOL "}, subMenu3, SUB\_MENU3\_LENGTH, MENU\_LEVEL\_1, &diagSolStatus\}
+\}
+\end{DoxyCode}

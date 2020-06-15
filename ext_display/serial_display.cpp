@@ -10,7 +10,7 @@ unsigned short crc16(unsigned char *data_p, unsigned short length);
  * Serial port initialized for communication
  */
 int serial_display::init() {
-	Serial3.begin(115200);
+	Serial2.begin(115200);
 	return 0;
 }	
 
@@ -106,5 +106,5 @@ void serial_display::show() {
     crc16Val = crc16(this->m_display_data, m_display_data_count);
     this->m_display_data[index++] = (unsigned char)(((crc16Val & 0xFF00) >> 8) & 0x00FF);
     this->m_display_data[index++] = (unsigned char)(crc16Val & 0x00FF);
-    Serial3.write(this->m_display_data, index);
+    Serial2.write(this->m_display_data, index);
 }

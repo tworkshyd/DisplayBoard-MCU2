@@ -20,6 +20,8 @@
 
 #include "sensors.h"
 
+#define DEBUG_PRESSURE_SENSOR 1
+
 /**************************************************************************/
 /*!
     @brief  Class to handle Pressure sensor, inherits base sensor class
@@ -27,9 +29,16 @@
 /**************************************************************************/
 class pressure_sensor : public sensor {
 	protected:
-		int m_dp;		  /*!< Flag to store whether the object is pressure sensor or differential pressure sensor */
+		int m_dp;					/*!< Flag to store whether the object is pressure sensor or differential pressure sensor */
 		int m_adc_channel;			/*!< adc channel where the sensor is connected to */
 		Adafruit_ADS1115 *m_ads;	/*!< ADS board where the sensor is connected to */
+    unsigned long m_lastmpx7002UpdatedTime = 0;
+    unsigned long m_lastmpx50102UpdatedTime = 0;
+    unsigned long _aquisitionTimeMs = 0;
+    float m_calibrationinpressure = 0.0;
+    bool m_calibrated = false;
+    float m_lastPressure = 0.0;
+
 	protected:
 		/**
 		 *   @brief  Utility function to read the pressure from MPX5010 sensor
@@ -55,21 +64,16 @@ class pressure_sensor : public sensor {
 		 *   @return returns the spyro volume as float
 		 **/
 		float get_flowrate_spyro(float pressure);
-		/**
-		 *   @brief  Calibrates pressure sensor during boot
-		 *   @param None
-		 *   @return returns 0 on success and -1 on failure
-		 **/
-		int sensor_zero_calibration(void);
-	public:
+  public:
 		/**
 		 *   @brief  Constructor for pressure sensors
 		 *           Initializes pressure sensor variables
 		 **/
-		pressure_sensor(Adafruit_ADS1115 *ads, int adc_channel) : sensor() {
+		pressure_sensor(Adafruit_ADS1115 *ads, int adc_channel, sensor_e Id) : sensor() {
 			m_dp = 0; 
 			m_ads = ads;
 			m_adc_channel = adc_channel;
+      m_sensor_id = Id;
 		}
        /**
 		 *   @brief  Function to initialize the O2 sensor
@@ -94,7 +98,14 @@ class pressure_sensor : public sensor {
 		 *   @param None
 		 *   @return None
 		 **/
-		void update_sensor_data(void);
+		void capture_and_store(void);
+/**
+ *   @brief  Calibrate the pressure sensor
+ *   @param  None
+ *   @return returns 0 on success and -1 on failure as integer
+ **/
+    int sensor_zero_calibration(void);
+
 };
 
 /**************************************************************************/
@@ -108,9 +119,13 @@ class dpressure_sensor : public pressure_sensor {
 		 *   @brief  Constructor for differential pressure sensors
 		 *           Initializes all variables
 		 **/
-		dpressure_sensor(Adafruit_ADS1115 *ads, int adc_channel) : pressure_sensor(ads, adc_channel) {
+		dpressure_sensor(Adafruit_ADS1115 *ads, int adc_channel, sensor_e Id) : pressure_sensor(ads, adc_channel, Id) {
 			m_dp = 1;
 		}
+
+    void data_aquisitiontime(unsigned long time) {
+      _aquisitionTimeMs = time;
+    }
 };
 
 #endif /*__PRESSURE_SENSOR_H__*/

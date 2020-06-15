@@ -1,0 +1,193 @@
+\hypertarget{pinout_8h}{}\section{pinout.\+h File Reference}
+\label{pinout_8h}\index{pinout.\+h@{pinout.\+h}}
+
+
+This Module define all the pin configurations for Arduino 2650 and A\+D\+S1115.  
+
+
+\subsection*{Macros}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pinout_8h_a67386add8d36ad8fdcebf598e024f2d1}{T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN}~A0
+\item 
+\#define \hyperlink{pinout_8h_ab64651328862dc0caae827bcb2b6688c}{R\+R\+\_\+\+P\+IN}~A1
+\item 
+\#define \hyperlink{pinout_8h_adefeee01ccc63b980052a18a46afdb53}{P\+M\+A\+X\+\_\+\+P\+IN}~A2
+\item 
+\#define \hyperlink{pinout_8h_a276121b66bf992e87a09ee150d41fcc5}{Fi\+O2\+\_\+\+P\+IN}~A3
+\item 
+\#define \hyperlink{pinout_8h_a5b4aa60d3f2682ac17d84a435735dbf5}{A\+U\+T\+O\+\_\+\+M\+O\+DE}~10
+\item 
+\#define \hyperlink{pinout_8h_a39841eb6125c47e6cd521774b7b79abf}{A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE}~11
+\item 
+\#define \hyperlink{pinout_8h_a0e4e08bab2fb484136d18b067bef372c}{I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN}~21
+\item 
+\#define \hyperlink{pinout_8h_a2cade698267beb86ccaa38c14d35ab0f}{I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN}~20
+\item 
+\#define \hyperlink{pinout_8h_ab61d0981ed42df9e18211b273d22cfcd}{B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN}~3
+\item 
+\#define \hyperlink{pinout_8h_a523b7e982dca567dfe2f8ba0f446c7fd}{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN}~6
+\item 
+\#define \hyperlink{pinout_8h_a2990721a3c115bcdcca55589f8e80a70}{R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH}~13
+\item 
+\#define \hyperlink{pinout_8h_a85d16d29a4a4822766a38232838e03de}{D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN}~29
+\item 
+\#define \hyperlink{pinout_8h_a9a866c9176da0bf225467ec553797217}{D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN}~28
+\item 
+\#define \hyperlink{pinout_8h_a726fd06295873dcd28fbe02c176b5f10}{D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN}~27
+\item 
+\#define \hyperlink{pinout_8h_aa66c923c7a687d2b443bcad25aacc09c}{D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN}~26
+\item 
+\#define \hyperlink{pinout_8h_a5a42686dae1b6abe45f72e15f936a197}{D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN}~24
+\item 
+\#define \hyperlink{pinout_8h_a2bef1a7ea560a6a83fbd855bb0d8b020}{D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN}~25
+\item 
+\#define \hyperlink{pinout_8h_a4b0d91204ca253b52a542f497808ec52}{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW}~4
+\item 
+\#define \hyperlink{pinout_8h_aa1c05bf24b34b1f24e091abaaec55af7}{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK}~5
+\item 
+\#define \hyperlink{pinout_8h_a5b6090c9b17070011e3f60deb83b9778}{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT}~30
+\item 
+\mbox{\Hypertarget{pinout_8h_a77f9769d1e9d759f0e4cd950462ca9b6}\label{pinout_8h_a77f9769d1e9d759f0e4cd950462ca9b6}} 
+\#define {\bfseries P\+O\+W\+E\+R\+\_\+\+S\+U\+P\+P\+L\+Y\+\_\+\+F\+A\+I\+L\+U\+RE}~40
+\item 
+\mbox{\Hypertarget{pinout_8h_aff42d97701ebbbed03d21adb23a323a9}\label{pinout_8h_aff42d97701ebbbed03d21adb23a323a9}} 
+\#define {\bfseries G\+A\+S\+\_\+\+S\+U\+P\+P\+L\+Y\+\_\+\+F\+A\+I\+L\+U\+RE}~41
+\item 
+\mbox{\Hypertarget{pinout_8h_a776a286c1fcb7efd9714fd439c181aaf}\label{pinout_8h_a776a286c1fcb7efd9714fd439c181aaf}} 
+\#define {\bfseries M\+E\+C\+H\+\_\+\+F\+A\+I\+L\+S\+A\+F\+E\+\_\+\+V\+A\+L\+VE}~42
+\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+This Module define all the pin configurations for Arduino 2650 and A\+D\+S1115. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{pinout_8h_a523b7e982dca567dfe2f8ba0f446c7fd}\label{pinout_8h_a523b7e982dca567dfe2f8ba0f446c7fd}} 
+\index{pinout.\+h@{pinout.\+h}!A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN@{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN}}
+\index{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN@{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN}{ADS115\_INT\_PIN}}
+{\footnotesize\ttfamily \#define A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN~6}
+
+A\+D\+S115 A\+L\+RT is attached to pin 6 A\+D\+S115 A\+D\+DR is attached to pin ground \mbox{\Hypertarget{pinout_8h_a39841eb6125c47e6cd521774b7b79abf}\label{pinout_8h_a39841eb6125c47e6cd521774b7b79abf}} 
+\index{pinout.\+h@{pinout.\+h}!A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE@{A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE}}
+\index{A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE@{A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE}{ASSISTED\_MODE}}
+{\footnotesize\ttfamily \#define A\+S\+S\+I\+S\+T\+E\+D\+\_\+\+M\+O\+DE~11}
+
+Assisted mode is attached to pin 10 \mbox{\Hypertarget{pinout_8h_a5b4aa60d3f2682ac17d84a435735dbf5}\label{pinout_8h_a5b4aa60d3f2682ac17d84a435735dbf5}} 
+\index{pinout.\+h@{pinout.\+h}!A\+U\+T\+O\+\_\+\+M\+O\+DE@{A\+U\+T\+O\+\_\+\+M\+O\+DE}}
+\index{A\+U\+T\+O\+\_\+\+M\+O\+DE@{A\+U\+T\+O\+\_\+\+M\+O\+DE}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{A\+U\+T\+O\+\_\+\+M\+O\+DE}{AUTO\_MODE}}
+{\footnotesize\ttfamily \#define A\+U\+T\+O\+\_\+\+M\+O\+DE~10}
+
+Auto mode is attached to pin 10 \mbox{\Hypertarget{pinout_8h_ab61d0981ed42df9e18211b273d22cfcd}\label{pinout_8h_ab61d0981ed42df9e18211b273d22cfcd}} 
+\index{pinout.\+h@{pinout.\+h}!B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN@{B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN}}
+\index{B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN@{B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN}{BUZZER\_PIN}}
+{\footnotesize\ttfamily \#define B\+U\+Z\+Z\+E\+R\+\_\+\+P\+IN~3}
+
+Buzzer is attached to pin 3 \mbox{\Hypertarget{pinout_8h_aa1c05bf24b34b1f24e091abaaec55af7}\label{pinout_8h_aa1c05bf24b34b1f24e091abaaec55af7}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK@{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK}}
+\index{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK@{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK}{DISP\_ENC\_CLK}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+C\+LK~5}
+
+Rotatory Encoder\textquotesingle{}s C\+LK is attached to pin 19 \mbox{\Hypertarget{pinout_8h_a5b6090c9b17070011e3f60deb83b9778}\label{pinout_8h_a5b6090c9b17070011e3f60deb83b9778}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT@{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT}}
+\index{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT@{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT}{DISP\_ENC\_DT}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+DT~30}
+
+Rotatory Encoder\textquotesingle{}s DT is attached to pin 30 \mbox{\Hypertarget{pinout_8h_a4b0d91204ca253b52a542f497808ec52}\label{pinout_8h_a4b0d91204ca253b52a542f497808ec52}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW@{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW}}
+\index{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW@{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW}{DISP\_ENC\_SW}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+\_\+\+E\+N\+C\+\_\+\+SW~4}
+
+Rotatory Encoder\textquotesingle{}s SW is attached to pin 18 \mbox{\Hypertarget{pinout_8h_a85d16d29a4a4822766a38232838e03de}\label{pinout_8h_a85d16d29a4a4822766a38232838e03de}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN}{DISPLAY\_1\_PIN}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+1\+\_\+\+P\+IN~29}
+
+Display pin 1 is attached to pin 29 \mbox{\Hypertarget{pinout_8h_a9a866c9176da0bf225467ec553797217}\label{pinout_8h_a9a866c9176da0bf225467ec553797217}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN}{DISPLAY\_2\_PIN}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+2\+\_\+\+P\+IN~28}
+
+Display pin 2 is attached to pin 28 \mbox{\Hypertarget{pinout_8h_a726fd06295873dcd28fbe02c176b5f10}\label{pinout_8h_a726fd06295873dcd28fbe02c176b5f10}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN}{DISPLAY\_3\_PIN}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+3\+\_\+\+P\+IN~27}
+
+Display pin 3 is attached to pin 27 \mbox{\Hypertarget{pinout_8h_aa66c923c7a687d2b443bcad25aacc09c}\label{pinout_8h_aa66c923c7a687d2b443bcad25aacc09c}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN}{DISPLAY\_4\_PIN}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+4\+\_\+\+P\+IN~26}
+
+Display pin 4 is attached to pin 26 \mbox{\Hypertarget{pinout_8h_a2bef1a7ea560a6a83fbd855bb0d8b020}\label{pinout_8h_a2bef1a7ea560a6a83fbd855bb0d8b020}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN}{DISPLAY\_EN\_PIN}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+\+E\+N\+\_\+\+P\+IN~25}
+
+Display EN pin is attached to pin 25 \mbox{\Hypertarget{pinout_8h_a5a42686dae1b6abe45f72e15f936a197}\label{pinout_8h_a5a42686dae1b6abe45f72e15f936a197}} 
+\index{pinout.\+h@{pinout.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN}}
+\index{D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN}{DISPLAY\_RS\_PIN}}
+{\footnotesize\ttfamily \#define D\+I\+S\+P\+L\+A\+Y\+\_\+\+R\+S\+\_\+\+P\+IN~24}
+
+Display RS pin is attached to pin 24 \mbox{\Hypertarget{pinout_8h_a276121b66bf992e87a09ee150d41fcc5}\label{pinout_8h_a276121b66bf992e87a09ee150d41fcc5}} 
+\index{pinout.\+h@{pinout.\+h}!Fi\+O2\+\_\+\+P\+IN@{Fi\+O2\+\_\+\+P\+IN}}
+\index{Fi\+O2\+\_\+\+P\+IN@{Fi\+O2\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{Fi\+O2\+\_\+\+P\+IN}{FiO2\_PIN}}
+{\footnotesize\ttfamily \#define Fi\+O2\+\_\+\+P\+IN~A3}
+
+Fio2 pot is attached to pin A3 \mbox{\Hypertarget{pinout_8h_a0e4e08bab2fb484136d18b067bef372c}\label{pinout_8h_a0e4e08bab2fb484136d18b067bef372c}} 
+\index{pinout.\+h@{pinout.\+h}!I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN@{I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN}}
+\index{I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN@{I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN}{I2C\_SCL\_PIN}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+S\+C\+L\+\_\+\+P\+IN~21}
+
+I2C S\+CL is attached to pin 21 \mbox{\Hypertarget{pinout_8h_a2cade698267beb86ccaa38c14d35ab0f}\label{pinout_8h_a2cade698267beb86ccaa38c14d35ab0f}} 
+\index{pinout.\+h@{pinout.\+h}!I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN@{I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN}}
+\index{I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN@{I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN}{I2C\_SDA\_PIN}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+S\+D\+A\+\_\+\+P\+IN~20}
+
+I2C S\+DA is attached to pin 20 \mbox{\Hypertarget{pinout_8h_adefeee01ccc63b980052a18a46afdb53}\label{pinout_8h_adefeee01ccc63b980052a18a46afdb53}} 
+\index{pinout.\+h@{pinout.\+h}!P\+M\+A\+X\+\_\+\+P\+IN@{P\+M\+A\+X\+\_\+\+P\+IN}}
+\index{P\+M\+A\+X\+\_\+\+P\+IN@{P\+M\+A\+X\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{P\+M\+A\+X\+\_\+\+P\+IN}{PMAX\_PIN}}
+{\footnotesize\ttfamily \#define P\+M\+A\+X\+\_\+\+P\+IN~A2}
+
+Peak Pressure pot is attached to pin A2 \mbox{\Hypertarget{pinout_8h_a2990721a3c115bcdcca55589f8e80a70}\label{pinout_8h_a2990721a3c115bcdcca55589f8e80a70}} 
+\index{pinout.\+h@{pinout.\+h}!R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH@{R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH}}
+\index{R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH@{R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH}{RESET\_SWITCH}}
+{\footnotesize\ttfamily \#define R\+E\+S\+E\+T\+\_\+\+S\+W\+I\+T\+CH~13}
+
+Reset Switch is attached to pin 13 \mbox{\Hypertarget{pinout_8h_ab64651328862dc0caae827bcb2b6688c}\label{pinout_8h_ab64651328862dc0caae827bcb2b6688c}} 
+\index{pinout.\+h@{pinout.\+h}!R\+R\+\_\+\+P\+IN@{R\+R\+\_\+\+P\+IN}}
+\index{R\+R\+\_\+\+P\+IN@{R\+R\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{R\+R\+\_\+\+P\+IN}{RR\_PIN}}
+{\footnotesize\ttfamily \#define R\+R\+\_\+\+P\+IN~A1}
+
+B\+PM or RR pot is attached to pin A1 \mbox{\Hypertarget{pinout_8h_a67386add8d36ad8fdcebf598e024f2d1}\label{pinout_8h_a67386add8d36ad8fdcebf598e024f2d1}} 
+\index{pinout.\+h@{pinout.\+h}!T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN@{T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN}}
+\index{T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN@{T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN}!pinout.\+h@{pinout.\+h}}
+\subsubsection{\texorpdfstring{T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN}{TIDAL\_VOLUME\_PIN}}
+{\footnotesize\ttfamily \#define T\+I\+D\+A\+L\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+P\+IN~A0}
+
+tidal volume pot is attached to pin A0 

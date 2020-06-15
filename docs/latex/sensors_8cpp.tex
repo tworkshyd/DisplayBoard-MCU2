@@ -1,0 +1,59 @@
+\hypertarget{sensors_8cpp}{}\section{sensors/sensors.cpp File Reference}
+\label{sensors_8cpp}\index{sensors/sensors.\+cpp@{sensors/sensors.\+cpp}}
+
+
+Base class for all sensor types.  
+
+
+{\ttfamily \#include \char`\"{}sensors.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pressure\+\_\+sensor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}O2\+\_\+sensor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pressure\+\_\+sensor.\+cpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}O2\+\_\+sensor.\+cpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ads1115\+\_\+utils.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./../3plibs/\+Ms\+Timer2/\+Ms\+Timer2.\+cpp\char`\"{}}\newline
+Include dependency graph for sensors.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+P\+S2\+\_\+\+S\+A\+M\+P\+L\+ES}~10
+\item 
+\#define {\bfseries T\+H\+R\+E\+S\+H\+O\+L\+D\+\_\+\+C\+O\+M\+P\+A\+R\+E\+\_\+\+I\+N\+D\+EX}~2
+\item 
+\#define {\bfseries D\+I\+P\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}~15
+\item 
+\#define {\bfseries A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN}~6
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries read\+\_\+and\+\_\+update\+\_\+sensor\+\_\+data} (void)
+\item 
+int {\bfseries ads1115\+\_\+init} ()
+\item 
+int \hyperlink{group___ventilator_module_ga91bed606336f32fd112a2a272bd33276}{sensors\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Function to initialize all modules in sensors. \end{DoxyCompactList}\item 
+void \hyperlink{group___ventilator_module_ga882a0452720480e06504493292f2f0e2}{enable\+\_\+sensor} (unsigned int flag)
+\begin{DoxyCompactList}\small\item\em Function to enable specific sensors or Takes a parameter of different sensor combinations. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_ga35a8f7056ae3545cbb3a69e993147fb3}{read\+\_\+sensor\+\_\+data} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} s, float $\ast$data)
+\begin{DoxyCompactList}\small\item\em Wrapper A\+PI to get specific sensor readings. \end{DoxyCompactList}\item 
+int \hyperlink{group___ventilator_module_gad44ae3ff179318970b2a99be7500db74}{check\+\_\+for\+\_\+dip\+\_\+in\+\_\+pressure} (\hyperlink{group___base_sensors_module_ga241bbfb8b20d2f411c4c10bb9703288c}{sensor\+\_\+e} \hyperlink{classsensor}{sensor})
+\begin{DoxyCompactList}\small\item\em Function Checks the previous pressure readings and find if there are any dip in pressure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_adafruit___a_d_s1115}{Adafruit\+\_\+\+A\+D\+S1115} {\bfseries ads} (\hyperlink{_adafruit___a_d_s1015_8h_ae55d158023984e8f0ddc80b58d5b30dc}{A\+D\+S1015\+\_\+\+A\+D\+D\+R\+E\+SS}, \hyperlink{pinout_8h_a523b7e982dca567dfe2f8ba0f446c7fd}{A\+D\+S115\+\_\+\+I\+N\+T\+\_\+\+P\+IN})
+\item 
+\hyperlink{classo2__sensor}{o2\+\_\+sensor} {\bfseries g\+\_\+o2} (N\+U\+LL, O\+X\+Y\+G\+E\+N\+\_\+\+A\+N\+A\+L\+O\+G\+\_\+\+P\+IN)
+\item 
+unsigned int {\bfseries enabled\+\_\+sensors} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for all sensor types. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}

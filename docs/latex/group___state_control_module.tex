@@ -1,0 +1,508 @@
+\hypertarget{group___state_control_module}{}\section{State\+Control\+Module}
+\label{group___state_control_module}\index{State\+Control\+Module@{State\+Control\+Module}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___state_control_module_gab30c6a2146e6fae222d0b331a2a42962}{S\+T\+P\+R\+\_\+\+S\+TP}~0
+\item 
+\#define \hyperlink{group___state_control_module_gab4744223ea2ca17d02a56720bec5d254}{S\+T\+P\+R\+\_\+\+ON}~1
+\item 
+\#define \hyperlink{group___state_control_module_ga97deb11039270c5b73a5636d30f95758}{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF}~2
+\item 
+\#define \hyperlink{group___state_control_module_ga415db3daa54c51ab66cbec2891d7bbcf}{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN}~3
+\item 
+\#define \hyperlink{group___state_control_module_ga2b3bdf8e49d8ad48918a8bf63a65a48b}{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF}~4
+\item 
+\#define \hyperlink{group___state_control_module_ga502fb88a7511892493a5447107597f75}{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN}~5
+\item 
+\#define \hyperlink{group___state_control_module_gaf489570cc78286bb317a2a8a98dade60}{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}~6
+\item 
+\#define \hyperlink{group___state_control_module_ga93f66e0e218ae8a864722e870d6eb97a}{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}~7
+\item 
+\#define \hyperlink{group___state_control_module_ga10a53a2718979d3636a57d6662b5be1d}{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}~8
+\item 
+\#define \hyperlink{group___state_control_module_gadabe6f4d8f03ec2e22d4f980cdc67462}{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}~9
+\item 
+\#define \hyperlink{group___state_control_module_gab2ee9632e3286d4a14984763103b695f}{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF}~10
+\item 
+\#define \hyperlink{group___state_control_module_gab999c8291a101c0bcd63a90989fdcd6f}{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN}~11
+\item 
+\#define \hyperlink{group___state_control_module_ga0741496c0ac7c16254b6420779edaac0}{S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL}~12
+\item 
+\#define \hyperlink{group___state_control_module_gaa883895aa6e031109476683c2765a2f7}{S\+E\+T\+\_\+\+B\+PM}~13
+\item 
+\#define \hyperlink{group___state_control_module_ga777447137ff930b3182ce5b38f6fa52a}{S\+E\+T\+\_\+\+P\+K\+\_\+\+PR}~14
+\item 
+\#define \hyperlink{group___state_control_module_ga9756af06bb17a1db92bac2ca2b9e810e}{S\+E\+T\+\_\+\+F\+I\+O2}~15
+\item 
+\#define \hyperlink{group___state_control_module_ga3d17781cd0bcfb9bd8dc20bae6e46897}{S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO}~16
+\item 
+\#define \hyperlink{group___state_control_module_ga95bebe1d169286beb8feb6b794118cb8}{S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}~17
+\item 
+\#define \hyperlink{group___state_control_module_gab1a45d1a9a1ff653590689e368a6673c}{S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}~18
+\item 
+\#define \hyperlink{group___state_control_module_gabf46fee01f15d3064a969d2496d6655a}{I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER}~19
+\item 
+\#define \hyperlink{group___state_control_module_ga96c1e48c41f357114f5bce0a09796337}{I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD}~20
+\item 
+\#define \hyperlink{group___state_control_module_ga6af9fc492439787640378141282553c0}{I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK}~21
+\item 
+\#define \hyperlink{group___state_control_module_ga1bb22977fa0d1fc45b3c9d20f66929dc}{I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET}~22
+\item 
+\#define \hyperlink{group___state_control_module_ga2693cd3c8d4a8c6bca560e631dc84f73}{S\+Y\+N\+CH}~\char`\"{}SY\char`\"{}
+\item 
+\#define \hyperlink{group___state_control_module_ga094c380bc7b252c380fe99f9f1f3a40c}{V\+E\+N\+T\+S\+L\+A\+VE}~\char`\"{}VS\char`\"{}
+\item 
+\#define \hyperlink{group___state_control_module_ga4cf9fc60e700d5bc03cdeea67200e710}{S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM}~\textquotesingle{}\$\textquotesingle{}
+\item 
+\#define \hyperlink{group___state_control_module_ga2d0042b493e420e415586e0ed3e6159b}{E\+N\+D\+\_\+\+D\+E\+L\+IM}~\textquotesingle{}\&\textquotesingle{}
+\item 
+\#define \hyperlink{group___state_control_module_gaab73182824268aecb152070ffff886c5}{V\+E\+N\+T\+\_\+\+M\+A\+ST}~\char`\"{}VM\char`\"{}
+\item 
+\#define \hyperlink{group___state_control_module_ga79dc44f60cd39aecaa81ba77d440848b}{C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}~10
+\item 
+\#define \hyperlink{group___state_control_module_ga7592aa1eaa790ae27e542130b3864191}{P\+A\+R\+A\+M1}~\char`\"{}P1\char`\"{}
+\item 
+\#define \hyperlink{group___state_control_module_gabdd1bc0c9e1b837bbf643458c90e44c4}{P\+A\+R\+A\+M2}~\char`\"{}P2\char`\"{}
+\item 
+\#define \hyperlink{group___state_control_module_ga5febf7030347536205e990838c8731cf}{P\+A\+R\+A\+M5}~\char`\"{}P5\char`\"{}
+\item 
+\mbox{\Hypertarget{group___state_control_module_ga33e206a1904f0a924147d11852d1977b}\label{group___state_control_module_ga33e206a1904f0a924147d11852d1977b}} 
+\#define {\bfseries M\+I\+N\+\_\+\+P\+R\+E\+S\+S\+U\+R\+E\+\_\+\+F\+O\+R\+\_\+\+M\+A\+S\+K\+ON}~15
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___state_control_module_gac6eef437321073e19b469605f47262f5}{Control\+States\+Def\+\_\+T} \{ \newline
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5aabffaa85512e88474902dd36be5e33ca}{C\+T\+R\+L\+\_\+\+I\+N\+IT} =0, 
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5a62881b06b7d58ef175368cb398b5e208}{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON}, 
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5a3bf46950333eff9cb1445136027318f2}{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+H\+O\+LD}, 
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5aa5b3a4bd640c612ba916ee1263bac5f7}{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+ON}, 
+\newline
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5afda5c61b8e7f0c1df614a63a172e5613}{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+O\+N\+\_\+\+H\+O\+LD}, 
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5af8b49bbe52c36090982ac9258aee26af}{C\+T\+R\+L\+\_\+\+I\+N\+H\+A\+L\+E\+\_\+\+D\+E\+T\+E\+C\+T\+I\+ON}, 
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5a02f4644ac3d0cbeb58d7d21ba0057764}{C\+T\+R\+L\+\_\+\+S\+T\+OP}, 
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5a96c3ff676a2ba2dac054ede1a1ec0c17}{C\+T\+R\+L\+\_\+\+D\+O\+\_\+\+N\+O\+T\+H\+I\+NG}, 
+\newline
+\hyperlink{group___state_control_module_ggac6eef437321073e19b469605f47262f5a7192c159e766d6eaadb5c494cf9bf953}{C\+T\+R\+L\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+S\+T\+A\+TE}
+ \}\begin{DoxyCompactList}\small\item\em Following are the Control States during which Sensor data and user inputs are compared to generate specific commands required for that state. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \hyperlink{group___state_control_module_gae547d9c33c082f82dc04a8dd2be788ba}{Ctrl\+\_\+\+Create\+Command} (String param\+Name, int value)
+\begin{DoxyCompactList}\small\item\em Function to create control command. \end{DoxyCompactList}\item 
+bool \hyperlink{group___state_control_module_ga0926cce894ccf2232698c5be4b94e09e}{Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager} (void)
+\begin{DoxyCompactList}\small\item\em Function to perform specific operation based on the Current State. \end{DoxyCompactList}\item 
+void \hyperlink{group___state_control_module_ga9b6ec4e2da235c08b203af26edcfff72}{Ctrl\+\_\+\+Process\+Rx\+Data} (void)
+\begin{DoxyCompactList}\small\item\em Function to process the received data. \end{DoxyCompactList}\item 
+void \hyperlink{group___state_control_module_ga6591c14e3084f61ee1e51057d2baa269}{Ctrl\+\_\+store\+\_\+received\+\_\+packet} (String data)
+\begin{DoxyCompactList}\small\item\em Function to store the bufferred data into the local variable. \end{DoxyCompactList}\item 
+int \hyperlink{group___state_control_module_gaadae19019609b8a7e5ecb1b84497d2d4}{Ctrl\+\_\+send\+\_\+packet} (int command\+Index)
+\begin{DoxyCompactList}\small\item\em Function to send the command from commands array based on the index. \end{DoxyCompactList}\item 
+int \hyperlink{group___state_control_module_ga399a7a74edee153c91847adbcba0de2a}{Ctrl\+\_\+send\+\_\+packet} (String name, int value)
+\begin{DoxyCompactList}\small\item\em Function to send the command based on the parameter and its value. \end{DoxyCompactList}\item 
+void \hyperlink{group___state_control_module_ga62b8b9b48c52c1774d555e94b672856f}{Ctrl\+\_\+\+Start} ()
+\begin{DoxyCompactList}\small\item\em Function to change the state to I\+N\+IT. \end{DoxyCompactList}\item 
+void \hyperlink{group___state_control_module_ga9893b8ac36b61c5804fe404e9bfa1163}{Ctrl\+\_\+\+Stop} ()
+\begin{DoxyCompactList}\small\item\em Function to change the state to stop the stepper motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Module is a state\+Machine where sensors data and UI parameters data is read to take appropriate decision in the respective state. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group___state_control_module_ga79dc44f60cd39aecaa81ba77d440848b}\label{group___state_control_module_ga79dc44f60cd39aecaa81ba77d440848b}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE@{C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}}
+\index{C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE@{C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}{CMD\_PACKET\_SIZE}}
+{\footnotesize\ttfamily \#define C\+M\+D\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE~10}
+
+Command Packet Data Size \mbox{\Hypertarget{group___state_control_module_ga2d0042b493e420e415586e0ed3e6159b}\label{group___state_control_module_ga2d0042b493e420e415586e0ed3e6159b}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!E\+N\+D\+\_\+\+D\+E\+L\+IM@{E\+N\+D\+\_\+\+D\+E\+L\+IM}}
+\index{E\+N\+D\+\_\+\+D\+E\+L\+IM@{E\+N\+D\+\_\+\+D\+E\+L\+IM}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{E\+N\+D\+\_\+\+D\+E\+L\+IM}{END\_DELIM}}
+{\footnotesize\ttfamily \#define E\+N\+D\+\_\+\+D\+E\+L\+IM~\textquotesingle{}\&\textquotesingle{}}
+
+End Delimeter for the Command Structure \mbox{\Hypertarget{group___state_control_module_ga10a53a2718979d3636a57d6662b5be1d}\label{group___state_control_module_ga10a53a2718979d3636a57d6662b5be1d}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF@{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}}
+\index{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF@{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}{EXH\_SOLE\_OFF}}
+{\footnotesize\ttfamily \#define E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF~8}
+
+it gives the index value of the commands array to exhalation solenoid off \mbox{\Hypertarget{group___state_control_module_gadabe6f4d8f03ec2e22d4f980cdc67462}\label{group___state_control_module_gadabe6f4d8f03ec2e22d4f980cdc67462}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN@{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}}
+\index{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN@{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}{EXH\_SOLE\_ONN}}
+{\footnotesize\ttfamily \#define E\+X\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN~9}
+
+it gives the index value of the commands array to exhalation solenoid on \mbox{\Hypertarget{group___state_control_module_gaf489570cc78286bb317a2a8a98dade60}\label{group___state_control_module_gaf489570cc78286bb317a2a8a98dade60}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF@{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}}
+\index{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF@{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF}{INH\_SOLE\_OFF}}
+{\footnotesize\ttfamily \#define I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+FF~6}
+
+it gives the index value of the commands array to inhalation solenoid off \mbox{\Hypertarget{group___state_control_module_ga93f66e0e218ae8a864722e870d6eb97a}\label{group___state_control_module_ga93f66e0e218ae8a864722e870d6eb97a}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN@{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}}
+\index{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN@{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN}{INH\_SOLE\_ONN}}
+{\footnotesize\ttfamily \#define I\+N\+H\+\_\+\+S\+O\+L\+E\+\_\+\+O\+NN~7}
+
+it gives the index value of the commands array to inhalation solenoid on \mbox{\Hypertarget{group___state_control_module_ga1bb22977fa0d1fc45b3c9d20f66929dc}\label{group___state_control_module_ga1bb22977fa0d1fc45b3c9d20f66929dc}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET@{I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET}}
+\index{I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET@{I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET}{INIT\_BREATH\_DET}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+B\+R\+E\+A\+T\+H\+\_\+\+D\+ET~22}
+
+it gives the index value of the commands array to initialize breath detection \mbox{\Hypertarget{group___state_control_module_gabf46fee01f15d3064a969d2496d6655a}\label{group___state_control_module_gabf46fee01f15d3064a969d2496d6655a}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER@{I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER}}
+\index{I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER@{I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER}{INIT\_MASTER}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+M\+A\+S\+T\+ER~19}
+
+it gives the index value of the commands array to initialize master \mbox{\Hypertarget{group___state_control_module_ga96c1e48c41f357114f5bce0a09796337}\label{group___state_control_module_ga96c1e48c41f357114f5bce0a09796337}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD@{I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD}}
+\index{I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD@{I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD}{INIT\_STPR\_MOD}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+S\+T\+P\+R\+\_\+\+M\+OD~20}
+
+it gives the index value of the commands array to initialize stepper module \mbox{\Hypertarget{group___state_control_module_ga6af9fc492439787640378141282553c0}\label{group___state_control_module_ga6af9fc492439787640378141282553c0}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK@{I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK}}
+\index{I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK@{I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK}{INIT\_VALV\_BLK}}
+{\footnotesize\ttfamily \#define I\+N\+I\+T\+\_\+\+V\+A\+L\+V\+\_\+\+B\+LK~21}
+
+it gives the index value of the commands array to initialize stepper module \mbox{\Hypertarget{group___state_control_module_ga97deb11039270c5b73a5636d30f95758}\label{group___state_control_module_ga97deb11039270c5b73a5636d30f95758}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF}}
+\index{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF}{OXY\_SOLE\_CYL\_OFF}}
+{\footnotesize\ttfamily \#define O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+FF~2}
+
+it gives the index value of the commands array to oxygen solenoid cylinder line off \mbox{\Hypertarget{group___state_control_module_ga415db3daa54c51ab66cbec2891d7bbcf}\label{group___state_control_module_ga415db3daa54c51ab66cbec2891d7bbcf}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN}}
+\index{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN}{OXY\_SOLE\_CYL\_ONN}}
+{\footnotesize\ttfamily \#define O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+C\+Y\+L\+\_\+\+O\+NN~3}
+
+it gives the index value of the commands array to oxygen solenoid cylinder line on \mbox{\Hypertarget{group___state_control_module_ga2b3bdf8e49d8ad48918a8bf63a65a48b}\label{group___state_control_module_ga2b3bdf8e49d8ad48918a8bf63a65a48b}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF}}
+\index{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF}{OXY\_SOLE\_HOS\_O2\_OFF}}
+{\footnotesize\ttfamily \#define O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+FF~4}
+
+it gives the index value of the commands array to oxygen solenoid hospital line off \mbox{\Hypertarget{group___state_control_module_ga502fb88a7511892493a5447107597f75}\label{group___state_control_module_ga502fb88a7511892493a5447107597f75}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN}}
+\index{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN@{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN}{OXY\_SOLE\_HOS\_O2\_ONN}}
+{\footnotesize\ttfamily \#define O\+X\+Y\+\_\+\+S\+O\+L\+E\+\_\+\+H\+O\+S\+\_\+\+O2\+\_\+\+O\+NN~5}
+
+it gives the index value of the commands array to oxygen solenoid hospital line on \mbox{\Hypertarget{group___state_control_module_ga7592aa1eaa790ae27e542130b3864191}\label{group___state_control_module_ga7592aa1eaa790ae27e542130b3864191}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!P\+A\+R\+A\+M1@{P\+A\+R\+A\+M1}}
+\index{P\+A\+R\+A\+M1@{P\+A\+R\+A\+M1}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{P\+A\+R\+A\+M1}{PARAM1}}
+{\footnotesize\ttfamily \#define P\+A\+R\+A\+M1~\char`\"{}P1\char`\"{}}
+
+String is used to Identify which parameter needs to be Sent.\+In this case it is 0 param from Params Arrays \mbox{\Hypertarget{group___state_control_module_gabdd1bc0c9e1b837bbf643458c90e44c4}\label{group___state_control_module_gabdd1bc0c9e1b837bbf643458c90e44c4}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!P\+A\+R\+A\+M2@{P\+A\+R\+A\+M2}}
+\index{P\+A\+R\+A\+M2@{P\+A\+R\+A\+M2}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{P\+A\+R\+A\+M2}{PARAM2}}
+{\footnotesize\ttfamily \#define P\+A\+R\+A\+M2~\char`\"{}P2\char`\"{}}
+
+String is used to Identify which parameter needs to be Sent.\+In this case it is 1 param from Params Arrays \mbox{\Hypertarget{group___state_control_module_ga5febf7030347536205e990838c8731cf}\label{group___state_control_module_ga5febf7030347536205e990838c8731cf}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!P\+A\+R\+A\+M5@{P\+A\+R\+A\+M5}}
+\index{P\+A\+R\+A\+M5@{P\+A\+R\+A\+M5}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{P\+A\+R\+A\+M5}{PARAM5}}
+{\footnotesize\ttfamily \#define P\+A\+R\+A\+M5~\char`\"{}P5\char`\"{}}
+
+String is used to Identify which parameter needs to be Sent.\+In this case it is 4 param from Params Arrays \mbox{\Hypertarget{group___state_control_module_gab2ee9632e3286d4a14984763103b695f}\label{group___state_control_module_gab2ee9632e3286d4a14984763103b695f}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF@{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF}}
+\index{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF@{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF}{PK\_PR\_REL\_OFF}}
+{\footnotesize\ttfamily \#define P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+FF~10}
+
+it gives the index value of the commands array to peak pressure relief off \mbox{\Hypertarget{group___state_control_module_gab999c8291a101c0bcd63a90989fdcd6f}\label{group___state_control_module_gab999c8291a101c0bcd63a90989fdcd6f}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN@{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN}}
+\index{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN@{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN}{PK\_PR\_REL\_ONN}}
+{\footnotesize\ttfamily \#define P\+K\+\_\+\+P\+R\+\_\+\+R\+E\+L\+\_\+\+O\+NN~11}
+
+it gives the index value of the commands array to peak pressure relief on \mbox{\Hypertarget{group___state_control_module_gaa883895aa6e031109476683c2765a2f7}\label{group___state_control_module_gaa883895aa6e031109476683c2765a2f7}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+E\+T\+\_\+\+B\+PM@{S\+E\+T\+\_\+\+B\+PM}}
+\index{S\+E\+T\+\_\+\+B\+PM@{S\+E\+T\+\_\+\+B\+PM}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+E\+T\+\_\+\+B\+PM}{SET\_BPM}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+B\+PM~13}
+
+it gives the index value of the commands array to set B\+PM \mbox{\Hypertarget{group___state_control_module_ga9756af06bb17a1db92bac2ca2b9e810e}\label{group___state_control_module_ga9756af06bb17a1db92bac2ca2b9e810e}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+E\+T\+\_\+\+F\+I\+O2@{S\+E\+T\+\_\+\+F\+I\+O2}}
+\index{S\+E\+T\+\_\+\+F\+I\+O2@{S\+E\+T\+\_\+\+F\+I\+O2}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+E\+T\+\_\+\+F\+I\+O2}{SET\_FIO2}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+F\+I\+O2~15}
+
+it gives the index value of the commands array to set Fio2 \mbox{\Hypertarget{group___state_control_module_ga3d17781cd0bcfb9bd8dc20bae6e46897}\label{group___state_control_module_ga3d17781cd0bcfb9bd8dc20bae6e46897}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO@{S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO}}
+\index{S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO@{S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO}{SET\_IE\_RATIO}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+I\+E\+\_\+\+R\+A\+T\+IO~16}
+
+it gives the index value of the commands array to set inhalation exhalation ratio \mbox{\Hypertarget{group___state_control_module_ga777447137ff930b3182ce5b38f6fa52a}\label{group___state_control_module_ga777447137ff930b3182ce5b38f6fa52a}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+E\+T\+\_\+\+P\+K\+\_\+\+PR@{S\+E\+T\+\_\+\+P\+K\+\_\+\+PR}}
+\index{S\+E\+T\+\_\+\+P\+K\+\_\+\+PR@{S\+E\+T\+\_\+\+P\+K\+\_\+\+PR}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+E\+T\+\_\+\+P\+K\+\_\+\+PR}{SET\_PK\_PR}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+P\+K\+\_\+\+PR~14}
+
+it gives the index value of the commands array to set peak pressure \mbox{\Hypertarget{group___state_control_module_ga0741496c0ac7c16254b6420779edaac0}\label{group___state_control_module_ga0741496c0ac7c16254b6420779edaac0}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL@{S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL}}
+\index{S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL@{S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL}{SET\_TID\_VOL}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+T\+I\+D\+\_\+\+V\+OL~12}
+
+it gives the index value of the commands array to set tidal volume \mbox{\Hypertarget{group___state_control_module_gab1a45d1a9a1ff653590689e368a6673c}\label{group___state_control_module_gab1a45d1a9a1ff653590689e368a6673c}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT@{S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}}
+\index{S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT@{S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}{SL\_COM\_PARM\_EDT}}
+{\footnotesize\ttfamily \#define S\+L\+\_\+\+C\+O\+M\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT~18}
+
+it gives the index value of the commands array to slave completed parameter edit \mbox{\Hypertarget{group___state_control_module_ga95bebe1d169286beb8feb6b794118cb8}\label{group___state_control_module_ga95bebe1d169286beb8feb6b794118cb8}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT@{S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}}
+\index{S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT@{S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT}{SL\_EN\_PARM\_EDT}}
+{\footnotesize\ttfamily \#define S\+L\+\_\+\+E\+N\+\_\+\+P\+A\+R\+M\+\_\+\+E\+DT~17}
+
+it gives the index value of the commands array to slave entering parameter edit \mbox{\Hypertarget{group___state_control_module_ga4cf9fc60e700d5bc03cdeea67200e710}\label{group___state_control_module_ga4cf9fc60e700d5bc03cdeea67200e710}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM@{S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM}}
+\index{S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM@{S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM}{START\_DELIM}}
+{\footnotesize\ttfamily \#define S\+T\+A\+R\+T\+\_\+\+D\+E\+L\+IM~\textquotesingle{}\$\textquotesingle{}}
+
+Start Delimeter for the Command Structure \mbox{\Hypertarget{group___state_control_module_gab4744223ea2ca17d02a56720bec5d254}\label{group___state_control_module_gab4744223ea2ca17d02a56720bec5d254}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+T\+P\+R\+\_\+\+ON@{S\+T\+P\+R\+\_\+\+ON}}
+\index{S\+T\+P\+R\+\_\+\+ON@{S\+T\+P\+R\+\_\+\+ON}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+T\+P\+R\+\_\+\+ON}{STPR\_ON}}
+{\footnotesize\ttfamily \#define S\+T\+P\+R\+\_\+\+ON~1}
+
+it gives the index value of the commands array to start stepper motor \mbox{\Hypertarget{group___state_control_module_gab30c6a2146e6fae222d0b331a2a42962}\label{group___state_control_module_gab30c6a2146e6fae222d0b331a2a42962}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+T\+P\+R\+\_\+\+S\+TP@{S\+T\+P\+R\+\_\+\+S\+TP}}
+\index{S\+T\+P\+R\+\_\+\+S\+TP@{S\+T\+P\+R\+\_\+\+S\+TP}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+T\+P\+R\+\_\+\+S\+TP}{STPR\_STP}}
+{\footnotesize\ttfamily \#define S\+T\+P\+R\+\_\+\+S\+TP~0}
+
+it gives the index value of the commands array to stop stepper motor \mbox{\Hypertarget{group___state_control_module_ga2693cd3c8d4a8c6bca560e631dc84f73}\label{group___state_control_module_ga2693cd3c8d4a8c6bca560e631dc84f73}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!S\+Y\+N\+CH@{S\+Y\+N\+CH}}
+\index{S\+Y\+N\+CH@{S\+Y\+N\+CH}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{S\+Y\+N\+CH}{SYNCH}}
+{\footnotesize\ttfamily \#define S\+Y\+N\+CH~\char`\"{}SY\char`\"{}}
+
+Flag to check whether the request is for synchronization \mbox{\Hypertarget{group___state_control_module_gaab73182824268aecb152070ffff886c5}\label{group___state_control_module_gaab73182824268aecb152070ffff886c5}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!V\+E\+N\+T\+\_\+\+M\+A\+ST@{V\+E\+N\+T\+\_\+\+M\+A\+ST}}
+\index{V\+E\+N\+T\+\_\+\+M\+A\+ST@{V\+E\+N\+T\+\_\+\+M\+A\+ST}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{V\+E\+N\+T\+\_\+\+M\+A\+ST}{VENT\_MAST}}
+{\footnotesize\ttfamily \#define V\+E\+N\+T\+\_\+\+M\+A\+ST~\char`\"{}VM\char`\"{}}
+
+String to Identify Whether the request is from Ventilator Master or not \mbox{\Hypertarget{group___state_control_module_ga094c380bc7b252c380fe99f9f1f3a40c}\label{group___state_control_module_ga094c380bc7b252c380fe99f9f1f3a40c}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!V\+E\+N\+T\+S\+L\+A\+VE@{V\+E\+N\+T\+S\+L\+A\+VE}}
+\index{V\+E\+N\+T\+S\+L\+A\+VE@{V\+E\+N\+T\+S\+L\+A\+VE}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{V\+E\+N\+T\+S\+L\+A\+VE}{VENTSLAVE}}
+{\footnotesize\ttfamily \#define V\+E\+N\+T\+S\+L\+A\+VE~\char`\"{}VS\char`\"{}}
+
+Flag to know whether the packet request is from Ventilator slave 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group___state_control_module_gac6eef437321073e19b469605f47262f5}\label{group___state_control_module_gac6eef437321073e19b469605f47262f5}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Control\+States\+Def\+\_\+T@{Control\+States\+Def\+\_\+T}}
+\index{Control\+States\+Def\+\_\+T@{Control\+States\+Def\+\_\+T}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Control\+States\+Def\+\_\+T}{ControlStatesDef\_T}}
+{\footnotesize\ttfamily enum \hyperlink{group___state_control_module_gac6eef437321073e19b469605f47262f5}{Control\+States\+Def\+\_\+T}}
+
+
+
+Following are the Control States during which Sensor data and user inputs are compared to generate specific commands required for that state. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+I\+N\+IT@{C\+T\+R\+L\+\_\+\+I\+N\+IT}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+I\+N\+IT@{C\+T\+R\+L\+\_\+\+I\+N\+IT}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5aabffaa85512e88474902dd36be5e33ca}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5aabffaa85512e88474902dd36be5e33ca}} 
+C\+T\+R\+L\+\_\+\+I\+N\+IT&Initiation State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON@{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON@{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5a62881b06b7d58ef175368cb398b5e208}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5a62881b06b7d58ef175368cb398b5e208}} 
+C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+ON&Compression Cycle Start State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+H\+O\+LD@{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+H\+O\+LD}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+H\+O\+LD@{C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+H\+O\+LD}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5a3bf46950333eff9cb1445136027318f2}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5a3bf46950333eff9cb1445136027318f2}} 
+C\+T\+R\+L\+\_\+\+C\+O\+M\+P\+R\+E\+S\+S\+I\+O\+N\+\_\+\+H\+O\+LD&Compression Cycle Hold State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+ON@{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+ON}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+ON@{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+ON}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5aa5b3a4bd640c612ba916ee1263bac5f7}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5aa5b3a4bd640c612ba916ee1263bac5f7}} 
+C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+ON&Expansion Cycle Start State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+O\+N\+\_\+\+H\+O\+LD@{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+O\+N\+\_\+\+H\+O\+LD}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+O\+N\+\_\+\+H\+O\+LD@{C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+O\+N\+\_\+\+H\+O\+LD}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5afda5c61b8e7f0c1df614a63a172e5613}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5afda5c61b8e7f0c1df614a63a172e5613}} 
+C\+T\+R\+L\+\_\+\+E\+X\+P\+A\+N\+S\+I\+O\+N\+\_\+\+H\+O\+LD&Expansion Cycle Hold State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+I\+N\+H\+A\+L\+E\+\_\+\+D\+E\+T\+E\+C\+T\+I\+ON@{C\+T\+R\+L\+\_\+\+I\+N\+H\+A\+L\+E\+\_\+\+D\+E\+T\+E\+C\+T\+I\+ON}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+I\+N\+H\+A\+L\+E\+\_\+\+D\+E\+T\+E\+C\+T\+I\+ON@{C\+T\+R\+L\+\_\+\+I\+N\+H\+A\+L\+E\+\_\+\+D\+E\+T\+E\+C\+T\+I\+ON}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5af8b49bbe52c36090982ac9258aee26af}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5af8b49bbe52c36090982ac9258aee26af}} 
+C\+T\+R\+L\+\_\+\+I\+N\+H\+A\+L\+E\+\_\+\+D\+E\+T\+E\+C\+T\+I\+ON&Inhale Detection State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+S\+T\+OP@{C\+T\+R\+L\+\_\+\+S\+T\+OP}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+S\+T\+OP@{C\+T\+R\+L\+\_\+\+S\+T\+OP}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5a02f4644ac3d0cbeb58d7d21ba0057764}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5a02f4644ac3d0cbeb58d7d21ba0057764}} 
+C\+T\+R\+L\+\_\+\+S\+T\+OP&Stop state \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+D\+O\+\_\+\+N\+O\+T\+H\+I\+NG@{C\+T\+R\+L\+\_\+\+D\+O\+\_\+\+N\+O\+T\+H\+I\+NG}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+D\+O\+\_\+\+N\+O\+T\+H\+I\+NG@{C\+T\+R\+L\+\_\+\+D\+O\+\_\+\+N\+O\+T\+H\+I\+NG}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5a96c3ff676a2ba2dac054ede1a1ec0c17}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5a96c3ff676a2ba2dac054ede1a1ec0c17}} 
+C\+T\+R\+L\+\_\+\+D\+O\+\_\+\+N\+O\+T\+H\+I\+NG&Idle State \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+T\+R\+L\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+S\+T\+A\+TE@{C\+T\+R\+L\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+S\+T\+A\+TE}!State\+Control\+Module@{State\+Control\+Module}}\index{State\+Control\+Module@{State\+Control\+Module}!C\+T\+R\+L\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+S\+T\+A\+TE@{C\+T\+R\+L\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+S\+T\+A\+TE}}}\mbox{\Hypertarget{group___state_control_module_ggac6eef437321073e19b469605f47262f5a7192c159e766d6eaadb5c494cf9bf953}\label{group___state_control_module_ggac6eef437321073e19b469605f47262f5a7192c159e766d6eaadb5c494cf9bf953}} 
+C\+T\+R\+L\+\_\+\+U\+N\+K\+N\+O\+W\+N\+\_\+\+S\+T\+A\+TE&Unknown State is used when request structure is valid but makes no sense semantically \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group___state_control_module_gae547d9c33c082f82dc04a8dd2be788ba}\label{group___state_control_module_gae547d9c33c082f82dc04a8dd2be788ba}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+\+Create\+Command@{Ctrl\+\_\+\+Create\+Command}}
+\index{Ctrl\+\_\+\+Create\+Command@{Ctrl\+\_\+\+Create\+Command}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+\+Create\+Command()}{Ctrl\_CreateCommand()}}
+{\footnotesize\ttfamily String Ctrl\+\_\+\+Create\+Command (\begin{DoxyParamCaption}\item[{String}]{param\+Name,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Function to create control command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Name} & parameter is used to create command using it.\\
+\hline
+{\em value} & parameter defines the actual to be sent in the command\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indicates Non-\/\+Null for S\+U\+C\+C\+E\+SS and Null for F\+A\+I\+L\+U\+RE 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_ga9b6ec4e2da235c08b203af26edcfff72}\label{group___state_control_module_ga9b6ec4e2da235c08b203af26edcfff72}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+\+Process\+Rx\+Data@{Ctrl\+\_\+\+Process\+Rx\+Data}}
+\index{Ctrl\+\_\+\+Process\+Rx\+Data@{Ctrl\+\_\+\+Process\+Rx\+Data}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+\+Process\+Rx\+Data()}{Ctrl\_ProcessRxData()}}
+{\footnotesize\ttfamily void Ctrl\+\_\+\+Process\+Rx\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to process the received data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_gaadae19019609b8a7e5ecb1b84497d2d4}\label{group___state_control_module_gaadae19019609b8a7e5ecb1b84497d2d4}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+send\+\_\+packet@{Ctrl\+\_\+send\+\_\+packet}}
+\index{Ctrl\+\_\+send\+\_\+packet@{Ctrl\+\_\+send\+\_\+packet}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+send\+\_\+packet()}{Ctrl\_send\_packet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int Ctrl\+\_\+send\+\_\+packet (\begin{DoxyParamCaption}\item[{int}]{command\+Index }\end{DoxyParamCaption})}
+
+
+
+Function to send the command from commands array based on the index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Index} & parameter is used to index in the commands array\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indicates 0 for S\+U\+C\+C\+E\+SS and -\/1 for F\+A\+I\+L\+U\+RE 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_ga399a7a74edee153c91847adbcba0de2a}\label{group___state_control_module_ga399a7a74edee153c91847adbcba0de2a}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+send\+\_\+packet@{Ctrl\+\_\+send\+\_\+packet}}
+\index{Ctrl\+\_\+send\+\_\+packet@{Ctrl\+\_\+send\+\_\+packet}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+send\+\_\+packet()}{Ctrl\_send\_packet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Ctrl\+\_\+send\+\_\+packet (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Function to send the command based on the parameter and its value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & parameter is used to send specific parameter\\
+\hline
+{\em value} & parameter is the actual data to be sent\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indicates Non-\/\+Null for S\+U\+C\+C\+E\+SS and Null for F\+A\+I\+L\+U\+RE 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_ga62b8b9b48c52c1774d555e94b672856f}\label{group___state_control_module_ga62b8b9b48c52c1774d555e94b672856f}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+\+Start@{Ctrl\+\_\+\+Start}}
+\index{Ctrl\+\_\+\+Start@{Ctrl\+\_\+\+Start}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+\+Start()}{Ctrl\_Start()}}
+{\footnotesize\ttfamily void Ctrl\+\_\+\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to change the state to I\+N\+IT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_ga0926cce894ccf2232698c5be4b94e09e}\label{group___state_control_module_ga0926cce894ccf2232698c5be4b94e09e}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager@{Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager}}
+\index{Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager@{Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager()}{Ctrl\_StateMachine\_Manager()}}
+{\footnotesize\ttfamily bool Ctrl\+\_\+\+State\+Machine\+\_\+\+Manager (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to perform specific operation based on the Current State. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+indicates true for S\+U\+C\+C\+E\+SS and false for F\+A\+I\+L\+U\+RE 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_ga9893b8ac36b61c5804fe404e9bfa1163}\label{group___state_control_module_ga9893b8ac36b61c5804fe404e9bfa1163}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+\+Stop@{Ctrl\+\_\+\+Stop}}
+\index{Ctrl\+\_\+\+Stop@{Ctrl\+\_\+\+Stop}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+\+Stop()}{Ctrl\_Stop()}}
+{\footnotesize\ttfamily void Ctrl\+\_\+\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to change the state to stop the stepper motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group___state_control_module_ga6591c14e3084f61ee1e51057d2baa269}\label{group___state_control_module_ga6591c14e3084f61ee1e51057d2baa269}} 
+\index{State\+Control\+Module@{State\+Control\+Module}!Ctrl\+\_\+store\+\_\+received\+\_\+packet@{Ctrl\+\_\+store\+\_\+received\+\_\+packet}}
+\index{Ctrl\+\_\+store\+\_\+received\+\_\+packet@{Ctrl\+\_\+store\+\_\+received\+\_\+packet}!State\+Control\+Module@{State\+Control\+Module}}
+\subsubsection{\texorpdfstring{Ctrl\+\_\+store\+\_\+received\+\_\+packet()}{Ctrl\_store\_received\_packet()}}
+{\footnotesize\ttfamily void Ctrl\+\_\+store\+\_\+received\+\_\+packet (\begin{DoxyParamCaption}\item[{String}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to store the bufferred data into the local variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & parameter is the bufferred data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

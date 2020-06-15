@@ -1,0 +1,69 @@
+\hypertarget{structsensor__t}{}\section{sensor\+\_\+t Struct Reference}
+\label{structsensor__t}\index{sensor\+\_\+t@{sensor\+\_\+t}}
+
+
+Structure contains sensor specific data. Calibration data, previous and current data read from sensors.  
+
+
+
+
+{\ttfamily \#include $<$sensors.\+h$>$}
+
+
+
+Collaboration diagram for sensor\+\_\+t\+:
+% FIG 0
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{structsensor__t_a61802539633072cd29dfcf68b44d76ac}{actual\+\_\+at\+\_\+zero}
+\item 
+float \hyperlink{structsensor__t_acb25d3f97c5578c0c8f80b9e5aa19735}{error\+\_\+at\+\_\+zero}
+\item 
+int \hyperlink{structsensor__t_ae7793425eb3e2e1e15a3d58aa8ca1045}{error\+\_\+threshold}
+\item 
+\hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t} \hyperlink{structsensor__t_ac9c62ea47e035346a20b65f4293aa9b1}{previous\+\_\+data}
+\item 
+\hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t} \hyperlink{structsensor__t_afdccf20de5e3290862759c60637d796e}{current\+\_\+data}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structure contains sensor specific data. Calibration data, previous and current data read from sensors. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structsensor__t_a61802539633072cd29dfcf68b44d76ac}\label{structsensor__t_a61802539633072cd29dfcf68b44d76ac}} 
+\index{sensor\+\_\+t@{sensor\+\_\+t}!actual\+\_\+at\+\_\+zero@{actual\+\_\+at\+\_\+zero}}
+\index{actual\+\_\+at\+\_\+zero@{actual\+\_\+at\+\_\+zero}!sensor\+\_\+t@{sensor\+\_\+t}}
+\subsubsection{\texorpdfstring{actual\+\_\+at\+\_\+zero}{actual\_at\_zero}}
+{\footnotesize\ttfamily float sensor\+\_\+t\+::actual\+\_\+at\+\_\+zero}
+
+Actual sensor data read currently \mbox{\Hypertarget{structsensor__t_afdccf20de5e3290862759c60637d796e}\label{structsensor__t_afdccf20de5e3290862759c60637d796e}} 
+\index{sensor\+\_\+t@{sensor\+\_\+t}!current\+\_\+data@{current\+\_\+data}}
+\index{current\+\_\+data@{current\+\_\+data}!sensor\+\_\+t@{sensor\+\_\+t}}
+\subsubsection{\texorpdfstring{current\+\_\+data}{current\_data}}
+{\footnotesize\ttfamily \hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t} sensor\+\_\+t\+::current\+\_\+data}
+
+Current sensor data \mbox{\Hypertarget{structsensor__t_acb25d3f97c5578c0c8f80b9e5aa19735}\label{structsensor__t_acb25d3f97c5578c0c8f80b9e5aa19735}} 
+\index{sensor\+\_\+t@{sensor\+\_\+t}!error\+\_\+at\+\_\+zero@{error\+\_\+at\+\_\+zero}}
+\index{error\+\_\+at\+\_\+zero@{error\+\_\+at\+\_\+zero}!sensor\+\_\+t@{sensor\+\_\+t}}
+\subsubsection{\texorpdfstring{error\+\_\+at\+\_\+zero}{error\_at\_zero}}
+{\footnotesize\ttfamily float sensor\+\_\+t\+::error\+\_\+at\+\_\+zero}
+
+error part for the actual sensor data \mbox{\Hypertarget{structsensor__t_ae7793425eb3e2e1e15a3d58aa8ca1045}\label{structsensor__t_ae7793425eb3e2e1e15a3d58aa8ca1045}} 
+\index{sensor\+\_\+t@{sensor\+\_\+t}!error\+\_\+threshold@{error\+\_\+threshold}}
+\index{error\+\_\+threshold@{error\+\_\+threshold}!sensor\+\_\+t@{sensor\+\_\+t}}
+\subsubsection{\texorpdfstring{error\+\_\+threshold}{error\_threshold}}
+{\footnotesize\ttfamily int sensor\+\_\+t\+::error\+\_\+threshold}
+
+error threshold during calibration, if exceeds this range return calibration error \mbox{\Hypertarget{structsensor__t_ac9c62ea47e035346a20b65f4293aa9b1}\label{structsensor__t_ac9c62ea47e035346a20b65f4293aa9b1}} 
+\index{sensor\+\_\+t@{sensor\+\_\+t}!previous\+\_\+data@{previous\+\_\+data}}
+\index{previous\+\_\+data@{previous\+\_\+data}!sensor\+\_\+t@{sensor\+\_\+t}}
+\subsubsection{\texorpdfstring{previous\+\_\+data}{previous\_data}}
+{\footnotesize\ttfamily \hyperlink{unionsensor__data__t}{sensor\+\_\+data\+\_\+t} sensor\+\_\+t\+::previous\+\_\+data}
+
+Previous recorded sensor data 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+sensors/\hyperlink{sensors_8h}{sensors.\+h}\end{DoxyCompactItemize}

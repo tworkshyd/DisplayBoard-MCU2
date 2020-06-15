@@ -1,0 +1,15 @@
+\hypertarget{_adafruit___a_d_s1015_8cpp}{}\section{3plibs/\+Adafruit\+\_\+\+A\+D\+S1\+X15/\+Adafruit\+\_\+\+A\+D\+S1015.cpp File Reference}
+\label{_adafruit___a_d_s1015_8cpp}\index{3plibs/\+Adafruit\+\_\+\+A\+D\+S1\+X15/\+Adafruit\+\_\+\+A\+D\+S1015.\+cpp@{3plibs/\+Adafruit\+\_\+\+A\+D\+S1\+X15/\+Adafruit\+\_\+\+A\+D\+S1015.\+cpp}}
+{\ttfamily \#include \char`\"{}W\+Program.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Adafruit\+\_\+\+A\+D\+S1015.\+h\char`\"{}}\newline
+Include dependency graph for Adafruit\+\_\+\+A\+D\+S1015.\+cpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+K.\+Townsend (Adafruit Industries) 
+\end{DoxyAuthor}

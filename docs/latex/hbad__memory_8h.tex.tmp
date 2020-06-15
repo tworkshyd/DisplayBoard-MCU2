@@ -1,0 +1,62 @@
+\hypertarget{hbad__memory_8h}{}\section{hbad\+\_\+memory.\+h File Reference}
+\label{hbad__memory_8h}\index{hbad\+\_\+memory.\+h@{hbad\+\_\+memory.\+h}}
+
+
+This module contains base addresses and range for oxygen calibration, ps1, ps2, dps1, dps2, methods to store and retrieve.  
+
+
+{\ttfamily \#include $<$ext\+E\+E\+P\+R\+O\+M.\+h$>$}\newline
+Include dependency graph for hbad\+\_\+memory.\+h\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___memory_module_gae4572214c9a22bb1a153a724ed27f315}{E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+D\+A\+T\+A\+\_\+\+W\+R\+I\+T\+E\+\_\+\+A\+D\+DR}~0xA
+\item 
+\#define \hyperlink{group___memory_module_ga43f2f0190c9e0daa8bb5941202d82d3e}{E\+E\+P\+R\+O\+M\+\_\+\+O2\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0xC
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+O2}~5
+\item 
+\#define \hyperlink{group___memory_module_gacdd02d6c42e891e26869420437a1a064}{E\+E\+P\+R\+O\+M\+\_\+\+P\+G1\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0x28
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+P\+S1}~19
+\item 
+\#define \hyperlink{group___memory_module_ga71862ebe386984f27bf392b21a44d421}{E\+E\+P\+R\+O\+M\+\_\+\+P\+S2\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+P\+S2}~0
+\item 
+\#define \hyperlink{group___memory_module_gaa51b67da1feeabf8c1a7d75d9fb35d3e}{E\+E\+P\+R\+O\+M\+\_\+\+D\+P\+S1\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+D\+P\+S1}~0
+\item 
+\#define \hyperlink{group___memory_module_ga457a65a7facf762392911533c56863ee}{E\+E\+P\+R\+O\+M\+\_\+\+D\+P\+S2\+\_\+\+C\+A\+L\+I\+B\+\_\+\+A\+D\+DR}~0
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+O\+F\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+D\+P\+S2}~0
+\item 
+\#define \hyperlink{group___memory_module_ga0bb5af400d8883a7a9dc432ad3296546}{E\+E\+P\+R\+O\+M\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~0x50
+\item 
+\#define {\bfseries E\+E\+P\+R\+O\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x\+C8
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ext\+E\+E\+P\+R\+OM \hyperlink{group___memory_module_ga0f8bd3acd0e41754fec8a0b799201f10}{hbad\+\_\+mem} (kbits\+\_\+256, 1, 32, \hyperlink{group___memory_module_ga0bb5af400d8883a7a9dc432ad3296546}{E\+E\+P\+R\+O\+M\+\_\+\+I2\+C\+\_\+\+A\+D\+DR})
+\item 
+void {\bfseries store\+Param} (\hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} param)
+\item 
+void {\bfseries retrieve\+Param} (\hyperlink{structctrl__parameter__t}{ctrl\+\_\+parameter\+\_\+t} param)
+\item 
+void {\bfseries get\+All\+Params\+From\+Mem} ()
+\item 
+void {\bfseries store\+Calib\+Param} (int store\+Address, int data)
+\item 
+int {\bfseries retrieve\+Calib\+Param} (int address)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains base addresses and range for oxygen calibration, ps1, ps2, dps1, dps2, methods to store and retrieve. 
+
+\begin{DoxyAuthor}{Author}
+Tworks 
+\end{DoxyAuthor}

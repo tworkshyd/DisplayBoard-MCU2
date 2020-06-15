@@ -15,7 +15,6 @@
 
 #include "O2_sensor.h"
 
-#define OXYGEN_ANALOG_PIN   	A4
 #define AVOID_EEPROM 			0
 #define NUM_OF_SAMPLES_O2		5
 #define EEPROM_O2_CALIB_ADDR	0xC
@@ -31,7 +30,7 @@ void write_to_eeprom(unsigned int numOfIntWrites, int * addr, int *val);
 int o2_sensor::init() {
 	int err = 0;
 	err += store_default_o2_calibration_data();
-	err += calibrate_o2_sensor();
+	err += sensor_zero_calibration();
 	return err;
 }
 
@@ -89,7 +88,7 @@ void write_to_eeprom(unsigned int numOfIntWrites, int * addr, int *val) {
  * convert from byte to float
  * use in algo to calc m and c values.
  */
-int o2_sensor::calibrate_o2_sensor()
+int o2_sensor::sensor_zero_calibration()
 {
   float x = 0, sigmaX = 0, sigmaY = 0, sigmaXX = 0, sigmaXY = 0, denominator = 0, y = 0;
   int value = 0;
@@ -127,7 +126,11 @@ int o2_sensor::calibrate_o2_sensor()
  * local data structres
  */
 float o2_sensor::read_sensor_data() {
+  //return 20;
 	this->m_data.previous_data.O2 = this->m_data.current_data.O2;
+  //Serial.print("o2 read_sensor_data :");
+  //Serial.println(this->m_data.previous_data.O2);
+
 	return this->m_data.previous_data.O2;
 }
 
@@ -142,18 +145,56 @@ void o2_sensor::reset_sensor_data() {
  * Function to be called from timer interrupt to read
  * and update the samples in local data structures
  */
-void o2_sensor::update_sensor_data() {
+void o2_sensor::capture_and_store(){
+  float o2_value = 0.0;
   float vout = 0.0;
   int err = 0;
-  
+#if 0  
   err = ADC_ReadVolageOnATMega2560(m_ads, m_adc_channel, m_data.error_at_zero, &vout);
   if(err) {
+    Serial.print("ERROR: Sensor read I2C timeout failure for:SENSOR_O2");
 	  this->set_error(ERROR_SENSOR_READ);
 	  return;
   } else {
 	  this->set_error(SUCCESS);
   }
   if (m_slope != 0) {
-	this->m_data.current_data.O2 = (vout - m_const) / m_slope;
+	  this->m_data.current_data.O2 = (vout - m_const) / m_slope;
   }
+#else
+ err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+  if(ERROR_I2C_TIMEOUT == err) {
+    Serial.print("ERROR: Sensor read I2C timeout failure for:");
+    Serial.println(sensorId2String(m_sensor_id));
+    this->set_error(ERROR_SENSOR_READ);
+    return 0.0;
+  } else {
+     this->set_error(SUCCESS);
+  }
+  m_raw_voltage = vout*1000;
+  o2_value = ((vout ) +0.2034897959) /0.05099489796;
+#if DEBUG_PRESSURE_SENSOR
+  if ((millis() - m_lasO2UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
+  {  
+    m_lasO2UpdatedTime = millis();
+    Serial.print("sensorType->");
+    Serial.print(sensorId2String(m_sensor_id));
+    Serial.print("::"); 
+    Serial.print("C");
+    Serial.print(" ");
+    Serial.print(m_adc_channel);
+    Serial.print(", V");
+    Serial.print(" ");
+    Serial.print(vout, 4);
+    Serial.print(" ");
+    Serial.print(", O2");
+    Serial.print(" ");
+    Serial.print((o2_value), 4);
+    Serial.print(", raw");
+    Serial.print(" ");
+    Serial.println((m_raw_voltage ), 4);
+  }
+#endif
+#endif
+  this->m_data.current_data.O2 = o2_value ;
 }

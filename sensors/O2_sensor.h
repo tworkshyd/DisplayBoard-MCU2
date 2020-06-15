@@ -32,18 +32,14 @@ class o2_sensor : public sensor {
 		int m_adc_channel;	/*!< adc channel where the sensor is connected to */
 		Adafruit_ADS1115 *m_ads;	/*!< ADS board where the sensor is connected to */
 	protected: /* protected functions */
+    unsigned long m_lasO2UpdatedTime = 0;
 		/**
 		 *   @brief  Stores the default calibrated values to memory during boot
 		 *   @param  None
 		 *   @return returns 0 on success and -1 on failure as integer
 		 **/
 		int store_default_o2_calibration_data(void);
-		/**
-		 *   @brief  Calibrate the O2 sensor during boot
-		 *   @param  None
-		 *   @return returns 0 on success and -1 on failure as integer
-		 **/
-		int calibrate_o2_sensor(void);
+
 	public: /* public functions */
 		/**
 		 *   @brief  Constructor for O2 sensors
@@ -59,7 +55,7 @@ class o2_sensor : public sensor {
         /**
 		 *   @brief  Function to read sensor data
 		 *   @param  None
-		 *   @return Returns the float readings from sensor
+		 *   @return Returns the readings from sensor
 		 **/
 		float read_sensor_data(void);
         /**
@@ -73,7 +69,14 @@ class o2_sensor : public sensor {
 		 *   @param  None
 		 *   @return None
 		 **/
-		void update_sensor_data(void);
+		void capture_and_store(void);
+/**
+ *   @brief  Calibrate the O2 sensor during boot
+ *   @param  None
+ *   @return returns 0 on success and -1 on failure as integer
+ **/
+int sensor_zero_calibration(void);
+
 };
 
 #endif /*__O2_SENSOR_H__*/
