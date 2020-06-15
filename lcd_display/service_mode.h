@@ -19,9 +19,6 @@
 #include "../encoder/encoder.h"
 #include "ctrl_display.h"
 
-
-#define SERIAL_PRINTS 0
-
 /**
  * @enum   EnumType
  * @brief   An enum description.
@@ -46,8 +43,8 @@ typedef enum{
 
 
 typedef struct {
-  char * menuName;
-  char ** menu;
+  const char * menuName;
+  const char ** menu;
   int menuLength;
   menuLevelT menuLevel;
   void (* functionPtr)();
@@ -63,7 +60,6 @@ int DisplayFirstLine = 0;
 int seletIndicator = 1; // can be 1,2,3
 int scrollIndex = 0;
 
-
 #define MAIN_MENU_LENGTH 4
 #define SUB_MENU1_LENGTH 6
 #define SUB_MENU2_LENGTH 2
@@ -72,10 +68,10 @@ int scrollIndex = 0;
 
 
 
-char* mainMenu[MAIN_MENU_LENGTH] = {" exit diag mode", " O2-Calib"," Check ADS1115"," Read All"};
-char* subMenu1[SUB_MENU1_LENGTH] = {" go back", " O2 0%"," O2 21.6%"," O2 28%", " O2 40%"," O2 100%"};
-char* subMenu2[SUB_MENU2_LENGTH] = {" go back", " validate ADC"};
-char* subMenu3[SUB_MENU3_LENGTH] = {" go back", "Sensors Voltage"};
+const char* mainMenu[MAIN_MENU_LENGTH] = {" exit diag mode", " O2-Calib"," Check ADS1115"," Read All"};
+const char* subMenu1[SUB_MENU1_LENGTH] = {" go back", " O2 0%"," O2 21.6%"," O2 28%", " O2 40%"," O2 100%"};
+const char* subMenu2[SUB_MENU2_LENGTH] = {" go back", " validate ADC"};
+const char* subMenu3[SUB_MENU3_LENGTH] = {" go back", "Sensors Voltage"};
 
 void diagO2Sensor(void);
 void diagAds1115(void);
@@ -95,12 +91,10 @@ menuItemsT menuItems[MAX_MENUS] =
 
 void setup_service_mode ()
 {
-//  Serial.begin(9600);
+  VENT_DEBUG_FUNC_START();
   digitalWrite (DISP_ENC_DT, HIGH);     // enable pull-ups
   digitalWrite (DISP_ENC_CLK, HIGH);
   digitalWrite (DISP_ENC_SW, HIGH); 
-//
-//
-//  lcd.begin (20,4);
+  VENT_DEBUG_FUNC_START();
 }  // end of setup
 #endif

@@ -152,7 +152,7 @@ void insertWord(int rowNum, int colNum, String insertString,unsigned int  minSiz
   
 lcd.setCursor(colNum, rowNum);
 lcd.print (insertString);
-if(insertString.length() < minSize);
+if(insertString.length() < minSize)
 {
 //  Serial.println(empty);
   lcd.print(emptyString.substring(0,minSize-insertString.length()));

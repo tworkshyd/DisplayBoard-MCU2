@@ -49,18 +49,18 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vou
 
 #ifdef DEBUG_ADS
   unsigned long int ctimeout = millis();
-   Serial.print("ADC:S C#");
-   Serial.println(MAX_SAMPLE_COUNT);
+   VENT_DEBUG_INFO("ADC:S", MAX_SAMPLE_COUNT);
 #endif
 
-  for(int i=0; i<MAX_SAMPLE_COUNT; i++) {
+  for(unsigned int i=0; i<MAX_SAMPLE_COUNT; i++) {
     timeout = millis();
     ads->readADC_SingleEnded(channel);
     while ((digitalRead(ads->m_intPin)!=LOW) &&
            ((millis()-timeout) < I2C_TIMEOUT)) {
       delay(1);
     }
-    if((millis()-timeout) >= I2C_TIMEOUT) {
+    if((millis()-timeout) >= I2C_TIMEOUT) 
+	{
       Serial.print("ERROR: I2C timed out, please check connection i2c address:");
       Serial.print(ads->m_i2cAddress);
       Serial.print(", ads->m_intPin:");
@@ -86,6 +86,7 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vou
 int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int correction, float *value) {
   float PressSensorVolts = 0.0;
   int err = ADS1115_ReadAvgSamplesOverI2C(ads, channel, &PressSensorVolts);
+  (void)base;
   if (err) {
 	  *value = 0;
 	  return err;
@@ -97,10 +98,9 @@ int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int
 
 int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correction, float *vout) {
   int ADCSampleBuff[MAX_SAMPLE_COUNT] = {0};
-  int ADCCount, AvgSampleCount;
-  float Avg10Samples;
-  float SumValue = 0.0, ADCThresH = 0.0, ADCThresL = 0.0;
   float OxygenSensorVolts = 0.0;
+  
+  (void)correction;
 #if AVCC_DYNAMIC
   int Vref = 0;
   float DynacmicO2SensMult = 0.0;
@@ -117,12 +117,12 @@ int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correctio
 #endif
 
   if(ads == NULL) {
-	  for (int i = 0; i < MAX_SAMPLE_COUNT; i++) {
+	  for (unsigned int i = 0; i < MAX_SAMPLE_COUNT; i++) {
   		ADCSampleBuff[i] = analogRead(channel);
 	  }
   } else {
 	  unsigned long int timeout = 0;
-	  for(int i=0; i<MAX_SAMPLE_COUNT; i++) {
+	  for(unsigned int i=0; i<MAX_SAMPLE_COUNT; i++) {
 		timeout = millis();
 		ads->readADC_SingleEnded(channel);
 		while ((digitalRead(ads->m_intPin)!=LOW) &&
@@ -166,7 +166,7 @@ int getVrefVoltage(void)
 
   ADCSRA |= ADEN;
   delay(5);
-  for (int i = 0; i < MAX_SAMPLE_COUNT; i++)
+  for (unsigned int i = 0; i < MAX_SAMPLE_COUNT; i++)
   {
     // Start a conversion
     ADCSRA |= _BV( ADSC );

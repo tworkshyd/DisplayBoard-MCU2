@@ -20,17 +20,22 @@
 #define EEPROM_O2_CALIB_ADDR	0xC
 
 int const x_samples[NUM_OF_SAMPLES_O2] = {0, 216, 280, 400, 1000};
-int const yO2VoltX1000[NUM_OF_SAMPLES_O2] = {377, 1088, 1750, 2110, 4812};
+int yO2VoltX1000[NUM_OF_SAMPLES_O2] = {377, 1088, 1750, 2110, 4812};
 
-void write_to_eeprom(unsigned int numOfIntWrites, int * addr, int *val);
+void write_to_eeprom(unsigned int numOfIntWrites, int addr, int val[NUM_OF_SAMPLES_O2]);
 
 /*
  * Function to initialize the O2 sensors
  */
-int o2_sensor::init() {
+int o2_sensor::init()
+ {
 	int err = 0;
+	
+    VENT_DEBUG_FUNC_START();
 	err += store_default_o2_calibration_data();
 	err += sensor_zero_calibration();
+	
+    VENT_DEBUG_FUNC_END();
 	return err;
 }
 
@@ -38,11 +43,14 @@ int o2_sensor::init() {
  * Stores the default calibration data for O2
  * sensor
  */
-int o2_sensor::store_default_o2_calibration_data() {
+int o2_sensor::store_default_o2_calibration_data() 
+{
   // put your setup code here, to run once:
   int write_to_mem = 0;
   //TODO: Bharath: Fill the right value here.
-  int *addr_write_to_mem = EEPROM_O2_CALIB_ADDR;
+  int addr_write_to_mem = EEPROM_O2_CALIB_ADDR;
+  
+  VENT_DEBUG_FUNC_START();
 
 #if AVOID_EEPROM
   write_to_mem = 1;
@@ -57,22 +65,25 @@ int o2_sensor::store_default_o2_calibration_data() {
   }
     
 #if AVOID_EEPROM
-    *(addr_write_to_mem) = 0;
+    addr_write_to_mem = 0;
 #else
     storeCalibParam(addr_write_to_mem, false);
 #endif
-	return 0;
+
+  VENT_DEBUG_FUNC_END();
+  
+  return 0;
 }
 
-void write_to_eeprom(unsigned int numOfIntWrites, int * addr, int *val) {
+void write_to_eeprom(unsigned int numOfIntWrites, int addr, int val[NUM_OF_SAMPLES_O2]) {
   unsigned int index;
   if ((numOfIntWrites == 0)||
-      (addr == NULL)) {
+      (addr == 0)) {
     return;
   }
   for (index=0; index<numOfIntWrites; index++) {
 #if AVOID_EEPROM
-    *addr = *val;
+    addr = *val;
 #else
     storeCalibParam(addr,*val);
 #endif
@@ -90,11 +101,17 @@ void write_to_eeprom(unsigned int numOfIntWrites, int * addr, int *val) {
  */
 int o2_sensor::sensor_zero_calibration()
 {
+
   float x = 0, sigmaX = 0, sigmaY = 0, sigmaXX = 0, sigmaXY = 0, denominator = 0, y = 0;
   int value = 0;
-  int *eeprom_addr = EEPROM_O2_CALIB_ADDR;
+  int eeprom_addr = EEPROM_O2_CALIB_ADDR;
+  int result;
+  result = SUCCESS;
   
-  for (int index = 0; index < NUM_OF_SAMPLES_O2; index++) {
+  VENT_DEBUG_FUNC_START();
+
+  for (int index = 0; index < NUM_OF_SAMPLES_O2; index++) 
+  {
 #if AVOID_EEPROM
     y = ((float)(*addr))/1000;
 #else
@@ -113,12 +130,16 @@ int o2_sensor::sensor_zero_calibration()
   if (denominator != 0) {
     m_slope = ((NUM_OF_SAMPLES_O2 * sigmaXY) - (sigmaX*sigmaY)) / denominator;
     m_const = ((sigmaY*sigmaXX) - (sigmaX*sigmaXY)) / denominator;
+  	result = SUCCESS;
   } else {
     m_slope = 0;
     m_const = 0;
-    Serial.println("Error: O2 calibration failed!!");
-    return ERROR_SENSOR_CALIBRATION;
+    result =  ERROR_SENSOR_CALIBRATION;
+	VENT_DEBUG_ERROR("Error: O2 calibration failed!!", result);
   }
+  
+  VENT_DEBUG_FUNC_END();
+  return result;
 }
 
 /*
@@ -126,18 +147,18 @@ int o2_sensor::sensor_zero_calibration()
  * local data structres
  */
 float o2_sensor::read_sensor_data() {
-  //return 20;
-	this->m_data.previous_data.O2 = this->m_data.current_data.O2;
-  //Serial.print("o2 read_sensor_data :");
-  //Serial.println(this->m_data.previous_data.O2);
 
-	return this->m_data.previous_data.O2;
+  this->m_data.previous_data.O2 = this->m_data.current_data.O2;
+  VENT_DEBUG_INFO("Sensor Data", this->m_data.previous_data.O2);
+
+  return this->m_data.previous_data.O2;
 }
 
 /*
  * Function to reset the local data structures
  */
-void o2_sensor::reset_sensor_data() {
+void o2_sensor::reset_sensor_data() 
+{
 	this->m_data.current_data.O2 = this->m_data.previous_data.O2 = 0;
 }
 
@@ -145,29 +166,19 @@ void o2_sensor::reset_sensor_data() {
  * Function to be called from timer interrupt to read
  * and update the samples in local data structures
  */
-void o2_sensor::capture_and_store(){
+void o2_sensor::capture_and_store()
+{
   float o2_value = 0.0;
   float vout = 0.0;
   int err = 0;
-#if 0  
-  err = ADC_ReadVolageOnATMega2560(m_ads, m_adc_channel, m_data.error_at_zero, &vout);
-  if(err) {
-    Serial.print("ERROR: Sensor read I2C timeout failure for:SENSOR_O2");
-	  this->set_error(ERROR_SENSOR_READ);
-	  return;
-  } else {
-	  this->set_error(SUCCESS);
-  }
-  if (m_slope != 0) {
-	  this->m_data.current_data.O2 = (vout - m_const) / m_slope;
-  }
-#else
+  
+  VENT_DEBUG_FUNC_START();
+
  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
   if(ERROR_I2C_TIMEOUT == err) {
-    Serial.print("ERROR: Sensor read I2C timeout failure for:");
-    Serial.println(sensorId2String(m_sensor_id));
+    VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
     this->set_error(ERROR_SENSOR_READ);
-    return 0.0;
+    return;
   } else {
      this->set_error(SUCCESS);
   }
@@ -195,6 +206,6 @@ void o2_sensor::capture_and_store(){
     Serial.println((m_raw_voltage ), 4);
   }
 #endif
-#endif
   this->m_data.current_data.O2 = o2_value ;
+  VENT_DEBUG_FUNC_END();
 }

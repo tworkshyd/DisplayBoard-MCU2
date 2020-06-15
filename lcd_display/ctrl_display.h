@@ -70,7 +70,7 @@ typedef enum {
 
 #define MAX_CTRL_PARAMS 8  /*!< Total number of control parameters  */
 
-const String mainEditMenu[MAX_EDIT_MENU_ITEMS] = { "EXIT EDIT MENU", "TV   : ", "RR   : ", "FiO2 : ", "IER  : ", "PEEP : ", "Pmax  : ", "O2in : ", "Volt : ", "Pres : "};
+const String mainEditMenu[MAX_EDIT_MENU_ITEMS] = { "EXIT EDIT MENU", "TV   : ", "RR   : ", "FiO2 : ", "IER  : ", "PEEP : ", "PIP  : ", "O2in : ", "Volt : ", "Pres : "};
 //eMainMenu currentEditMenuIdx = MAX_EDIT_MENU_ITEMS;
 
 /** @struct  ctrl_parameter_t

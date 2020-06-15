@@ -1,5 +1,6 @@
 #include "statecontrol.h"
 #include "../sensors/sensors.h"
+#include "../debug.h"
 
 bool bSendInitCommand = false;
 bool minPressureForMaskOn = false;
@@ -47,12 +48,16 @@ int  pipErr = 0;
 bool bvmFailure = false;
 unsigned long int breathCount = 0;
 
-int Ctrl_send_packet(int cmdIndex) {
+int Ctrl_send_packet(int cmdIndex) 
+{
 	Serial3.print(commands[cmdIndex]);
 	return 0;
 }
 
-int Ctrl_send_packet(String name, int value) {
+int Ctrl_send_packet(String name, int value) 
+{
+  VENT_DEBUG_FUNC_START();
+  
 	String param = "";
 	String command = "";
 	if (name == tidl_volu.parm_name) {
@@ -62,12 +67,14 @@ int Ctrl_send_packet(String name, int value) {
     } else if (name == resp_rate.parm_name) {
 	   param = PARAM2;
 	} else {
-	   Serial.println("ERROR: Trying to send invalid packet");
+	   VENT_DEBUG_ERROR("ERROR: Trying to send invalid packet", -1);
 	   return -1;
 	}
     command = Ctrl_CreateCommand(param, value);
     Serial3.print(command);
-    Serial.println(command);
+	VENT_DEBUG_INFO ("Command", command);
+	
+    VENT_DEBUG_FUNC_END();
 	return 0;
 }
 
@@ -80,6 +87,8 @@ void Ctrl_ProcessRxData(void) {
   String p2;
   String payload;
   String command;
+  long int state; 
+  
 
   p1 = serial2_rxdata.substring(1, 3);
   p2 = serial2_rxdata.substring(3, 5);
@@ -88,7 +97,15 @@ void Ctrl_ProcessRxData(void) {
 
   if (p1 == VENTSLAVE) {
     if (p2 == SYNCH) {
-      geCtrlState = payload.toInt();
+	  state = payload.toInt();
+	  if ((ControlStatesDef_T(state)) >= CTRL_UNKNOWN_STATE)
+	  {
+		  VENT_DEBUG_ERROR("Payload with Incorrect State", state);
+	  }
+	  else
+	  {
+		  geCtrlState = ControlStatesDef_T(state);
+	  }
     } else if (p2=="O2") {
       if(0 == params[E_O2_INPUT].value_curr_mem) {
         Ctrl_send_packet(OXY_SOLE_CYL_ONN);
@@ -117,8 +134,7 @@ String Ctrl_CreateCommand(String paramName, int value) {
   command = START_DELIM;
   command += VENT_MAST;
   command += paramName;
-  sprintf(paddedValue, "%04d",
-          value);
+  sprintf(paddedValue, "%04d", value);
   command += paddedValue;
   command += END_DELIM;
   return command;
@@ -133,10 +149,10 @@ void Ctrl_Stop() {
 }
 float pmax = 0;
 
-bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, displayManager &dM)
+void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, displayManager &dM)
 {
-  bool stateChanged = false;
-// to debug if sensor sameples are not coming
+
+  VENT_DEBUG_FUNC_START ();
  
   switch (geCtrlState) {
     case CTRL_INIT:
@@ -156,8 +172,6 @@ bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
     {
                
       if (geCtrlPrevState != geCtrlState) {
-         //Serial.print("SC :COM: ");
-        // Serial.println(sensor_data[SENSOR_DP_A1]);
                       peepErr = 0;
           pipErr = 0;
          dM.setDisplayParam(DISPLAY_TVE,sensor_data[SENSOR_DP_A1]*1.085);
@@ -170,12 +184,7 @@ bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
           } 
          sM.enable_sensor(PRESSURE_A0 | DP_A0 | O2);
       }
-#if 0
-      Serial.print(">>> CTRL_COMPRESSION: DP_A0:");
-      Serial.print(sensor_data[SENSOR_DP_A0]);
-      Serial.print(" , DP_A1:");
-      Serial.println(sensor_data[SENSOR_DP_A1]);
-#endif
+
         pmax = sensor_data[SENSOR_PRESSURE_A0];
       if ((minPressureForMaskOn == false) && ((sensor_data[SENSOR_PRESSURE_A0]) > MIN_PRESSURE_FOR_MASKON )) minPressureForMaskOn = true;
       /*When Peak Pressure Set in the UI is less than the sensor measured Peak PressureValue*/
@@ -191,8 +200,8 @@ bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
     case CTRL_EXPANSION:
     {
       if (geCtrlPrevState != geCtrlState) {
-        //Serial.print("SC :EX ");
-       // Serial.println(sensor_data[SENSOR_DP_A1]);
+        VENT_DEBUG_INFO("SC :EX ", sensor_data[SENSOR_DP_A1]);
+ 
                       tviErr = 0;
         dM.setDisplayParam(DISPLAY_PIP,pmax);       
         dM.setDisplayParam(DISPLAY_PLAT,sensor_data[SENSOR_PRESSURE_A1]);
@@ -246,11 +255,10 @@ bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
    peepErr = 0;
    tviErr = 0;
    pipErr = 0;
-		//enable_sensor(0);
     }
     break;
     default:
-		Serial.println("ERROR: Unknown state received in State machine");
+	   VENT_DEBUG_ERROR("ERROR: Unknown state received in State machine", 0);
     break;
   }
   if (geCtrlPrevState != geCtrlState) {
@@ -265,4 +273,5 @@ bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
 	if (geCtrlState == CTRL_EXPANSION ) 
 	plat = sensor_data[SENSOR_PRESSURE_A1];
   }
+  VENT_DEBUG_FUNC_END();
 }

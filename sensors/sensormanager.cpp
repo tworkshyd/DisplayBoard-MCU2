@@ -25,72 +25,48 @@
 
 sensorManager sM;
 
-static void sensorManager::capture_sensor_data();
-
-
-//#define UNIT_TEST 1
-
-#ifdef UNIT_TEST 
-void setup() {
-  Serial.begin(115200);
-  pinMode(ACCUMULATOR_RESET_PIN, INPUT_PULLUP);
-  sensors_init();
-}
-#endif
-
-#ifdef UNIT_TEST
-void loop() {
-  float pressure0 = 0.0, volume0 = 0.0;
-  float pressure1 = 0.0, volume1 = 0.0;
-  if(digitalRead(ACCUMULATOR_RESET_PIN) == 0) {
-    pressure0 = read_sensor_data(SENSOR_PRESSURE_A0);
-    pressure1 = read_sensor_data(SENSOR_PRESSURE_A1);
-    volume0 = read_sensor_data(SENSOR_DP_A0);
-    volume1 = read_sensor_data(SENSOR_DP_A1);
-    Serial.print("P0");
-    Serial.print(" ");
-    Serial.print(pressure0);
-    Serial.print(", P1");
-    Serial.print(" ");
-    Serial.print(pressure1);
-    Serial.print(", V0");
-    Serial.print(" ");
-    Serial.print(volume0, 6);
-    Serial.print(", V1")
-    Serial.print(" ");
-    Serial.println(volume1, 6);
-  }
-  interrupts();
-  delay(1);
-}
-#endif
-
 /*
  * Function to read last few samples collected/measured
  */
-int sensor::read_sensor_samples(float *samples, int sample_count) {
+int sensor::read_sensor_samples(float *samples, int sample_count)
+{
 	int index = 0, sample_index = 0;
-	if(samples == NULL || sample_count > MAX_SENSOR_SAMPLES) {
-		Serial.println("ERROR: Sample is null or sample_count > MAX_SENSOR_SAMPLES");
+	
+	VENT_DEBUG_FUNC_START();
+	
+	if(samples == NULL || sample_count > MAX_SENSOR_SAMPLES)
+	{
+		VENT_DEBUG_ERROR ("ERROR: Sample is null or sample_count > MAX_SENSOR_SAMPLES", 0);
+		VENT_DEBUG_FUNC_END();
 		return ERROR_BAD_PARAM;
 	}
-	for(index = 0, sample_index = m_sample_index; index < MAX_SENSOR_SAMPLES && index < sample_count; index++, sample_index++) {
-		if(sample_index >= MAX_SENSOR_SAMPLES) {
+	for(index = 0, sample_index = m_sample_index; index < MAX_SENSOR_SAMPLES && index < sample_count; index++, sample_index++) 
+	{
+		if(sample_index >= MAX_SENSOR_SAMPLES) 
+		{
 			sample_index = 0;
 		}
 		samples[index] = this->samples[sample_index];
 	}
+	
+    VENT_DEBUG_FUNC_END();	
 	return index;
 }
 
 /*
  * Function to initialize ads1115 board
  */
-int ads1115_init() {
+int ads1115_init() 
+{
+	VENT_DEBUG_FUNC_START();
   ads.begin();
 	ads.setGain(GAIN_ONE);
   ads1.begin();
 	ads1.setGain(GAIN_ONE);
+	
+    VENT_DEBUG_INFO ("ADC Init Done", 0);
+	
+    VENT_DEBUG_FUNC_END();	
 	return 0;
 }
 
@@ -98,7 +74,7 @@ int ads1115_init() {
 int no_of_sensorsenabled(unsigned int n) {
   int count=0;
   while(n!=0){
-  if(n & 1 == 1){ //if current bit 1
+  if(n & 1){ //if current bit 1
     count++;//increase count
   }
     n=n>>1;//right shift
@@ -106,13 +82,15 @@ int no_of_sensorsenabled(unsigned int n) {
   return count;
 }
 
-//#define FORCE_ENABLE_SENSOR 1
 /*
  * Function to initialize all modules in sensors
  */
-int sensorManager::init() {
+int sensorManager::init()
+{
   int err = 0;
-  int en_sensors = 0;
+
+  VENT_DEBUG_FUNC_START();
+  
   err += ads1115_init();
   err += _pS1.init();
   err += _pS2.init();
@@ -120,34 +98,40 @@ int sensorManager::init() {
   err += _dpS2.init();
   err += _o2S.init();
 
-  Serial.print("init configured ADC_CONVERSIONTIME_PERSENSOR: ");
-  Serial.println(ADC_CONVERSIONTIME_PERSENSOR);
-
-  //sM.enable_sensor(PRESSURE_A0 | DP_A0 | O2 | PRESSURE_A1 | DP_A1);
+  VENT_DEBUG_FUNC_END();
   return err;
 }
 
 void sensorManager::startTimer() {
-  int en_sensors = no_of_sensorsenabled(_enabled_sensors);
-  if (en_sensors) {
+  int en_sensors;
+  
+  VENT_DEBUG_FUNC_START();
+  
+  en_sensors = no_of_sensorsenabled(_enabled_sensors);
+  if (en_sensors) 
+  {
     unsigned long temp = _timervalueMs;
     _timervalueMs = ADC_CONVERSIONTIME_PERSENSOR*en_sensors + MINREQUIRED_DISPLAYREFRESH_TIME;
-    if (temp != _timervalueMs) {
+    if (temp != _timervalueMs) 
+	{
       MsTimer2::stop();
       MsTimer2::set(_timervalueMs, capture_sensor_data);
       MsTimer2::start();
-      Serial.print("started timer with :");
-      Serial.println(_timervalueMs);
       _dpS1.data_aquisitiontime(_timervalueMs);
       _dpS2.data_aquisitiontime(_timervalueMs);
+	  VENT_DEBUG_INFO ("Started timer with", _timervalueMs);
     }
   }
+  VENT_DEBUG_FUNC_END();
 }
 /*
  * Function to enable specific sensors
  * Takes a parameter of different sensor combinations
  */
-void sensorManager::enable_sensor(unsigned int flag) {
+void sensorManager::enable_sensor(unsigned int flag) 
+{
+  VENT_DEBUG_FUNC_START();
+	
   if((_enabled_sensors & PRESSURE_A0) && !(flag & PRESSURE_A0)) {
     _pS1.reset_sensor_data();
   }
@@ -165,6 +149,8 @@ void sensorManager::enable_sensor(unsigned int flag) {
   }
   _enabled_sensors = flag;
   startTimer();
+  
+  VENT_DEBUG_FUNC_END();
 }
 
 unsigned int sensorManager::get_enable_sensors() {
@@ -179,6 +165,8 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
   sensor *p_sensor = NULL;
   int err = 0;
 
+  VENT_DEBUG_FUNC_START();
+  
   switch(s) {
     case SENSOR_PRESSURE_A0:
 	  p_sensor = &_pS1;
@@ -196,18 +184,21 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
 	  p_sensor = &_o2S;
 	break;
 	default:
-	  Serial.print(s);
-	  Serial.println(" ERROR: Invalid sensor read request");
-	  return 0.0;
+	  VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", s);
+	  VENT_DEBUG_FUNC_END();
+	  return -1;
 	break;
   }
   err = p_sensor->get_error();
   if(err) {
-	  Serial.print("ERROR: Sensor read error for ");
-	  Serial.println(s);
+	  VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", err);
+	  VENT_DEBUG_FUNC_END();
 	  return err;
   }
   *data = p_sensor->read_sensor_data();
+  
+  VENT_DEBUG_FUNC_END();
+  
   return SUCCESS;
 }
 
@@ -217,9 +208,12 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
  * returns -1 for invlaid sensors, 0 for no dip
  * 1 for a dip in pressure
  */
-int sensorManager::check_for_dip_in_pressure(sensor_e sensor) {
+int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
+{
 	float sensor_data[MAX_SENSOR_SAMPLES] = {99.99};
 	int count = 0;
+
+    VENT_DEBUG_FUNC_START();
 
 	if(sensor == SENSOR_PRESSURE_A0) {
 		count = _pS1.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
@@ -236,6 +230,9 @@ int sensorManager::check_for_dip_in_pressure(sensor_e sensor) {
 			}
 		}
 	}
+	
+    VENT_DEBUG_FUNC_END();
+  
 	return 0;
 }
 
@@ -243,9 +240,16 @@ int sensorManager::check_for_dip_in_pressure(sensor_e sensor) {
  * Function to aggregate or read sensor data
  * in an timer interrupt
  */
-void sensorManager::capture_sensor_data(void) {
+void sensorManager::capture_sensor_data(void)
+{
   interrupts(); // Called to enable other interrupts.
+   VENT_DEBUG_FUNC_START();
   long int starttime = millis();
+  
+  VENT_DEBUG_FUNC_START();
+  
+  MsTimer2::stop();
+
   if(sM._enabled_sensors & PRESSURE_A0) {
     sM._pS1.capture_and_store();
   }
@@ -261,17 +265,21 @@ void sensorManager::capture_sensor_data(void) {
   if(sM._enabled_sensors & O2) {
     sM._o2S.capture_and_store();
   }
-#if 0
-  Serial.print("T:");
-  Serial.println(millis()-starttime);
-#endif
+  MsTimer2::start();
+
+VENT_DEBUG_INFO ("Time Taken for Sensors Capture", (millis()-starttime));
+  VENT_DEBUG_FUNC_END();
 }
 
-int sensorManager::start_calibration(void) {
+int sensorManager::start_calibration(void) 
+{
   sensor *p_sensor = NULL;
   int err = ERROR_UNKNOWN;
 
-  for (int idx = 0; idx < MAX_SENSORS; idx++) {
+  VENT_DEBUG_FUNC_START();
+
+  for (int idx = 0; idx < MAX_SENSORS; idx++) 
+  {
     p_sensor = NULL;
     switch(idx) {
       case SENSOR_PRESSURE_A0:
@@ -286,19 +294,19 @@ int sensorManager::start_calibration(void) {
       case SENSOR_DP_A1:
         p_sensor = &_dpS2;
         break;
-#if 0
-      case SENSOR_O2:
-        p_sensor = &_o2S;
-      break;
-#endif
     }
     if (NULL != p_sensor)
+	{
       err = p_sensor->sensor_zero_calibration();
-#if 0
     if ( SUCCESS != err) 
+	  {
+		 VENT_DEBUG_ERROR ("Calibration Failed for Sensor", err);
       return err;
-#endif
   }
+	}
+  }
+  
+  VENT_DEBUG_FUNC_END();
   return SUCCESS;
 }
 
@@ -306,6 +314,8 @@ int sensorManager::read_sensor_rawvoltage(sensor_e s) {
   sensor *p_sensor = NULL;
   int err = 0;
 
+  VENT_DEBUG_FUNC_START();
+
   switch(s) {
     case SENSOR_PRESSURE_A0:
 	  p_sensor = &_pS1;
@@ -323,17 +333,20 @@ int sensorManager::read_sensor_rawvoltage(sensor_e s) {
 	  p_sensor = &_o2S;
 	break;
 	default:
-	  Serial.print(s);
-	  Serial.println(" ERROR: Invalid sensor read request");
-	  return 0.0;
+	  VENT_DEBUG_ERROR ("Invalid Read request", s);
+	  VENT_DEBUG_FUNC_END();
+	  return -1;
 	break;
   }
   err = p_sensor->get_error();
-  if(err) {
-	  Serial.print("ERROR: Sensor read error for ");
-	  Serial.println(s);
+  if(err)
+  {
+	  VENT_DEBUG_ERROR ("Invalid Read request", s);
+	  VENT_DEBUG_FUNC_END();
 	  return -1;
   }
+  
+  VENT_DEBUG_FUNC_END();
   return p_sensor->read_rawvoltage();
 }
 
@@ -341,6 +354,8 @@ float sensorManager::read_sensor_pressurevalues(sensor_e s) {
   sensor *p_sensor = NULL;
   int err = 0;
 
+  VENT_DEBUG_FUNC_START();
+
   switch(s) {
     case SENSOR_PRESSURE_A0:
 	  p_sensor = &_pS1;
@@ -358,17 +373,19 @@ float sensorManager::read_sensor_pressurevalues(sensor_e s) {
 	  p_sensor = &_o2S;
 	break;
 	default:
-	  Serial.print(s);
-	  Serial.println(" ERROR: Invalid sensor read request");
-	  return 0.0;
+	  VENT_DEBUG_ERROR ("Invalid Read request", s);
+	  VENT_DEBUG_FUNC_END();
+	  return -1;
 	break;
   }
   err = p_sensor->get_error();
   if(err) {
-	  Serial.print("ERROR: Sensor read error for ");
-	  Serial.println(s);
+	  VENT_DEBUG_ERROR ("Invalid Read request", s);
+	  VENT_DEBUG_FUNC_END();
 	  return -1;
   }
+  
+  VENT_DEBUG_FUNC_END();
   return p_sensor->read_sensorpressure();
 }
 

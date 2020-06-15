@@ -93,21 +93,15 @@ String Ctrl_CreateCommand(String paramName, int value);
 
     @brief  Function to perform specific operation based on the Current State
 
-    @param  none
-
     @return indicates true for SUCCESS and false for FAILURE
 */
 /**************************************************************************/
-bool Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, displayManager &dM);
+void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, displayManager &dM);
 
 /**************************************************************************/
 /*!
 
     @brief  Function to process the received data 
-
-    @param  none
-
-    @return none
 */
 /**************************************************************************/
 void Ctrl_ProcessRxData(void);
@@ -116,9 +110,7 @@ void Ctrl_ProcessRxData(void);
 
     @brief  Function to store the bufferred data into the local variable
 
-    @param data parameter is the bufferred data
-
-    @return none 
+    @param data parameter is the bufferred data 
 
 */
 /**************************************************************************/
@@ -151,11 +143,7 @@ int  Ctrl_send_packet(String name, int value);
 /**************************************************************************/
 /*!
 
-   @brief  Function to change the state to INIT 
-   
-   @param none
- 
-   @return none
+    @brief  Function to change the state to INIT 
 
 */
 /**************************************************************************/
@@ -164,10 +152,6 @@ void Ctrl_Start();
 /*!
 
     @brief  Function to change the state to stop the stepper motor
-
-    @param none
- 
-   @return none
 
 */
 /**************************************************************************/

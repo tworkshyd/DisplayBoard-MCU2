@@ -77,7 +77,7 @@ typedef enum {
  * @enum   sensor_flags_e flags to enable different sensors
  * @brief   Following are the flags to enable/disable specific sensors
  */
-enum {
+typedef enum {
   PRESSURE_A0 = 1, /**< flag to select  peak pressure sensor */
   PRESSURE_A1 = 2, /**< flag to select peep pressure sensor */
   DP_A0 = 4,       /**< flag to select differential pressure sensor for Peak pressure */
@@ -103,7 +103,7 @@ public:
 	 *           Initializes all sensor variables
 	 *   @param  none
 	 **/
-	sensor() { m_data = {0}; m_sample_index = 0; m_error = 0; };
+	sensor() { m_data = {0,0,0,{0},{0}}; m_sample_index = 0; m_error = 0; };
     /**
 	 *   @brief  Function to read the sensor samples
 	 *   @param samples - Sensor readings
@@ -172,6 +172,7 @@ protected:
   int m_raw_voltage;
   float m_value = 0.0;
   sensor_e m_sensor_id;
+
 };
 #endif /*__SENSORS_H__*/
 

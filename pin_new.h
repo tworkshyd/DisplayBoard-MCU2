@@ -41,12 +41,12 @@
 #define RESET_SWITCH        2
 
 // Serial0
-#define TX_PIN               D1   // Unchanged
-#define RX_PIN               D0   // Unchanged
+//#define TX_PIN               D1   // Unchanged
+//#define RX_PIN               D0   // Unchanged
 
 // Serial3
-#define TX_PIN               15   // Unchanged
-#define RX_PIN               14   // Unchanged
+//#define TX_PIN               15   // Unchanged
+//#define RX_PIN               14   // Unchanged
 
 // Serial RS485
 #define TX_PIN_485               17   // Unchanged

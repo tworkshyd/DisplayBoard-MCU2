@@ -30,10 +30,8 @@ int getEncoderPos() {
     return encoderPos;
 }
 
-#ifndef OLD_BOARD
 void isrEncoderClk(){
-  //Serial.println("isrEncoderClk :");
-  //PD2
+  VENT_DEBUG_FUNC_START();
   cli(); //stop interrupts happening before we read pin values
   reading = PIND & 0xC; // read all eight pin values then strip away all but pinA and pinB's values
   if(reading == B00001100 && aFlag) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
@@ -43,11 +41,11 @@ void isrEncoderClk(){
   }
   else if (reading == B00000100) bFlag = 1; //signal that we're expecting pinB to signal the transition to detent from free rotation
   sei(); //restart interrupts
+  VENT_DEBUG_FUNC_END();
 }
 
 void isrEncoderDt(){
-  //Serial.println("isrEncoderDt :");
-  //PD3
+  VENT_DEBUG_FUNC_START();
   cli(); //stop interrupts happening before we read pin values
   reading = PIND & 0xC; //read all eight pin values then strip away all but pinA and pinB's values
   if (reading == B00001100 && bFlag) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
@@ -57,48 +55,23 @@ void isrEncoderDt(){
   }
   else if (reading == B00001000) aFlag = 1; //signal that we're expecting pinA to signal the transition to detent from free rotation
   sei(); //restart interrupts
+  VENT_DEBUG_FUNC_END();
 }
 
-#else
-/*PIN is configured for high*/
-void isrEncoderClk() {
-  cli(); //stop interrupts happening before we read pin values
-  reading = PINE & 0x30; // read all eight pin values then strip away all but pinA and pinB's values
-  if(reading == B00110000 && aFlag) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
-    encoderPos --; //decrement the encoder's position count
-    if(encoderPos <=0) encoderPos = 200; 
-    bFlag = 0; //reset flags for the next turn
-    aFlag = 0; //reset flags for the next turn
-  }
-  else if (reading == B00010000) bFlag = 1; //signal that we're expecting pinB to signal the transition to detent from free rotation
-  sei(); //restart interrupts
 
-}
-
-void isrEncoderDt() {
-  cli(); //stop interrupts happening before we read pin values
-  reading = PINE & 0x30; //read all eight pin values then strip away all but pinA and pinB's values
-  if (reading == B00110000 && bFlag) { //check that we have both pins at detent (HIGH) and that we are expecting detent on this pin's rising edge
-    encoderPos ++; //increment the encoder's position count
-    if(encoderPos > 200) encoderPos = 1; 
-    bFlag = 0; //reset flags for the next turn
-    aFlag = 0; //reset flags for the next turn
-  }
-  else if (reading == B00100000) aFlag = 1; //signal that we're expecting pinA to signal the transition to detent from free rotation
-  sei(); //restart interrupts
-}
-
-#endif
 
 bool switch_position_changed = false;
 
 void isr_processSwitch() {
-  //Serial.println("Button pressed :");
+  VENT_DEBUG_FUNC_START();
   switch_position_changed = true;
+  VENT_DEBUG_FUNC_END();
 }
 
 RT_Events_T encoderScanIsr() {
   RT_Events_T retVal = RT_NONE;
+  VENT_DEBUG_FUNC_START();
+  
   counter = getEncoderPos();
   if (lastCount != counter) {
     if (lastCount < counter )
@@ -107,21 +80,23 @@ RT_Events_T encoderScanIsr() {
         retVal = RT_DEC;
   }
   lastCount = counter;
+  VENT_DEBUG_FUNC_END();
   return retVal;
 }
 
 void isr_processStartEdit() {
   static unsigned long lastSwitchTime = 0;
   unsigned long switchTime = millis();
-  //Serial.print("Button pressed :");
+  VENT_DEBUG_FUNC_START();
   if ((switchTime - lastSwitchTime) < DBNC_INTVL_SW) {
+	VENT_DEBUG_FUNC_END();
     return;
   }
   lastSwitchTime = switchTime;
+  VENT_DEBUG_FUNC_END();
 }
 
 
-#if 1
 unsigned long lastButtonPress = 0;
 int currentStateCLK;
 int lastStateCLK;
@@ -131,14 +106,15 @@ int btnState;
 RT_Events_T encoderScanUnblocked()
 {
   RT_Events_T eRTState = RT_NONE;
+  
+   VENT_DEBUG_FUNC_START();
     // Read the current state of CLK
    eRTState = encoderScanIsr();
    if ((eRTState == RT_INC) || (eRTState == RT_DEC))
     no_input = false;
   // Read the button state
   int btnState = digitalRead(DISP_ENC_SW);
-  //Serial.print("btnState ");
-  //Serial.println(btnState);
+
 
   //If we detect LOW signal, button is pressed
   if (btnState == LOW) 
@@ -159,21 +135,23 @@ RT_Events_T encoderScanUnblocked()
     digitalWrite(BUZZER_PIN, HIGH);
     delay(1);
     digitalWrite(BUZZER_PIN, LOW);
-    //Serial.print("encoderScanUnblocked ");
-    //Serial.println(eRTState);
   }
+  
+  VENT_DEBUG_FUNC_END();
   return eRTState;
 }
 
 RT_Events_T Encoder_Scan(void)
 {
   RT_Events_T eRTState = RT_NONE;
+  
+  VENT_DEBUG_FUNC_START();
   no_input = true;
   while(no_input)
   {
     eRTState = encoderScanUnblocked();
   }
+  VENT_DEBUG_FUNC_END();
   return(eRTState);
 }
-#endif
 

@@ -20,7 +20,6 @@ from the pressure sensors
 /*
 * Macros to enable the sensor functionalities
 */
-
 #define SENSOR_DISPLAY_REFRESH_TIME 500
 
 /*
@@ -70,53 +69,46 @@ String sensorId2String(sensor_e type) {
 * Initialization routine to setup the sensors
 * Calibrate the sensors for errors
 */
-int pressure_sensor::init() {
-  int err = 0;
+int pressure_sensor::init() 
+{
+  VENT_DEBUG_FUNC_START();
+  
   delay(20); //delay of 20ms for sensors to come up and respond
+  
   // Initialize the data
   this->m_data.current_data.pressure = 0.0;
   this->m_data.previous_data.pressure = 0.0;
-  if(m_dp == 1) {
+  
+  if(m_dp == 1) 
+  {
     this->m_data.actual_at_zero = MPX7002DP_ZERO_READING;
     this->m_data.error_threshold = MPX7002DP_ERROR_THRESHOLD;
-  } else {
+  } 
+  else 
+  {
     this->m_data.actual_at_zero = MPX5010_ZERO_READING;
     this->m_data.error_threshold = MPX5010_ERROR_THRESHOLD;
   }
+  
   this->m_data.error_at_zero = 0;
   //int needs 2 byes , so index multiplied by 2
   this->m_calibrationinpressure = retrieveCalibParam(EEPROM_CALIBRATION_STORE_ADDR*m_sensor_id*2);
   this->m_calibrationinpressure /= 1000;
+  
   // EEPROM may be first time reading with 255 or -1 
   if ( 0 == this->m_calibrationinpressure) 
     this->m_calibrationinpressure = 0;
+
 #if DEBUG_PRESSURE_SENSOR
-    Serial.print("init(ID:");
-    Serial.print(m_sensor_id);
-    Serial.print(") ");
-    Serial.print("ads:intPin :");
-    Serial.print(m_ads->m_intPin);
-    Serial.print(",ads:m_i2cAddress:");
-    Serial.print(m_ads->m_i2cAddress);
-    Serial.print(",adc_channel:");
-    Serial.print(m_adc_channel);
-    Serial.print(",m_dp:");
-    Serial.println(m_dp);
-    Serial.print("read m_calibrationinpressure*100 ");
-    Serial.println(this->m_calibrationinpressure*1000);
+    VENT_DEBUG_INFO("Init ID", m_sensor_id);
+	VENT_DEBUG_INFO("Int Pin", m_ads->m_intPin);
+	VENT_DEBUG_INFO("I2C Address", m_ads->m_i2cAddress);
+	VENT_DEBUG_INFO("ADC Channel", m_adc_channel);
+	VENT_DEBUG_INFO("DP", m_dp);
+	VENT_DEBUG_INFO("m_calibrationinpressure*100", this->m_calibrationinpressure*1000);
 #endif
-  // Calibrate the sensors
-#if 0
-  err = sensor_zero_calibration();
-  if(err) {
-    Serial.print("ERROR: init failed for:");
-    Serial.println(m_sensor_id);
-    return err;
-  } else {
-    Serial.print("init done for:");
-    Serial.println(m_sensor_id);
-  }
-#endif
+
+  VENT_DEBUG_FUNC_END();
   return 0;
 }
 
@@ -125,7 +117,10 @@ int pressure_sensor::init() {
 * and update the samples in local data structures
 */
 void pressure_sensor::capture_and_store(void) {
+  VENT_DEBUG_FUNC_START();
+  
   m_sample_index = m_sample_index + 1;
+  
   if(m_sample_index >= MAX_SENSOR_SAMPLES) {
     m_sample_index = 0;
   }
@@ -136,34 +131,49 @@ void pressure_sensor::capture_and_store(void) {
       this->m_data.current_data.pressure = get_pressure_MPX5010() - this->m_calibrationinpressure;
       this->samples[m_sample_index] = this->m_data.current_data.pressure;
     }
+
+  VENT_DEBUG_FUNC_END();
 }
 
 /*
 * Function to reset the local data structures
 */
-void pressure_sensor::reset_sensor_data(void) {
+void pressure_sensor::reset_sensor_data(void) 
+{
+  VENT_DEBUG_FUNC_START();
+  
   for(int index = 0; index < MAX_SENSOR_SAMPLES; index++) {
     this->samples[index] = 99.99;
   }
-  if(m_dp == 1) {
-      this->m_data.current_data.flowvolume = this->m_data.current_data.flowvolume = 0;
-    } else {
-      this->m_data.current_data.pressure = this->m_data.current_data.pressure = 0;
-    }
+  if(m_dp == 1) 
+  {
+      this->m_data.current_data.flowvolume = 0;
+  } 
+  else
+  {
+      this->m_data.current_data.pressure = 0;
+  }
+  VENT_DEBUG_FUNC_END();	
 }
 
 /*
 * Function to read stored sensor data from the
 * local data structres
 */
-float pressure_sensor::read_sensor_data() {
-if(m_dp == 1) {
+float pressure_sensor::read_sensor_data() 
+{
+  VENT_DEBUG_FUNC_START();
+  if(m_dp == 1) 
+  {
     this->m_data.previous_data.flowvolume = this->m_data.current_data.flowvolume;
     return this->m_data.previous_data.flowvolume;
-  } else {
+  }
+  else
+  {
     this->m_data.previous_data.pressure = this->m_data.current_data.pressure;
     return this->m_data.previous_data.pressure;
   }
+   VENT_DEBUG_FUNC_END();
 }
 
 
@@ -177,16 +187,19 @@ float pressure_sensor::get_pressure_MPX5010() {
   float vout = 0.0;
   int err = 0;
 
+  VENT_DEBUG_FUNC_START();
+  
   err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
-  if(ERROR_I2C_TIMEOUT == err) {
-    Serial.print("ERROR: Sensor read I2C timeout failure for:");
-    Serial.println(sensorId2String(m_sensor_id));
+  if(ERROR_I2C_TIMEOUT == err) 
+  {
+    VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", err);
     this->set_error(ERROR_SENSOR_READ);
-    return 0.0;
+    return -1;
   } else {
      this->set_error(SUCCESS);
   }
-    m_raw_voltage = vout*1000;
+  
+  m_raw_voltage = vout*1000;
 
   pressure = ((vout - (MPX5010_ACCURACY) - (MPX5010_VS * 0.04))/(MPX5010_VS * 0.09));
   // Error correction on the pressure, based on the H2O calibration
@@ -196,133 +209,59 @@ float pressure_sensor::get_pressure_MPX5010() {
     if ((millis() - m_lastmpx50102UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
     {  
       m_lastmpx50102UpdatedTime = millis();
-      Serial.print("sensorType->");
-      Serial.print(sensorId2String(m_sensor_id));
-      Serial.print("::"); 
-      Serial.print("C");
-      Serial.print(" ");
-      Serial.print(m_adc_channel);
-      Serial.print(", V");
-      Serial.print(" ");
-      Serial.print(vout, 4);
-      Serial.print(" ");
-      Serial.print(", P");
-      Serial.print(" ");
-      Serial.println((pressure - m_calibrationinpressure), 4);
+	  
+	  VENT_DEBUG_INFO("sensorType", sensorId2String(m_sensor_id));
+	  VENT_DEBUG_INFO("ADC Channel", m_adc_channel);
+	  VENT_DEBUG_INFO("Volume", vout);
+	  VENT_DEBUG_INFO("Pressure", (pressure - m_calibrationinpressure));
     }
 #endif
   m_value = pressure - m_calibrationinpressure;
+  
+  VENT_DEBUG_FUNC_END();
   return pressure;
 }
 
-#if 0
-/*
-* Function to calculate sensor errors during boot
-*/
-int pressure_sensor::sensor_zero_calibration() {
-  float sample = 0.0;
-  float avg = 0.0;
-  int err = 0;
 
-  for(int index = 0; index < CALIBRATION_COUNT; index++) {
-  err = ADS1115_ReadAvgSamplesOverI2C(m_ads, m_adc_channel, &sample);
-  if(err) {
-    Serial.print("ERROR: ADC i2c failure for SensorId:");
-    Serial.println(m_sensor_id);
-    return ERROR_SENSOR_CALIBRATION;
-  } 
-  avg += sample;
-  delay(10);
-  }
-  //repeat again 
-  sample = 0.0; avg = 0.0; err = 0;
-
-  for(int index = 0; index < CALIBRATION_COUNT; index++) {
-  err = ADS1115_ReadAvgSamplesOverI2C(m_ads, m_adc_channel, &sample);
-  if(err) {
-    Serial.print("ERROR: ADC i2c failure for SensorId:");
-    Serial.println(m_sensor_id);
-    return ERROR_SENSOR_CALIBRATION;
-  } 
-  avg += sample;
-  delay(10);
-  }
-
-   Serial.print("read voltage for SensorId:");
-   Serial.print(m_sensor_id);
-   Serial.print("  V:");
-   Serial.println((avg/CALIBRATION_COUNT));
-#if DEBUG_PRESSURE_SENSOR
-      Serial.print("!!ADC i2c success for SensorId:");
-      Serial.println(m_sensor_id);
-#endif
-  this->m_data.error_at_zero = ((avg/CALIBRATION_COUNT) - this->m_data.actual_at_zero);
-  if(abs(this->m_data.error_at_zero) > this->m_data.error_threshold) {
-    Serial.print("ERROR: calibration for SensorId:");
-    Serial.print(m_sensor_id);
-    Serial.print(" ,error_at_zero:");
-    Serial.print(this->m_data.error_at_zero);
-    Serial.print(" ,error_threshold:");
-    Serial.println(this->m_data.error_threshold);
-    return ERROR_SENSOR_CALIBRATION;
-  } else {
-#if DEBUG_PRESSURE_SENSOR
-    Serial.print("calibration under threshold limits for:");
-    Serial.println(m_sensor_id);
-#endif
-  }
-
-#if DEBUG_PRESSURE_SENSOR
- {
-    Serial.print("ZE");
-    Serial.print(" ");
-    Serial.println(this->m_data.error_at_zero);
-  }
-#endif
-  return 0;
-}
-#endif
-
-int pressure_sensor::sensor_zero_calibration() {
-  float sample = 0.0;
-  float avg = 0.0;
+int pressure_sensor::sensor_zero_calibration() 
+{
   int err = 0;
   float vout = 0.0;
   float pressure = 0.0;
-
-  for(int index = 0; index < CALIBRATION_COUNT; index++) {
+  
+  VENT_DEBUG_FUNC_START();
+  
+  for(int index = 0; index < CALIBRATION_COUNT; index++) 
+  {
       err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
-  if(ERROR_I2C_TIMEOUT == err) {
-    Serial.print("ERROR: Sensor read I2C timeout failure for:");
-    Serial.println(sensorId2String(m_sensor_id));
-    this->set_error(ERROR_SENSOR_READ);
-    return 0.0;
-  } else {
-     this->set_error(SUCCESS);
-  }
+	  if(ERROR_I2C_TIMEOUT == err) 
+	  {
+		VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
+		this->set_error(ERROR_SENSOR_READ);
+		return -1;
+	  } else {
+		 this->set_error(SUCCESS);
+	  }
 
-  if(m_dp)
-    pressure += get_pressure_MPXV7002DP(vout);
-  else
-    pressure += get_pressure_MPX5010();
-  }
+	  if(m_dp)
+		pressure += get_pressure_MPXV7002DP(vout);
+	  else
+		pressure += get_pressure_MPX5010();
+   }
 
   m_calibrationinpressure = pressure/CALIBRATION_COUNT;
-  Serial.print("sensorType->");
-  Serial.print(sensorId2String(m_sensor_id));
-  Serial.print(", Correction in Pressure by ");
-  Serial.println(m_calibrationinpressure);
+  
+  VENT_DEBUG_INFO("sensorType", sensorId2String(m_sensor_id));
+  VENT_DEBUG_INFO("Correction in Pressure by", m_calibrationinpressure);
 
   int store_param = (int)(m_calibrationinpressure * 1000);
   //eeprom needs 2 bytes , so *2 is added
   storeCalibParam(EEPROM_CALIBRATION_STORE_ADDR*m_sensor_id*2,store_param);
-  Serial.print("store m_calibrationinpressure  ");
-  Serial.println(store_param);
+  VENT_DEBUG_INFO("Store Param", store_param);
 
+  VENT_DEBUG_FUNC_END();
   return 0;
 }
-
-
 
 /*
 * Function to get the flow rate of spyro
@@ -332,13 +271,15 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   float pressure = 0.0;
   float flowrate = 0.0, accflow = 0.0;
   int err = 0;
+  
+  VENT_DEBUG_FUNC_START();
 
   err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
-  if(ERROR_I2C_TIMEOUT == err) {
-    Serial.print("ERROR: Sensor read I2C timeout failure for:");
-    Serial.println(sensorId2String(m_sensor_id));
+  if(ERROR_I2C_TIMEOUT == err) 
+  {
+    VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
     this->set_error(ERROR_SENSOR_READ);
-    return 0.0;
+    return -1;
   } else {
      this->set_error(SUCCESS);
   }
@@ -385,8 +326,10 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
       }
     }
 #endif
+
+  VENT_DEBUG_FUNC_END();
   return accflow;
-  }
+}
 
 /*
 * Vout = Vs (0.2P + 0.5) +- accuracy%VFSS

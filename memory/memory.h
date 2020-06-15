@@ -18,6 +18,7 @@
 
 
 #include <extEEPROM.h>
+#include <EEPROM.h>
 
 
 /*! It is Default Data Write Addr< */
@@ -49,6 +50,21 @@
 #define EEPROM_BASE_ADDR 0xC8
 #define GUARD_VALUE 0x4
 #define EEPROM_CALIBRATION_STORE_ADDR (EEPROM_BASE_ADDR+ (MAX_CTRL_PARAMS*2) + GUARD_VALUE)
+
+#define EEPROM_MAX_SIZE 4096  //max size of the EEPROM i.e. 4K bytes
+
+
+#define EEPROM_WDT_DATA 0x0f80   //address to be used when WDT is reset which is (4k - 128) = 0x0f80 
+                                 //"W" in ascii will be stored in this address which would indicate that the MCU was reset due to watchdog timer
+                                 // This will also store the current state of the machine which will be restored.
+
+//enum used for specifing read write operation in the eeprom_ext_rw function in memory.cpp
+typedef enum
+{
+    EEPROM_READ,
+    EEPROM_WRITE
+} eeprom_ops;
+
 
 //const uint32_t totalKBytes = 64;
 
@@ -125,6 +141,9 @@ void storeCalibParam(int storeAddress, int data);
 /**************************************************************************/
 int retrieveCalibParam(int address);
 
+
+
+int eeprom_ext_rw(unsigned int address, char *data, unsigned int size, eeprom_ops ops);
 
 
 /**@}*/
