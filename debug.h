@@ -1,5 +1,6 @@
 /**************************************************************************/
 /*!
+
     @file    debug.h
 
     @brief    This file defines and includes all of the debug related utilities
