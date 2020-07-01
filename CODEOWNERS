@@ -1,0 +1,95 @@
+# This is a comment.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# @anand-tworks and @tworkshyd/CodeReview will be requested for
+# review when someone opens a pull request.
+
+*       @anand-tworks @tworkshyd/CodeReview
+
+# Order is important; the last matching pattern takes the most
+# precedence. When someone opens a pull request that only
+# modifies specific files, only @<username> and not the global
+# owner(s) will be requested for a review.
+
+pin_new.h    @tworkshyd/PinsTeam @tworkshyd/CodeReview
+
+pinout.h     @tworkshyd/PinsTeam @tworkshyd/CodeReview
+
+debug.h      @tworkshyd/LogsTeam @tworkshyd/CodeReview
+
+MasterModule.ino    @tworkshyd/MasterModule @tworkshyd/CodeReview
+
+# In this for example , @tworkshyd/VentCommTeam owns any files in the Ventcomm
+# directory at the root of the repository and any of its
+# subdirectories.
+
+/Ventcomm @tworkshyd/VentCommTeam @tworkshyd/CodeReview
+
+/encoder  @tworkshyd/EncoderTeam @tworkshyd/CodeReview
+
+/ext_display @tworkshyd/DisplayTeam @tworkshyd/CodeReview
+
+/lcd_display @tworkshyd/DisplayTeam @tworkshyd/CodeReview
+
+/lcd_display/ctrl_display.* @tworkshyd/DisplayTeam @tworkshyd/CodeReview
+
+lcd.h  @tworkshyd/DisplayTeam @tworkshyd/CodeReview
+
+/lcd_display/service_mode.* @tworkshyd/DisplayTeam @tworkshyd/CodeReview
+
+/libraries @tworkshyd/TimersTeam @tworkshyd/CodeReview
+
+/memory @tworkshyd/MemoryTeam @tworkshyd/CodeReview
+
+/sensors @tworkshyd/SensorTeam @tworkshyd/CodeReview
+
+/state_control @tworkshyd/StateControl @tworkshyd/CodeReview
+
+relayModule.h @tworkshyd/VentCommTeam @tworkshyd/CodeReview
+
+RelayModule.ino @tworkshyd/RelayModule @tworkshyd/CodeReview
+
+RelayModule1.ino @tworkshyd/RelayModule @tworkshyd/CodeReview
+
+Ventcomm.ino	@tworkshyd/VentCommTeam @tworkshyd/CodeReview
+
+# Testcases and Docs
+#/test @tworkshyd/CodeReview
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# The `docs/*` pattern will match files like
+# `docs/getting-started.md` but not further nested files like
+# `docs/build-app/troubleshooting.md`.
+#docs/*  docs@example.com
+
+# In this example, @octocat owns any file in an apps directory
+# anywhere in your repository.
+#apps/ @octocat
+
+# In this example, @doctocat owns any file in the `/docs`
+# directory in the root of your repository.
+/docs/ @doctocat
