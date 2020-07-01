@@ -17,7 +17,7 @@ pin_new.h    @tworkshyd/PinsTeam @tworkshyd/CodeReview
 
 pinout.h     @tworkshyd/PinsTeam @tworkshyd/CodeReview
 
-debug.h      @tworkshyd/LogsTeam @tworkshyd/CodeReview
+debug.h      @tworkshyd/LogsTeam @aravinda-tworks @ChoudharyHarshal
 
 MasterModule.ino    @tworkshyd/MasterModule @tworkshyd/CodeReview
 
