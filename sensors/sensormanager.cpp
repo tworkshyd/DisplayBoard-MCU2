@@ -115,7 +115,8 @@ void sensorManager::startTimer() {
     if (temp != _timervalueMs) 
 	{
       MsTimer2::stop();
-      MsTimer2::set(_timervalueMs, capture_sensor_data);
+     // MsTimer2::set(_timervalueMs, capture_sensor_data);
+      MsTimer2::set(25, capture_sensor_data);// This change is being done to reproduce the freezing issue
       MsTimer2::start();
       _dpS1.data_aquisitiontime(_timervalueMs);
       _dpS2.data_aquisitiontime(_timervalueMs);
