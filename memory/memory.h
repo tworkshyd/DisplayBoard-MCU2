@@ -142,6 +142,8 @@ void storeCalibParam(int storeAddress, int data);
 int retrieveCalibParam(int address);
 
 
+long int retrieve_sensor_data_long(int readAddress);
+void store_sensor_data_long(int storeAddress, long int data);
 
 int eeprom_ext_rw(unsigned int address, char *data, unsigned int size, eeprom_ops ops);
 

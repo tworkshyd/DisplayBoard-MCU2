@@ -20,7 +20,7 @@ from the pressure sensors
 /*
 * Macros to enable the sensor functionalities
 */
-#define SENSOR_DISPLAY_REFRESH_TIME 500
+#define SENSOR_DISPLAY_REFRESH_TIME 5
 
 /*
 * Sensor specific configurations
@@ -92,8 +92,7 @@ int pressure_sensor::init()
   
   this->m_data.error_at_zero = 0;
   //int needs 2 byes , so index multiplied by 2
-  this->m_calibrationinpressure = retrieveCalibParam(EEPROM_CALIBRATION_STORE_ADDR*m_sensor_id*2);
-  this->m_calibrationinpressure /= 1000;
+  this->m_calibrationinpressure = (float)(retrieve_sensor_data_long(EEPROM_CALIBRATION_STORE_ADDR + (m_sensor_id * sizeof(long int)))/SENSOR_DATA_PRECISION);
   
   // EEPROM may be first time reading with 255 or -1 
   if ( 0 == this->m_calibrationinpressure) 
@@ -105,7 +104,7 @@ int pressure_sensor::init()
 	VENT_DEBUG_INFO("I2C Address", m_ads->m_i2cAddress);
 	VENT_DEBUG_INFO("ADC Channel", m_adc_channel);
 	VENT_DEBUG_INFO("DP", m_dp);
-	VENT_DEBUG_INFO("m_calibrationinpressure*100", this->m_calibrationinpressure*1000);
+	VENT_DEBUG_INFO("m_calibrationinpressure*SENSOR_DATA_PRECISION", this->m_calibrationinpressure * SENSOR_DATA_PRECISION);
 #endif
 
   VENT_DEBUG_FUNC_END();
@@ -199,7 +198,7 @@ float pressure_sensor::get_pressure_MPX5010() {
      this->set_error(SUCCESS);
   }
   
-  m_raw_voltage = vout*1000;
+  m_raw_voltage = vout * 1000;
 
   pressure = ((vout - (MPX5010_ACCURACY) - (MPX5010_VS * 0.04))/(MPX5010_VS * 0.09));
   // Error correction on the pressure, based on the H2O calibration
@@ -254,9 +253,9 @@ int pressure_sensor::sensor_zero_calibration()
   VENT_DEBUG_INFO("sensorType", sensorId2String(m_sensor_id));
   VENT_DEBUG_INFO("Correction in Pressure by", m_calibrationinpressure);
 
-  int store_param = (int)(m_calibrationinpressure * 1000);
+  long int store_param = (int)(m_calibrationinpressure * SENSOR_DATA_PRECISION);
   //eeprom needs 2 bytes , so *2 is added
-  storeCalibParam(EEPROM_CALIBRATION_STORE_ADDR*m_sensor_id*2,store_param);
+  store_sensor_data_long(EEPROM_CALIBRATION_STORE_ADDR + (m_sensor_id * sizeof(store_param)), store_param);
   VENT_DEBUG_INFO("Store Param", store_param);
 
   VENT_DEBUG_FUNC_END();
@@ -284,13 +283,14 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
      this->set_error(SUCCESS);
   }
   
-  m_raw_voltage = vout*1000;
+  m_raw_voltage = vout * 1000;
   pressure = get_pressure_MPXV7002DP(vout);
   //add the correction done with calibration
   pressure -= m_calibrationinpressure;
   m_value = pressure;
   flowrate = get_flowrate_spyro(pressure);
   if(flowrate > FLOWRATE_MIN_THRESHOLD) {
+	// flowrate is in liters/min, converting to ml/ms and multiplying with the sample duration.
     accflow = (((flowrate * 1000)/60000) * _aquisitionTimeMs);
   }
 
@@ -340,7 +340,7 @@ float pressure_sensor::get_pressure_MPXV7002DP(float vout) {
   float pressure = 0.0;
   float correction = (MPXV7002DP_ACCURACY * MPXV7002DP_VFSS);
   pressure = (vout - correction - (MPXV7002DP_VS * 0.5))/(0.2 * MPXV7002DP_VS);
-  pressure = ((m_lastPressure * 0.2) + (pressure * 0.8));
+//  pressure = ((m_lastPressure * 0.2) + (pressure * 0.8));
   tmppressure = pressure;
   m_lastPressure = pressure;
   if (tmppressure < 0)
@@ -356,7 +356,6 @@ float pressure_sensor::get_pressure_MPXV7002DP(float vout) {
 float pressure_sensor::get_flowrate_spyro(float pressure) {
   float flowrate = SPYRO_KSYSTEM * sqrt(abs(pressure));
   if(pressure > 0)
-  return -flowrate;
-
+	return -flowrate;
   return flowrate;
 }
