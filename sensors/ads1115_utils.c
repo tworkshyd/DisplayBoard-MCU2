@@ -19,7 +19,7 @@
 /*
  * I2C ADC configurations
  */
-static unsigned int I2C_TIMEOUT = 12;
+static unsigned int I2C_TIMEOUT = 6;
 #ifdef UNIT_TEST
 #define ADS115_MULTIPLIER       (0.000125)
 #else
@@ -57,7 +57,6 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vou
     ads->readADC_SingleEnded(channel);
     while ((digitalRead(ads->m_intPin)!=LOW) &&
            ((millis()-timeout) < I2C_TIMEOUT)) {
-      delay(1);
     }
     if((millis()-timeout) >= I2C_TIMEOUT) 
 	{
@@ -127,7 +126,6 @@ int ADC_ReadVolageOnATMega2560(Adafruit_ADS1115 *ads, int channel, int correctio
 		ads->readADC_SingleEnded(channel);
 		while ((digitalRead(ads->m_intPin)!=LOW) &&
 			   ((millis()-timeout) < I2C_TIMEOUT)) {
-		  delay(1);
 		}
 		if((millis()-timeout) >= I2C_TIMEOUT) {
 		  Serial.println("ERROR: I2C timed out, please check connection.");
