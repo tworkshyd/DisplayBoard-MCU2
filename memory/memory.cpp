@@ -3,6 +3,37 @@
 
 
 
+void store_sensor_data_long(int storeAddress, long int data)
+{
+  byte dataToStore[4] = {byte(data >> 24), byte(data >> 16), byte(data >> 8), byte(data)};
+
+  VENT_DEBUG_FUNC_START();
+  
+  hbad_mem.write(storeAddress, dataToStore, 4);
+
+  VENT_DEBUG_INFO("Stored Sensor data", value);
+  VENT_DEBUG_FUNC_END();
+}
+
+long int retrieve_sensor_data_long(int readAddress)
+{
+  byte retrievedData[4] = {0};
+  long int data = 0x00000000;
+  
+  VENT_DEBUG_FUNC_START();
+  
+  hbad_mem.read(readAddress, retrievedData, sizeof(long int));
+  data = (data | retrievedData[0]) << 8;
+  data = (data | retrievedData[1]) << 8;
+  data = (data | retrievedData[2]) << 8;
+  data = (data | retrievedData[3]);
+ 
+  VENT_DEBUG_INFO("sensor data retireved", data);
+  VENT_DEBUG_FUNC_END();
+  
+  return data;
+}
+
 void storeParam(ctrl_parameter_t param) 
 {
   byte dataToStore[2] = {byte(param.value_curr_mem >> 8), byte(param.value_curr_mem)};
