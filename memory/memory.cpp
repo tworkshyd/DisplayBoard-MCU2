@@ -10,7 +10,11 @@ void store_sensor_data_long(int storeAddress, long int data)
   VENT_DEBUG_FUNC_START();
   
   hbad_mem.write(storeAddress, dataToStore, 4);
-
+    VENT_DEBUG_INFO("Address to store", storeAddress);
+	VENT_DEBUG_INFO("Store calib data [0]", dataToStore[0]);
+	VENT_DEBUG_INFO("Store calib data [1]", dataToStore[1]);
+	VENT_DEBUG_INFO("Store calib data [2]", dataToStore[2]);
+	VENT_DEBUG_INFO("Store calib data [3]", dataToStore[3]);
   VENT_DEBUG_INFO("Stored Sensor data", value);
   VENT_DEBUG_FUNC_END();
 }
@@ -23,11 +27,15 @@ long int retrieve_sensor_data_long(int readAddress)
   VENT_DEBUG_FUNC_START();
   
   hbad_mem.read(readAddress, retrievedData, sizeof(long int));
+    VENT_DEBUG_INFO("Address to read", readAddress);
+	VENT_DEBUG_INFO("Retrive calib data [0]", retrievedData[0]);
+	VENT_DEBUG_INFO("Retrive calib data [1]", retrievedData[1]);
+	VENT_DEBUG_INFO("Retrive calib data [2]", retrievedData[2]);
+	VENT_DEBUG_INFO("Retrive calib data [3]", retrievedData[3]);
   data = (data | retrievedData[0]) << 8;
   data = (data | retrievedData[1]) << 8;
   data = (data | retrievedData[2]) << 8;
   data = (data | retrievedData[3]);
- 
   VENT_DEBUG_INFO("sensor data retireved", data);
   VENT_DEBUG_FUNC_END();
   

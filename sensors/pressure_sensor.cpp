@@ -92,7 +92,8 @@ int pressure_sensor::init()
   
   this->m_data.error_at_zero = 0;
   //int needs 2 byes , so index multiplied by 2
-  this->m_calibrationinpressure = (float)(retrieve_sensor_data_long(EEPROM_CALIBRATION_STORE_ADDR + (m_sensor_id * sizeof(long int)))/SENSOR_DATA_PRECISION);
+  this->m_calibrationinpressure = retrieve_sensor_data_long(EEPROM_CALIBRATION_STORE_ADDR + (m_sensor_id * sizeof(long int)));
+  this->m_calibrationinpressure /= SENSOR_DATA_PRECISION;
   
   // EEPROM may be first time reading with 255 or -1 
   if ( 0 == this->m_calibrationinpressure) 
@@ -105,8 +106,11 @@ int pressure_sensor::init()
 	VENT_DEBUG_INFO("ADC Channel", m_adc_channel);
 	VENT_DEBUG_INFO("DP", m_dp);
 	VENT_DEBUG_INFO("m_calibrationinpressure*SENSOR_DATA_PRECISION", this->m_calibrationinpressure * SENSOR_DATA_PRECISION);
+    Serial.print("init :sensorType");
+    Serial.println(sensorId2String(m_sensor_id));
+    Serial.println(EEPROM_CALIBRATION_STORE_ADDR + m_sensor_id * sizeof(long int), HEX);
+    Serial.println(this->m_calibrationinpressure * SENSOR_DATA_PRECISION, HEX);							   
 #endif
-
   VENT_DEBUG_FUNC_END();
   return 0;
 }
@@ -253,11 +257,17 @@ int pressure_sensor::sensor_zero_calibration()
   VENT_DEBUG_INFO("sensorType", sensorId2String(m_sensor_id));
   VENT_DEBUG_INFO("Correction in Pressure by", m_calibrationinpressure);
 
-  long int store_param = (int)(m_calibrationinpressure * SENSOR_DATA_PRECISION);
+  long int store_param = (long int)(m_calibrationinpressure * SENSOR_DATA_PRECISION);
   //eeprom needs 2 bytes , so *2 is added
   store_sensor_data_long(EEPROM_CALIBRATION_STORE_ADDR + (m_sensor_id * sizeof(store_param)), store_param);
   VENT_DEBUG_INFO("Store Param", store_param);
 
+#if DEBUG_PRESSURE_SENSOR
+  Serial.print("store :sensorType");
+  Serial.println(sensorId2String(m_sensor_id));
+  Serial.println(EEPROM_CALIBRATION_STORE_ADDR+m_sensor_id*4, HEX);
+  Serial.println(this->m_calibrationinpressure*SENSOR_DATA_PRECISION, HEX);								
+#endif
   VENT_DEBUG_FUNC_END();
   return 0;
 }
