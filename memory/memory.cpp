@@ -11,7 +11,7 @@ void store_sensor_data_long(int storeAddress, long int data)
   
   hbad_mem.write(storeAddress, dataToStore, 4);
 
-  VENT_DEBUG_INFO("Stored Sensor data", value);
+  VENT_DEBUG_INFO("Stored Sensor data", data);
   VENT_DEBUG_FUNC_END();
 }
 
