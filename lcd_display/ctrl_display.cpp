@@ -95,6 +95,11 @@ typedef enum
    DP_EM_UP_TR
 }DP_CH_T;
 
+static char str_temp[6];
+static char buffer[6];
+static char row[30] = "";
+static bool blink = true;
+
 void displayManager::setDisplayParam(eDisplayPrm param, float value) {
   VENT_DEBUG_FUNC_START();
   
@@ -145,10 +150,10 @@ void displayManager::drawSensorValueMenu(RT_Events_T eRTState) {
         bCalibrate = true;
         _bBack2EditMenu = true;
         break;
-	  case RT_NONE:
-			break;
-	  default:
-			break;
+      case RT_NONE:
+        break;
+      default:
+        break;
      }
     if ((millis() - _lastDisplayTime > 500) ||
         (eRTState != RT_NONE))
@@ -159,7 +164,7 @@ void displayManager::drawSensorValueMenu(RT_Events_T eRTState) {
       lcd.setCursor(6, 2);
       //lcd.print("    ");
       lcd.setCursor(3,0);
-      lcd.print("Sensor Pressure");
+      lcd.print("Pressure Values");
       lcd.setCursor(0, 1);
       lcd.print("P0:");
       lcd.print(m_sM->read_sensor_pressurevalues(SENSOR_PRESSURE_A0));
@@ -172,18 +177,25 @@ void displayManager::drawSensorValueMenu(RT_Events_T eRTState) {
       lcd.setCursor(10, 2);
       lcd.print("dp1:");
       lcd.print(m_sM->read_sensor_pressurevalues(SENSOR_DP_A1));
-      lcd.setCursor(0, 3);
-      if (true == _currentSaveFlag) {
-        lcd.print(CALIB_FLAG_CHOSEN);
-        lcd.print("  ");
-        lcd.print(CANC_FLAG);
+
+      if (false == machineOn) {
+        lcd.setCursor(0, 3);
+        if (true == _currentSaveFlag) {
+          lcd.print(CALIB_FLAG_CHOSEN);
+          lcd.print("  ");
+          lcd.print(CANC_FLAG);
+        } else {
+          lcd.print(CALIB_FLAG);
+          lcd.print("  ");
+          lcd.print(CANC_FLAG_CHOSEN);
+        }
       } else {
-        lcd.print(CALIB_FLAG);
-        lcd.print("  ");
+        lcd.setCursor(0, 3);
+        lcd.print("     ");
         lcd.print(CANC_FLAG_CHOSEN);
       }
     }
-  if (bCalibrate) {
+  if ((true == bCalibrate) && (false == machineOn)) {
     if (_currentSaveFlag == 0) {
       lcd.print(" .....cancelled");
       m_sM->enable_sensor(0);
@@ -228,7 +240,7 @@ void displayManager::drawSensorvoltageMenu(RT_Events_T eRTState) {
      lcd.setCursor(6, 2);
      lcd.print("    ");
      lcd.setCursor(1,0);
-     lcd.print("Sensor mV,Press2Exit");
+     lcd.print("Sensor V in mvolts");
      lcd.setCursor(0, 1);
      lcd.print("P0:");
      lcd.print(m_sM->read_sensor_rawvoltage(SENSOR_PRESSURE_A0));
@@ -887,214 +899,6 @@ void displayManager::stateMachine(void) {
     }
   }
 }
-
-#if 0
-void displayManager::displayRunTime(float *sensor_data)
-{
-  if (true == _refreshRunTimeDisplay)
-  {
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("       STATUS");
-    _refreshRunTimeDisplay = false;
-  }
-  // cleanRow(1); cleanRow(2); cleanRow(3);
-  String row1 = "TV  :";
-  row1 += params[E_TV].value_curr_mem;
-  while (row1.length() < 6)
-  {
-    row1 += " ";
-  }
-  row1 += "mL    BPM:";
-  row1 += params[E_BPM].value_curr_mem;
-
-  while (row1.length() < 20)
-  {
-    row1 += " ";
-  }
-  lcd.setCursor(0, 1);
-  lcd.print(row1);
-
-  String row2 = "FiO2:";
-  row2 += (int)sensor_data[SENSOR_O2];
-  row2 += "%";
-
-  while (row2.length() < 8)
-  {
-    row2 += " ";
-  }
-  row2 += "     IER:1:";
-  row2 += params[E_IER].value_curr_mem;
-  lcd.setCursor(0, 2);
-  lcd.print(row2);
-
-
-  String row3 = "PEEP:";
-  row3 += params[E_PEEP].value_curr_mem;
-
-  while (row3.length() < 7)
-  {
-    row3 += " ";
-  }
-
-  row3 += "  IP:";
-  /*Display needs only decimal*/
-  row3 += (int)(sensor_data[SENSOR_PRESSURE_A0]);
-  while (row3.length() < 14)
-  {
-    row3 += " ";
-  }
-
-  row3 += " EP:";
-  /*Display needs only decimal*/
-  row3 += (int)((sensor_data[SENSOR_PRESSURE_A1]));
-  while (row3.length() < 20)
-  {
-    row3 += " ";
-  }
-  lcd.setCursor(0, 3);
-  lcd.print(row3);
-}
-#endif
-#if 0
-void displayManager::displayRunTime(float *sensor_data)
-{
-  if (true == _refreshRunTimeDisplay)
-  {
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    _refreshRunTimeDisplay = false;
-  }
-
-  // row0 start
-  String row0 = "TV  :"; // reached 5
-  row0 += params[E_TV].value_curr_mem; // reached 8 
-  row0 += "mL BPM :"; //reached 16
-  row0 += params[E_BPM].value_curr_mem; //reached 18
-  row0 += "  "; //reached 20
-  lcd.setCursor(0, 0);
-  lcd.print(row0);
-
-  // row1 start
-  String row1 = "FiO2:"; //reached 5
-  row1 += (int)sensor_data[SENSOR_O2]; //reached 7
-  row1 += "%"; //reached 8
-  row1 += "   IER :1:"; //reached 17
-  row1 += params[E_IER].value_curr_mem;
-  lcd.setCursor(0, 1);
-  lcd.print(row1);
-
-  // row2 start
-  String row2 = "PEEP:"; //reached 5
-  row2 += params[E_PEEP].value_curr_mem;
-  while (row2.length() < 11)
-  {
-    row2 += " ";
-  }
-
-  row2 += "PMAX:";
-  /*Display needs only decimal*/
-  //row2 += (int)(sensor_data[SENSOR_PRESSURE_A0]);
-  row2 += 100;
-  while (row2.length() < 20)
-  {
-    row2 += " ";
-  }
-  lcd.setCursor(0, 2);
-  lcd.print(row2);
-
-  String row3 = "TVi:";
-  /*Display needs only decimal*/
-  row3 += m_display_tvi;
-  row3 += "mL  TVe:";
-  row3 += m_display_tve;
-  row3 += "mL";
-  while (row3.length() < 20)
-  {
-    row3 += " ";
-  }
-  lcd.setCursor(0, 3);
-  lcd.print(row3);
-}
-#endif
-#if 0
-void displayManager::displayRunTime(float *sensor_data)
-{
-  char str_temp[6];
-  char buffer[6];
-
-  if (true == _refreshRunTimeDisplay)
-  {
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    _refreshRunTimeDisplay = false;
-  }
-
-  {
-    // row0 start
-    String row0 = "TV  "; // reached 5
-    row0 += params[E_TV].value_curr_mem; // reached 7
-    row0 += " RR "; //reached 9
-    row0 += params[E_BPM].value_curr_mem; //reached 11
-    row0 += " "; //reached 12
-    row0 += "IE 1:";
-    row0 += params[E_IER].value_curr_mem;
-    lcd.setCursor(0, 0);
-    lcd.print(row0);
-  }
-  {
-    // row1 start
-    String row1 = "TVi "; //reached 4
-    row1 += (int)m_display_tvi; //reached 7
-    while (row1.length() < 12)
-    {
-      row1 += " ";
-    }
-    row1 += "PIP ";
-    dtostrf(m_display_pip, 4, 1, str_temp);
-    sprintf(buffer, "%s", str_temp);
-    row1 += buffer;
-    lcd.setCursor(0, 1);
-    lcd.print(row1);
-  }
-  {
-    String row2 = "TVe "; //reached 4
-    row2 += (int)m_display_tve; //reached 7
-    while (row2.length() < 11)
-    {
-      row2 += " ";
-    }
-    row2 += "Plat ";
-    dtostrf(m_display_plat, 4, 1, str_temp);
-    sprintf(buffer, "%s", str_temp);
-    row2 += buffer;
-    lcd.setCursor(0, 2);
-    lcd.print(row2);
-  }
-  {
-    String row3 = "FiO2 ";
-    row3 += (int)sensor_data[SENSOR_O2];
-    row3 += "%";
-    //Serial.println((PS_ReadSensorValueX10(O2)) / 10);
-    while (row3.length() < 11)
-    {
-      row3 += " ";
-    }
-    row3 += "PEEP ";
-    dtostrf(m_display_peep, 4, 1, str_temp);
-    sprintf(buffer, "%s", str_temp);
-    row3 += buffer;
-    lcd.setCursor(0, 3);
-    lcd.print(row3);
-  }
-}
-
-#endif
-static char str_temp[6];
-static char buffer[6];
-static char row[30] = "";
-
-static bool blink = true;
 
 void displayManager::displayRunTime(float *sensor_data)
 {
