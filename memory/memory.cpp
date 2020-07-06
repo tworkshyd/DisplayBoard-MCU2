@@ -15,7 +15,7 @@ void store_sensor_data_long(int storeAddress, long int data)
 	VENT_DEBUG_INFO("Store calib data [1]", dataToStore[1]);
 	VENT_DEBUG_INFO("Store calib data [2]", dataToStore[2]);
 	VENT_DEBUG_INFO("Store calib data [3]", dataToStore[3]);
-  VENT_DEBUG_INFO("Stored Sensor data", value);
+  VENT_DEBUG_INFO("Stored Sensor data", data);
   VENT_DEBUG_FUNC_END();
 }
 
