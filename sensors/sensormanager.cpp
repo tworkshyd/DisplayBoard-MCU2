@@ -59,9 +59,9 @@ int sensor::read_sensor_samples(float *samples, int sample_count)
 int ads1115_init() 
 {
 	VENT_DEBUG_FUNC_START();
-  ads.begin();
+	ads.begin();
 	ads.setGain(GAIN_ONE);
-  ads1.begin();
+	ads1.begin();
 	ads1.setGain(GAIN_ONE);
 	
     VENT_DEBUG_INFO ("ADC Init Done", 0);
@@ -111,7 +111,7 @@ void sensorManager::startTimer() {
   if (en_sensors) 
   {
     unsigned long temp = _timervalueMs;
-    _timervalueMs = ADC_CONVERSIONTIME_PERSENSOR*en_sensors + MINREQUIRED_DISPLAYREFRESH_TIME;
+    _timervalueMs = ADC_CONVERSIONTIME_PERSENSOR * en_sensors + MINREQUIRED_DISPLAYREFRESH_TIME;
     if (temp != _timervalueMs) 
 	{
       MsTimer2::stop();
@@ -248,8 +248,6 @@ void sensorManager::capture_sensor_data(void)
   
   VENT_DEBUG_FUNC_START();
   
-  MsTimer2::stop();
-
   if(sM._enabled_sensors & PRESSURE_A0) {
     sM._pS1.capture_and_store();
   }
@@ -265,7 +263,6 @@ void sensorManager::capture_sensor_data(void)
   if(sM._enabled_sensors & O2) {
     sM._o2S.capture_and_store();
   }
-  MsTimer2::start();
 
 VENT_DEBUG_INFO ("Time Taken for Sensors Capture", (millis()-starttime));
   VENT_DEBUG_FUNC_END();

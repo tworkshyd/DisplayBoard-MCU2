@@ -49,7 +49,7 @@
 /*!< */
 #define EEPROM_BASE_ADDR 0xC8
 #define GUARD_VALUE 0x4
-#define EEPROM_CALIBRATION_STORE_ADDR (EEPROM_BASE_ADDR+ (MAX_CTRL_PARAMS*2) + GUARD_VALUE)
+#define EEPROM_CALIBRATION_STORE_ADDR (EEPROM_BASE_ADDR + (MAX_CTRL_PARAMS*2) + GUARD_VALUE)
 
 #define EEPROM_MAX_SIZE 4096  //max size of the EEPROM i.e. 4K bytes
 
@@ -142,6 +142,8 @@ void storeCalibParam(int storeAddress, int data);
 int retrieveCalibParam(int address);
 
 
+long int retrieve_sensor_data_long(int readAddress);
+void store_sensor_data_long(int storeAddress, long int data);
 
 int eeprom_ext_rw(unsigned int address, char *data, unsigned int size, eeprom_ops ops);
 
