@@ -288,8 +288,9 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   unsigned long present_ts = 0;
   unsigned long accumlated_time = 0;
   VENT_DEBUG_FUNC_START();
+  
   if ( 0 == _prev_samplecollection_ts) {
-    _prev_samplecollection_ts = present_ts;
+    _prev_samplecollection_ts = millis();
   } else {
   err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
   if(ERROR_I2C_TIMEOUT == err) 
