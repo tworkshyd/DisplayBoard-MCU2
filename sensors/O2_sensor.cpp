@@ -149,7 +149,7 @@ int o2_sensor::sensor_zero_calibration()
 float o2_sensor::read_sensor_data() {
 
   this->m_data.previous_data.O2 = this->m_data.current_data.O2;
-  VENT_DEBUG_INFO("Sensor Data", this->m_data.previous_data.O2);
+  VENT_DEBUG_INFO("Sensor Data: ", this->m_data.previous_data.O2);
 
   return this->m_data.previous_data.O2;
 }

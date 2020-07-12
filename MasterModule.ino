@@ -202,12 +202,15 @@ int freeMemory() {
 float data_sensors[MAX_SENSORS] = {0};
 
 
-
+#define PRINT_PROCESSING_TIME 1
 /* Project Main loop */
 void loop() {
   
   int index = 0;
   int err = 0;
+#if PRINT_PROCESSING_TIME
+  unsigned long starttime = millis();
+#endif
   checkAlarms();
   wdt_reset();
   VENT_DEBUG_FUNC_START();
@@ -223,7 +226,11 @@ void loop() {
       VENT_DEBUG_ERROR("Error Code", err);
     }
   }
-
+#if PRINT_PROCESSING_TIME
+  Serial.print("sensor module processing time:");
+  Serial.println((millis()-starttime));
+  unsigned long dstarttime = millis();
+#endif
   //VENT_DEBUG_ERROR("Error State: ", gErrorState);
   if (NO_ERR == gErrorState) 
   {
@@ -234,7 +241,10 @@ void loop() {
     dM.errorDisplay(gErrorState);
     gErrorState = NO_ERR;
   }
-
+#if PRINT_PROCESSING_TIME
+  Serial.print("display module processing time:");
+  Serial.println((millis()-dstarttime));
+#endif
   if (gCntrlSerialEventRecvd == true) {
     gCntrlSerialEventRecvd = false;
     Ctrl_ProcessRxData();
@@ -267,7 +277,10 @@ void loop() {
   
   wdt_reset();  //Reset watchdog timer in case there is no failure in the loop
   VENT_DEBUG_ERROR("End of main process loop ", 0);
-  //Serial.print("End of the main process loop ");
+#if PRINT_PROCESSING_TIME  
+  Serial.print("Main loop processing time:");
+  Serial.println((millis()-starttime));
+#endif  
   VENT_DEBUG_FUNC_END();
 }
 

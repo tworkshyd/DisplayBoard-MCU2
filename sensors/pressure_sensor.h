@@ -20,7 +20,7 @@
 
 #include "sensors.h"
 
-#define DEBUG_PRESSURE_SENSOR 1
+#define DEBUG_PRESSURE_SENSOR 0
 
 /**************************************************************************/
 /*!

@@ -174,6 +174,7 @@ float pressure_sensor::read_sensor_data()
   if(m_dp == 1) 
   {
     this->m_data.previous_data.flowvolume = this->m_data.current_data.flowvolume;
+    this->m_data.previous_data.flowvolume = this->m_data.previous_data.flowvolume;
     return this->m_data.previous_data.flowvolume;
   }
   else
@@ -312,7 +313,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   present_ts = millis();
   accumlated_time = (present_ts - _prev_samplecollection_ts);
     if(flowrate > FLOWRATE_MIN_THRESHOLD) {
-      accflow = (((flowrate * 1000)/60000) * accumlated_time);
+      accflow = (((flowrate *1000)/60000)* (float)accumlated_time);
     }
     _prev_samplecollection_ts = present_ts;
 
@@ -352,6 +353,13 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
     }
 #endif
   }
+      if(m_dp == 1) {
+      Serial.print(", acc_time  ");
+      Serial.print(accumlated_time, 6);        
+      Serial.print(", Total AF");
+      Serial.print(" ");
+      Serial.println(this->m_data.current_data.flowvolume, 6);
+      }  
   VENT_DEBUG_FUNC_END();
   return accflow;
 }
