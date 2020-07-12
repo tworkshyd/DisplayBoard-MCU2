@@ -122,17 +122,21 @@ int pressure_sensor::init()
 void pressure_sensor::capture_and_store(void) {
   VENT_DEBUG_FUNC_START();
   
-  m_sample_index = m_sample_index + 1;
+  this->m_sample_index = this->m_sample_index + 1;
   
-  if(m_sample_index >= MAX_SENSOR_SAMPLES) {
-    m_sample_index = 0;
+  if(this->m_sample_index >= MAX_SENSOR_SAMPLES) {
+	  this->m_sample_index = 0;
   }
   if(m_dp == 1) {
       this->m_data.current_data.flowvolume += get_spyro_volume_MPX7002DP();
-      this->samples[m_sample_index] = this->m_data.current_data.flowvolume;
+      this->samples[this->m_sample_index] = this->m_data.current_data.flowvolume;
     } else {
       this->m_data.current_data.pressure = get_pressure_MPX5010() - this->m_calibrationinpressure;
-      this->samples[m_sample_index] = this->m_data.current_data.pressure;
+      if(this->m_sensor_id == PRESSURE_A1){
+       Serial.print("PRESSURE_A1 :");
+       Serial.println(this->m_data.current_data.pressure);
+      }
+      this->samples[this->m_sample_index] = this->m_data.current_data.pressure;
     }
 
   VENT_DEBUG_FUNC_END();
@@ -144,6 +148,7 @@ void pressure_sensor::capture_and_store(void) {
 void pressure_sensor::reset_sensor_data(void) 
 {
   VENT_DEBUG_FUNC_START();
+  _prev_samplecollection_ts = millis();
   
   for(int index = 0; index < MAX_SENSOR_SAMPLES; index++) {
     this->samples[index] = 99.99;
@@ -280,9 +285,11 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   float pressure = 0.0;
   float flowrate = 0.0, accflow = 0.0;
   int err = 0;
-  
+  unsigned long present_ts = 0;
   VENT_DEBUG_FUNC_START();
-
+  if ( 0 == _prev_samplecollection_ts) {
+    _prev_samplecollection_ts = present_ts;
+  } else {
   err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
   if(ERROR_I2C_TIMEOUT == err) 
   {
@@ -299,10 +306,13 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   pressure -= m_calibrationinpressure;
   m_value = pressure;
   flowrate = get_flowrate_spyro(pressure);
-  if(flowrate > FLOWRATE_MIN_THRESHOLD) {
-	// flowrate is in liters/min, converting to ml/ms and multiplying with the sample duration.
-    accflow = (((flowrate * 1000)/60000) * _aquisitionTimeMs);
-  }
+
+  present_ts = millis();
+    if(flowrate > FLOWRATE_MIN_THRESHOLD) {
+      accflow = (((flowrate * 1000)/60000) * (present_ts - _prev_samplecollection_ts));
+    }
+    _prev_samplecollection_ts = present_ts;
+
 
 #if DEBUG_PRESSURE_SENSOR
   if ((millis() - m_lastmpx7002UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
@@ -336,7 +346,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
       }
     }
 #endif
-
+  }
   VENT_DEBUG_FUNC_END();
   return accflow;
 }

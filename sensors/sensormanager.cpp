@@ -102,28 +102,7 @@ int sensorManager::init()
   return err;
 }
 
-void sensorManager::startTimer() {
-  int en_sensors;
-  
-  VENT_DEBUG_FUNC_START();
-  
-  en_sensors = no_of_sensorsenabled(_enabled_sensors);
-  if (en_sensors) 
-  {
-    unsigned long temp = _timervalueMs;
-    _timervalueMs = ADC_CONVERSIONTIME_PERSENSOR * en_sensors + MINREQUIRED_DISPLAYREFRESH_TIME;
-    if (temp != _timervalueMs) 
-	{
-      MsTimer2::stop();
-      MsTimer2::set(_timervalueMs, capture_sensor_data);
-      MsTimer2::start();
-      _dpS1.data_aquisitiontime(_timervalueMs);
-      _dpS2.data_aquisitiontime(_timervalueMs);
-	  VENT_DEBUG_INFO ("Started timer with", _timervalueMs);
-    }
-  }
-  VENT_DEBUG_FUNC_END();
-}
+
 /*
  * Function to enable specific sensors
  * Takes a parameter of different sensor combinations
@@ -148,7 +127,7 @@ void sensorManager::enable_sensor(unsigned int flag)
     _o2S.reset_sensor_data();
   }
   _enabled_sensors = flag;
-  startTimer();
+//  startTimer();
   
   VENT_DEBUG_FUNC_END();
 }
@@ -242,7 +221,7 @@ int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
  */
 void sensorManager::capture_sensor_data(void)
 {
-  interrupts(); // Called to enable other interrupts.
+ // interrupts(); // Called to enable other interrupts.
    VENT_DEBUG_FUNC_START();
   long int starttime = millis();
   

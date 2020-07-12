@@ -68,6 +68,8 @@ int start_calibration(void);
 
 unsigned int get_enable_sensors();
 
+void capture_sensor_data();
+
 private:
 #ifdef OPEN_BOARD
   pressure_sensor _pS2 = pressure_sensor(&ads, 1, SENSOR_PRESSURE_A0);
@@ -85,8 +87,8 @@ private:
 
   unsigned int _enabled_sensors = 0;
 
-  static void capture_sensor_data();
+
   unsigned long _timervalueMs = -1; // starting with -1
-  void startTimer();
  
+
 };

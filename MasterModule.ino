@@ -212,6 +212,8 @@ void loop() {
   wdt_reset();
   VENT_DEBUG_FUNC_START();
 
+  sM.capture_sensor_data();
+
   for (; index < MAX_SENSORS; index++) 
   {
     err = sM.read_sensor_data(index, (float *) &(data_sensors[index]));

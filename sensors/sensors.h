@@ -17,7 +17,7 @@
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
-#include "./../libraries/MsTimer2/MsTimer2.h"
+//#include "./../libraries/MsTimer2/MsTimer2.h"
 #include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h"
 
 /**
