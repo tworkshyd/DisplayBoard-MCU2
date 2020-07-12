@@ -222,8 +222,8 @@ int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
 void sensorManager::capture_sensor_data(void)
 {
  // interrupts(); // Called to enable other interrupts.
-   VENT_DEBUG_FUNC_START();
-  long int starttime = millis();
+  VENT_DEBUG_FUNC_START();
+  unsigned long starttime = millis();
   
   VENT_DEBUG_FUNC_START();
   
@@ -243,7 +243,7 @@ void sensorManager::capture_sensor_data(void)
     sM._o2S.capture_and_store();
   }
 
-VENT_DEBUG_INFO ("Time Taken for Sensors Capture", (millis()-starttime));
+VENT_DEBUG_ERROR("Time Taken for Sensors Capture :", (millis()-starttime));
   VENT_DEBUG_FUNC_END();
 }
 

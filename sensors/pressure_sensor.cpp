@@ -109,7 +109,7 @@ int pressure_sensor::init()
     Serial.print("init :sensorType");
     Serial.println(sensorId2String(m_sensor_id));
     Serial.println(EEPROM_CALIBRATION_STORE_ADDR + m_sensor_id * sizeof(long int), HEX);
-    Serial.println(this->m_calibrationinpressure * SENSOR_DATA_PRECISION, HEX);							   
+    Serial.println(this->m_calibrationinpressure * SENSOR_DATA_PRECISION, HEX);
 #endif
   VENT_DEBUG_FUNC_END();
   return 0;
@@ -148,7 +148,7 @@ void pressure_sensor::capture_and_store(void) {
 void pressure_sensor::reset_sensor_data(void) 
 {
   VENT_DEBUG_FUNC_START();
-  _prev_samplecollection_ts = millis();
+  _prev_samplecollection_ts = 0;
   
   for(int index = 0; index < MAX_SENSOR_SAMPLES; index++) {
     this->samples[index] = 99.99;
@@ -271,7 +271,7 @@ int pressure_sensor::sensor_zero_calibration()
   Serial.print("store :sensorType");
   Serial.println(sensorId2String(m_sensor_id));
   Serial.println(EEPROM_CALIBRATION_STORE_ADDR+m_sensor_id*4, HEX);
-  Serial.println(this->m_calibrationinpressure*SENSOR_DATA_PRECISION, HEX);								
+  Serial.println(this->m_calibrationinpressure*SENSOR_DATA_PRECISION, HEX);
 #endif
   VENT_DEBUG_FUNC_END();
   return 0;
@@ -286,6 +286,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   float flowrate = 0.0, accflow = 0.0;
   int err = 0;
   unsigned long present_ts = 0;
+  unsigned long accumlated_time = 0;
   VENT_DEBUG_FUNC_START();
   if ( 0 == _prev_samplecollection_ts) {
     _prev_samplecollection_ts = present_ts;
@@ -308,14 +309,15 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   flowrate = get_flowrate_spyro(pressure);
 
   present_ts = millis();
+  accumlated_time = (present_ts - _prev_samplecollection_ts);
     if(flowrate > FLOWRATE_MIN_THRESHOLD) {
-      accflow = (((flowrate * 1000)/60000) * (present_ts - _prev_samplecollection_ts));
+      accflow = (((flowrate * 1000)/60000) * accumlated_time);
     }
     _prev_samplecollection_ts = present_ts;
 
 
 #if DEBUG_PRESSURE_SENSOR
-  if ((millis() - m_lastmpx7002UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
+  //if ((millis() - m_lastmpx7002UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
     {
       m_lastmpx7002UpdatedTime = millis();
       Serial.print("sensorType->");
@@ -339,6 +341,8 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
       Serial.print(", AF");
       Serial.print(" ");
       Serial.print(accflow, 6);
+      Serial.print(", acc_time  ");
+      Serial.print(accumlated_time, 6);
       if(m_dp == 1) {
         Serial.print(", Total AF");
         Serial.print(" ");

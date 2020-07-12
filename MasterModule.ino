@@ -224,7 +224,7 @@ void loop() {
     }
   }
 
-  VENT_DEBUG_ERROR("Error State: ", gErrorState);
+  //VENT_DEBUG_ERROR("Error State: ", gErrorState);
   if (NO_ERR == gErrorState) 
   {
     dM.displayManagerloop(&data_sensors[0], sM);
