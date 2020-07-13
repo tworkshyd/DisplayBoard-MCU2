@@ -233,7 +233,7 @@ void displayManager::drawSensorvoltageMenu(RT_Events_T eRTState) {
   if ((millis() - _lastDisplayTime > 500) ||
       (eRTState != RT_NONE))
   {
-     int o2value = analogRead(OXYGEN_ANALOG_PIN);
+     //int o2value = analogRead(OXYGEN_ANALOG_PIN);
      //lcd.clear();
      lcd.setCursor(6, 1);
      lcd.print("    ");
@@ -259,7 +259,7 @@ void displayManager::drawSensorvoltageMenu(RT_Events_T eRTState) {
     
      lcd.setCursor(7, 3);
      lcd.print("O2: ");
-     lcd.print(o2value);
+     lcd.print(m_sM->read_sensor_rawvoltage(SENSOR_O2));
   }
 }
 
