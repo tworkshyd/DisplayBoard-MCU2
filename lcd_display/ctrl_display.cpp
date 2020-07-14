@@ -11,6 +11,11 @@ String cancelFlag = "Cancel";
 int oldValue;
 extern bool machineOn;
 
+extern bool refreshfullscreen_inhale ;
+extern bool refreshfullscreen_exhale ;
+extern unsigned long exhale_refresh_timeout ;
+
+
 byte fiChar[] = {
   B11110,
    B10000,
@@ -1095,135 +1100,166 @@ static char buffer[6];
 static char row[30] = "";
 
 static bool blink = true;
+static unsigned long last_o2update = 0;
 
 void displayManager::displayRunTime(float *sensor_data)
 {
-  row[0] = '\0';
-  if (true == _refreshRunTimeDisplay)
-  {
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    _refreshRunTimeDisplay = false;
-  }
-  {
-    // row0 start
+
+  if ((true == _refreshRunTimeDisplay) 
+      || (true == refreshfullscreen_inhale) 
+      || (true == refreshfullscreen_exhale && (millis() > exhale_refresh_timeout))) {
+
+    blink = true;
+
     row[0] = '\0';
-    sprintf(row, "TV  %3d RR %2d IE 1:%1d", params[E_TV].value_curr_mem, params[E_BPM].value_curr_mem, params[E_IER].value_curr_mem);
-    lcd.setCursor(0, 0);
-    lcd.print(row);
-  }
-  {
-    row[0] = '\0';
-    dtostrf(m_display_pip, 4, 1, str_temp);
-    sprintf(buffer, "%s", str_temp);
-    sprintf(row, "%3d ",(int)m_display_tvi);
-    lcd.setCursor(0, 1);
-    lcd.print("TVi");
-    if (tviErr > 0)
+    if (true == _refreshRunTimeDisplay)
     {
-      digitalWrite(BUZZER_PIN, blink);
-      if(blink)
-        lcd.write(DP_UP_TR);
-      else
-        lcd.write(DP_EM_UP_TR);
-    } else if (tviErr < 0) {
-      digitalWrite(BUZZER_PIN, blink);
-      if(blink)
-        lcd.write(DP_DW_TR);
-      else
-        lcd.write(DP_EM_DN_TR);
-    } else {
-      digitalWrite(BUZZER_PIN, LOW);
-      lcd.print(" ");
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      _refreshRunTimeDisplay = false;
     }
+    {
+      // row0 start
+      row[0] = '\0';
+      sprintf(row, "TV  %3d RR %2d IE 1:%1d", params[E_TV].value_curr_mem, params[E_BPM].value_curr_mem, params[E_IER].value_curr_mem);
+      lcd.setCursor(0, 0);
       lcd.print(row);
-      lcd.setCursor(8,1);
-      lcd.print("PIP ");
-      if (pipErr > 0)
-       {
-         digitalWrite(BUZZER_PIN, blink);
-         if(blink)
-           lcd.write(DP_UP_TR);
-         else
-           lcd.write(DP_EM_UP_TR);
-       } else if (pipErr < 0) {
-         digitalWrite(BUZZER_PIN, blink);
-         if(blink)
-           lcd.write(DP_DW_TR);
-         else
-           lcd.write(DP_EM_DN_TR);
-       } else {
-         digitalWrite(BUZZER_PIN, LOW);
-         lcd.print(" ");
-       }
+    }
+    {
+      row[0] = '\0';
+      dtostrf(m_display_pip, 4, 1, str_temp);
+      sprintf(buffer, "%s", str_temp);
+      sprintf(row, "%3d ",(int)m_display_tvi);
+      lcd.setCursor(0, 1);
+      lcd.print("TVi");
+      if (tviErr > 0)
+      {
+        digitalWrite(BUZZER_PIN, blink);
+        if(blink)
+          lcd.write(DP_UP_TR);
+        else
+          lcd.write(DP_EM_UP_TR);
+      } else if (tviErr < 0) {
+        digitalWrite(BUZZER_PIN, blink);
+        if(blink)
+          lcd.write(DP_DW_TR);
+        else
+          lcd.write(DP_EM_DN_TR);
+      } else {
+        digitalWrite(BUZZER_PIN, LOW);
+        lcd.print(" ");
+      }
+        lcd.print(row);
+        lcd.setCursor(8,1);
+        lcd.print("PIP ");
+        if (pipErr > 0)
+         {
+           digitalWrite(BUZZER_PIN, blink);
+           if(blink)
+             lcd.write(DP_UP_TR);
+           else
+             lcd.write(DP_EM_UP_TR);
+         } else if (pipErr < 0) {
+           digitalWrite(BUZZER_PIN, blink);
+           if(blink)
+             lcd.write(DP_DW_TR);
+           else
+             lcd.write(DP_EM_DN_TR);
+         } else {
+           digitalWrite(BUZZER_PIN, LOW);
+           lcd.print(" ");
+         }
+        sprintf(row, "%s", buffer);
+        lcd.print(row);
+      }
+    //3rd row
+    {
+      row[0] = '\0';
+      dtostrf(m_display_plat, 4, 1, str_temp);
+      sprintf(buffer, "%s", str_temp);
+      sprintf(row, " %3d Plat %s", (int)m_display_tve, buffer);
+      lcd.setCursor(0, 2);
+      lcd.print("TVe");
+      lcd.print(row);
+    }
+    {
+      row[0] = '\0';
+      dtostrf(m_display_peep, 4, 1, str_temp);
+      sprintf(buffer, "%s", str_temp);
+      sprintf(row, "%2d%% ", (int)sensor_data[SENSOR_O2]);
+      lcd.setCursor(0, 3);
+      lcd.write(DP_FI);
+      lcd.print("O2");
+      if ((int)sensor_data[SENSOR_O2] > 1.1*params[E_FiO2].value_curr_mem)
+      {
+        if(blink)
+          lcd.write(DP_UP_TR);
+        else
+          lcd.write(DP_EM_UP_TR);
+      } else if ((int)sensor_data[SENSOR_O2] < 0.9*params[E_FiO2].value_curr_mem) {
+      if(blink)
+          lcd.write(DP_DW_TR);
+        else
+          lcd.write(DP_EM_DN_TR);
+      } else {
+        lcd.print(" ");
+      }
+      lcd.print(row);
+
+      lcd.setCursor(8, 3);
       sprintf(row, "%s", buffer);
+      lcd.print("PEEP");
+      if (peepErr > 0)
+      {
+        digitalWrite(BUZZER_PIN, blink);
+        if(blink) lcd.write(DP_UP_TR);
+        else lcd.write(DP_EM_UP_TR);
+      } else if (peepErr < 0) {
+        digitalWrite(BUZZER_PIN, blink);
+        if(blink)
+          lcd.write(DP_DW_TR);
+        else
+          lcd.write(DP_EM_DN_TR);
+      } else {
+        digitalWrite(BUZZER_PIN, LOW);
+        lcd.print(" ");
+      }
       lcd.print(row);
     }
-  //3rd row
-  {
-    row[0] = '\0';
-    dtostrf(m_display_plat, 4, 1, str_temp);
-    sprintf(buffer, "%s", str_temp);
-    sprintf(row, " %3d Plat %s", (int)m_display_tve, buffer);
-    lcd.setCursor(0, 2);
-    lcd.print("TVe");
-    lcd.print(row);
-  }
-  {
-    row[0] = '\0';
-    dtostrf(m_display_peep, 4, 1, str_temp);
-    sprintf(buffer, "%s", str_temp);
-    sprintf(row, "%2d%% ", (int)sensor_data[SENSOR_O2]);
-    lcd.setCursor(0, 3);
-    lcd.write(DP_FI);
-    lcd.print("O2");
-    if ((int)sensor_data[SENSOR_O2] > 1.1*params[E_FiO2].value_curr_mem)
-    {
-      if(blink)
-        lcd.write(DP_UP_TR);
+    lcd.setCursor(19,3);
+    if (true == machineOn) {
+      if (blink)
+        lcd.print("R");
       else
-        lcd.write(DP_EM_UP_TR);
-    } else if ((int)sensor_data[SENSOR_O2] < 0.9*params[E_FiO2].value_curr_mem) {
-    if(blink)
-        lcd.write(DP_DW_TR);
-      else
-        lcd.write(DP_EM_DN_TR);
+        lcd.print(" ");
     } else {
-      lcd.print(" ");
+        lcd.print("S");
     }
-    lcd.print(row);
-
-    lcd.setCursor(8, 3);
-    sprintf(row, "%s", buffer);
-    lcd.print("PEEP");
-    if (peepErr > 0)
-    {
-      digitalWrite(BUZZER_PIN, blink);
-      if(blink) lcd.write(DP_UP_TR);
-      else lcd.write(DP_EM_UP_TR);
-    } else if (peepErr < 0) {
-      digitalWrite(BUZZER_PIN, blink);
-      if(blink)
-        lcd.write(DP_DW_TR);
-      else
-        lcd.write(DP_EM_DN_TR);
-    } else {
-      digitalWrite(BUZZER_PIN, LOW);
-      lcd.print(" ");
-    }
-    lcd.print(row);
+    refreshfullscreen_inhale = false;
+    refreshfullscreen_exhale = false;
+  } else if( last_o2update < millis()) {
+     last_o2update = millis() + 500;
+     row[0] = '\0';
+     sprintf(row, "%2d%% ", (int)sensor_data[SENSOR_O2]);
+     lcd.setCursor(3, 3);
+     if ((int)sensor_data[SENSOR_O2] > 1.1*params[E_FiO2].value_curr_mem)
+     {
+       if(blink)
+         lcd.write(DP_UP_TR);
+       else
+         lcd.write(DP_EM_UP_TR);
+     } else if ((int)sensor_data[SENSOR_O2] < 0.9*params[E_FiO2].value_curr_mem) {
+     if(blink)
+         lcd.write(DP_DW_TR);
+       else
+         lcd.write(DP_EM_DN_TR);
+     } else {
+       lcd.print(" ");
+     }
+     lcd.print(row);
+     blink = false;
+     digitalWrite(BUZZER_PIN, LOW);
   }
-  lcd.setCursor(19,3);
-  if (true == machineOn) {
-    if (blink)
-      lcd.print("R");
-    else
-      lcd.print(" ");
-  } else {
-      lcd.print("S");
-  }
-
-  blink=!blink;
 }
 
 
