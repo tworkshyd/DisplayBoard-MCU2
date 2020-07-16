@@ -134,7 +134,7 @@ const ctrl_parameter_t peep_pres =    {E_PEEP, mainEditMenu[E_PEEP], DISP_ENC_CL
 
 /*!< default values assigned according to the ctrl_parameter_t Structure variables for PeakPressure */
 const ctrl_parameter_t peak_press =   {E_PIP, mainEditMenu[E_PIP], PMAX_PIN,
-                                       29, 59,
+                                       29, 99,
                                        UNIT_CMH2O, 1,
                                        0, 0
                                       };
