@@ -215,7 +215,8 @@ void loop() {
   wdt_reset();
   VENT_DEBUG_FUNC_START();
 
-  sM.capture_sensor_data();
+  // used for non timer reading of pressure sensor
+  //sM.capture_sensor_data();
 
   for (; index < MAX_SENSORS; index++) 
   {

@@ -17,7 +17,7 @@
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
-//#include "./../libraries/MsTimer2/MsTimer2.h"
+#include "./../libraries/MsTimer2/MsTimer2.h"
 #include "./../libraries/Adafruit_ADS1X15/Adafruit_ADS1015.h"
 
 /**
@@ -40,7 +40,7 @@
 #define ACCUMULATOR_RESET_PIN   3
 
 #define ADC_CONVERSIONTIME_PERSENSOR    (MAX_SAMPLE_COUNT * ADC_CONVERSTION_TIME)       /*!< Timer for reading the sensor data */
-#define MINREQUIRED_DISPLAYREFRESH_TIME 50
+#define MINREQUIRED_DISPLAYREFRESH_TIME 13
 /**
  * @brief sensor_data_t where the sensor reading is stored
  */

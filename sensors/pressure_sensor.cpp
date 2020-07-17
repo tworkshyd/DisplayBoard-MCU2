@@ -20,7 +20,6 @@ from the pressure sensors
 /*
 * Macros to enable the sensor functionalities
 */
-#define SENSOR_DISPLAY_REFRESH_TIME 5
 
 /*
 * Sensor specific configurations
@@ -215,18 +214,23 @@ float pressure_sensor::get_pressure_MPX5010() {
   pressure = ((pressure - 0.07)/0.09075);
 
 #if DEBUG_PRESSURE_SENSOR
-    if ((millis() - m_lastmpx50102UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
-    {  
-      m_lastmpx50102UpdatedTime = millis();
-	  
-	  VENT_DEBUG_INFO("sensorType", sensorId2String(m_sensor_id));
-	  VENT_DEBUG_INFO("ADC Channel", m_adc_channel);
-	  VENT_DEBUG_INFO("Volume", vout);
-	  VENT_DEBUG_INFO("Pressure", (pressure - m_calibrationinpressure));
-    }
+      Serial.print("sensorType->");
+      Serial.print(sensorId2String(m_sensor_id));
+      Serial.print("::");
+      Serial.print("C");
+      Serial.print(" ");
+      Serial.print(m_adc_channel);
+      Serial.print(", V*1000");
+      Serial.print(" ");
+      Serial.print(vout * 1000, 6);
+      Serial.print(", P");
+      Serial.print(" ");
+      Serial.print(pressure, 6);
+      Serial.print(", Cal");
+      Serial.print(" ");
+      Serial.print(m_calibrationinpressure, 6);
 #endif
   m_value = pressure - m_calibrationinpressure;
-  
   VENT_DEBUG_FUNC_END();
   return pressure;
 }
@@ -243,19 +247,19 @@ int pressure_sensor::sensor_zero_calibration()
   for(int index = 0; index < CALIBRATION_COUNT; index++) 
   {
       err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
-	  if(ERROR_I2C_TIMEOUT == err) 
-	  {
-		VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
-		this->set_error(ERROR_SENSOR_READ);
-		return -1;
-	  } else {
-		 this->set_error(SUCCESS);
-	  }
+      if(ERROR_I2C_TIMEOUT == err) 
+      {
+        VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
+        this->set_error(ERROR_SENSOR_READ);
+        return -1;
+      } else {
+       this->set_error(SUCCESS);
+      }
 
-	  if(m_dp)
-		pressure += get_pressure_MPXV7002DP(vout);
-	  else
-		pressure += get_pressure_MPX5010();
+      if(m_dp)
+        pressure += get_pressure_MPXV7002DP(vout);
+      else
+        pressure += get_pressure_MPX5010();
    }
 
   m_calibrationinpressure = pressure/CALIBRATION_COUNT;
@@ -293,73 +297,70 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   if ( 0 == _prev_samplecollection_ts) {
     _prev_samplecollection_ts = millis();
   } else {
-  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
-  if(ERROR_I2C_TIMEOUT == err) 
-  {
-    VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
-    this->set_error(ERROR_SENSOR_READ);
-    return -1;
-  } else {
-     this->set_error(SUCCESS);
-  }
-  
-  m_raw_voltage = vout * 1000;
-  pressure = get_pressure_MPXV7002DP(vout);
-  //add the correction done with calibration
-  pressure -= m_calibrationinpressure;
-  m_value = pressure;
-  flowrate = get_flowrate_spyro(pressure);
-
-  present_ts = millis();
-  accumlated_time = (present_ts - _prev_samplecollection_ts);
-    if(flowrate > FLOWRATE_MIN_THRESHOLD) {
-      accflow = (((flowrate *1000)/60000)* (float)accumlated_time);
-    }
-    _prev_samplecollection_ts = present_ts;
-
-
-#if DEBUG_PRESSURE_SENSOR
-  //if ((millis() - m_lastmpx7002UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
+    err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+    if(ERROR_I2C_TIMEOUT == err) 
     {
-      m_lastmpx7002UpdatedTime = millis();
+      VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
+      this->set_error(ERROR_SENSOR_READ);
+      return -1;
+    } else {
+       this->set_error(SUCCESS);
+    }
+    m_raw_voltage = vout * 1000;
+    pressure = get_pressure_MPXV7002DP(vout);
+    //add the correction done with calibration
+    pressure -= m_calibrationinpressure;
+    m_value = pressure;
+    flowrate = get_flowrate_spyro(pressure);
+
+    present_ts = millis();
+    accumlated_time = (present_ts - _prev_samplecollection_ts);
+      if(flowrate > FLOWRATE_MIN_THRESHOLD) {
+        accflow = (((flowrate *1000)/60000)* (float)accumlated_time);
+      }
+      _prev_samplecollection_ts = present_ts;
+    }
+
+#if DEBUG_DP_PRESSURE_SENSOR
+    Serial.print("sensorType->");
+    Serial.print(sensorId2String(m_sensor_id));
+    Serial.print("::");
+    Serial.print("C");
+    Serial.print(" ");
+    Serial.print(m_adc_channel);
+    Serial.print(", V*1000");
+    Serial.print(" ");
+    Serial.print(vout * 1000, 6);
+    Serial.print(", P");
+    Serial.print(" ");
+    Serial.print(pressure, 6);
+    Serial.print(", Cal");
+    Serial.print(" ");
+    Serial.print(m_calibrationinpressure, 6);
+    Serial.print(", F");
+    Serial.print(" ");
+    Serial.print(flowrate, 6);
+    Serial.print(", AF");
+    Serial.print(" ");
+    Serial.print(accflow, 6);
+    Serial.print(", acc_time  ");
+    Serial.print(accumlated_time, 6);
+    if(m_dp == 1) {
+      Serial.print(", Total AF");
+      Serial.print(" ");
+      Serial.println(this->m_data.current_data.flowvolume, 6);
+    }
+#else if DEBUG_DP_PRESSURE_SENSOR_SHORTLOG
+    if(m_dp == 1) {
       Serial.print("sensorType->");
       Serial.print(sensorId2String(m_sensor_id));
-      Serial.print("::");
-      Serial.print("C");
-      Serial.print(" ");
-      Serial.print(m_adc_channel);
-      Serial.print(", V*1000");
-      Serial.print(" ");
-      Serial.print(vout * 1000, 6);
-      Serial.print(", P");
-      Serial.print(" ");
-      Serial.print(pressure, 6);
-      Serial.print(", Cal");
-      Serial.print(" ");
-      Serial.print(m_calibrationinpressure, 6);
-      Serial.print(", F");
-      Serial.print(" ");
-      Serial.print(flowrate, 6);
-      Serial.print(", AF");
-      Serial.print(" ");
-      Serial.print(accflow, 6);
-      Serial.print(", acc_time  ");
-      Serial.print(accumlated_time, 6);
-      if(m_dp == 1) {
-        Serial.print(", Total AF");
-        Serial.print(" ");
-        Serial.println(this->m_data.current_data.flowvolume, 6);
-      }
-    }
-#endif
-  }
-      if(m_dp == 1) {
       Serial.print(", acc_time  ");
       Serial.print(accumlated_time, 6);        
       Serial.print(", Total AF");
       Serial.print(" ");
       Serial.println(this->m_data.current_data.flowvolume, 6);
-      }  
+    }
+#endif
   VENT_DEBUG_FUNC_END();
   return accflow;
 }

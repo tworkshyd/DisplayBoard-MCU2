@@ -185,7 +185,6 @@ void o2_sensor::capture_and_store()
   m_raw_voltage = vout*1000;
   o2_value = ((vout ) +0.2034897959) /0.05099489796;
 #if DEBUG_PRESSURE_SENSOR
-  if ((millis() - m_lasO2UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
   {  
     m_lasO2UpdatedTime = millis();
     Serial.print("sensorType->");

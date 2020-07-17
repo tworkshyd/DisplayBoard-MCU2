@@ -99,10 +99,32 @@ int sensorManager::init()
   err += _o2S.init();
 
   VENT_DEBUG_FUNC_END();
+  sensor_poll_timer(0);
   return err;
 }
 
-
+void sensorManager::sensor_poll_timer(unsigned int value) {
+  int en_sensors;
+  
+  VENT_DEBUG_FUNC_START();
+  // during full LCD refresh times timer needs to run at lower rate to allow
+  // display gets updated
+  _extraLoadMs = value;
+  en_sensors = no_of_sensorsenabled(_enabled_sensors);
+  if (en_sensors) 
+  {
+    unsigned long temp = _timervalueMs;
+    _timervalueMs = ADC_CONVERSIONTIME_PERSENSOR*en_sensors + MINREQUIRED_DISPLAYREFRESH_TIME + _extraLoadMs;
+    if (temp != _timervalueMs) 
+    {
+      MsTimer2::stop();
+      MsTimer2::set(_timervalueMs, capture_sensor_data);
+      MsTimer2::start();
+      VENT_DEBUG_ERROR("Started timer with", _timervalueMs);
+    }
+  }
+  VENT_DEBUG_FUNC_END();
+}
 /*
  * Function to enable specific sensors
  * Takes a parameter of different sensor combinations
@@ -127,7 +149,7 @@ void sensorManager::enable_sensor(unsigned int flag)
     _o2S.reset_sensor_data();
   }
   _enabled_sensors = flag;
-//  startTimer();
+  sensor_poll_timer(_extraLoadMs);
   
   VENT_DEBUG_FUNC_END();
 }
@@ -148,31 +170,31 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
   
   switch(s) {
     case SENSOR_PRESSURE_A0:
-	  p_sensor = &_pS1;
-	break;
-	case SENSOR_PRESSURE_A1:
-	  p_sensor = &_pS2;
-	break;
-	case SENSOR_DP_A0:
-	  p_sensor = &_dpS1;
-	break;
-	case SENSOR_DP_A1:
-	  p_sensor = &_dpS2;
-	break;
-	case SENSOR_O2:
-	  p_sensor = &_o2S;
-	break;
-	default:
-	  VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", s);
-	  VENT_DEBUG_FUNC_END();
-	  return -1;
-	break;
+    p_sensor = &_pS1;
+    break;
+    case SENSOR_PRESSURE_A1:
+      p_sensor = &_pS2;
+    break;
+    case SENSOR_DP_A0:
+      p_sensor = &_dpS1;
+    break;
+    case SENSOR_DP_A1:
+      p_sensor = &_dpS2;
+    break;
+    case SENSOR_O2:
+      p_sensor = &_o2S;
+    break;
+    default:
+      VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", s);
+      VENT_DEBUG_FUNC_END();
+      return -1;
+    break;
   }
   err = p_sensor->get_error();
   if(err) {
-	  VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", err);
-	  VENT_DEBUG_FUNC_END();
-	  return err;
+    VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", err);
+    VENT_DEBUG_FUNC_END();
+    return err;
   }
   *data = p_sensor->read_sensor_data();
   
@@ -189,30 +211,29 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
  */
 int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
 {
-	float sensor_data[MAX_SENSOR_SAMPLES] = {99.99};
-	int count = 0;
+  float sensor_data[MAX_SENSOR_SAMPLES] = {99.99};
+  int count = 0;
 
-    VENT_DEBUG_FUNC_START();
+  VENT_DEBUG_FUNC_START();
 
-	if(sensor == SENSOR_PRESSURE_A0) {
-		count = _pS1.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
-	} else if(sensor == SENSOR_PRESSURE_A1) {
-		count = _pS2.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
-	} else {
-		return ERROR_SENSOR_UNSUPPORTED;
-	}
-	for(int index = 1; index < count; index++) {
-		float diff = (sensor_data[index] - sensor_data[index - 1]);
-		if(diff < 0) {
-			if(abs(diff) > DIP_THRESHOLD) {
-				return 1;
-			}
-		}
-	}
-	
-    VENT_DEBUG_FUNC_END();
-  
-	return 0;
+  if(sensor == SENSOR_PRESSURE_A0) {
+    count = _pS1.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
+  } else if(sensor == SENSOR_PRESSURE_A1) {
+    count = _pS2.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
+  } else {
+    return ERROR_SENSOR_UNSUPPORTED;
+  }
+  for(int index = 1; index < count; index++) {
+    float diff = (sensor_data[index] - sensor_data[index - 1]);
+    if(diff < 0) {
+      if(abs(diff) > DIP_THRESHOLD) {
+        return 1;
+      }
+    }
+  }
+
+  VENT_DEBUG_FUNC_END();
+  return 0;
 }
 
 /*
@@ -221,7 +242,7 @@ int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
  */
 void sensorManager::capture_sensor_data(void)
 {
- // interrupts(); // Called to enable other interrupts.
+  interrupts(); // Called to enable other interrupts.
   VENT_DEBUG_FUNC_START();
   unsigned long starttime = millis();
   

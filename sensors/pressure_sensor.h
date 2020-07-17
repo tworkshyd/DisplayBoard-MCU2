@@ -21,6 +21,9 @@
 #include "sensors.h"
 
 #define DEBUG_PRESSURE_SENSOR 0
+#define DEBUG_DP_PRESSURE_SENSOR 0
+#define DEBUG_DP_PRESSURE_SENSOR_SHORTLOG 1
+
 
 /**************************************************************************/
 /*!
@@ -32,8 +35,6 @@ class pressure_sensor : public sensor {
 		int m_dp;					/*!< Flag to store whether the object is pressure sensor or differential pressure sensor */
 		int m_adc_channel;			/*!< adc channel where the sensor is connected to */
 		Adafruit_ADS1115 *m_ads;	/*!< ADS board where the sensor is connected to */
-		unsigned long m_lastmpx7002UpdatedTime = 0;
-		unsigned long m_lastmpx50102UpdatedTime = 0;
 		unsigned long _prev_samplecollection_ts = 0;
 		float m_calibrationinpressure = 0.0;
 		bool m_calibrated = false;
