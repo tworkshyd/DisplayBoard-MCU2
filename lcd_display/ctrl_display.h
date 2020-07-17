@@ -63,14 +63,15 @@ typedef enum {
   E_PEEP,
   E_PIP,
   E_O2_INPUT,
+  E_OP_MODE,
   SHOW_VOL,
   SHOW_PRESSURE,
-  MAX_EDIT_MENU_ITEMS = 10
+  MAX_EDIT_MENU_ITEMS = 11
 } eMainMenu;
 
-#define MAX_CTRL_PARAMS 8  /*!< Total number of control parameters  */
+#define MAX_CTRL_PARAMS 9  /*!< Total number of control parameters  */
 
-const String mainEditMenu[MAX_EDIT_MENU_ITEMS] = { "EXIT EDIT MENU", "TV   : ", "RR   : ", "FiO2 : ", "IER  : ", "PEEP : ", "PIP  : ", "O2in : ", "Volt : ", "Pres : "};
+const String mainEditMenu[MAX_EDIT_MENU_ITEMS] = { "EXIT EDIT MENU", "TV   : ", "RR   : ", "FiO2 : ", "IER  : ", "PEEP : ", "PIP  : ", "O2in : ", "OpMode: ","Volt : ", "Pres : "};
 //eMainMenu currentEditMenuIdx = MAX_EDIT_MENU_ITEMS;
 
 /** @struct  ctrl_parameter_t
@@ -145,6 +146,13 @@ const ctrl_parameter_t o2_input   =    {E_O2_INPUT, mainEditMenu[E_O2_INPUT], 0,
                                        0, 0
                                       };
 
+/*!< default values assigned according to the ctrl_parameter_t Structure variables for o2_input */
+const ctrl_parameter_t op_mode    =   {E_OP_MODE, mainEditMenu[E_OP_MODE], 0,
+                                       0, 0,
+                                       "", 0,
+                                       0, 0
+                                      };
+
 const ctrl_parameter_t show_voltage =  {SHOW_VOL, mainEditMenu[SHOW_VOL], 0,
                                        0, 0,
                                        "", 0,
@@ -160,7 +168,8 @@ const ctrl_parameter_t show_pressure =  {SHOW_PRESSURE, mainEditMenu[SHOW_PRESSU
 
 /*!< Array contains all the control parameter values  */
 /*order should be same as in eMainMenu*/
-static ctrl_parameter_t params[] = {exit_menu,tidl_volu, resp_rate, fio2_perc, inex_rati, peep_pres, peak_press, o2_input, show_voltage, show_pressure};
+static ctrl_parameter_t params[] = {exit_menu,tidl_volu, resp_rate, fio2_perc, inex_rati, peep_pres,
+                                    peak_press, o2_input, op_mode, show_voltage, show_pressure};
 
 // global variables here
 enum STATE {
@@ -183,6 +192,12 @@ enum eDisplayPrm {
 
 #define CYLINDER 0
 #define HOSPITAL_LINE 1
+
+#define ACV 0
+#define SIMV 1
+
+const char * o2LineString[2] = {"Cylinder", "HospitalLine"};
+const char * oPModeString[2] = {"  ACV", "  SIMV"};
 
 class displayManager {
 public:
@@ -211,6 +226,7 @@ private:
   void drawDefaultItemUpdateMenu( RT_Events_T eRTState);
   void drawSensorvoltageMenu(RT_Events_T eRTState);
   void drawSensorValueMenu(RT_Events_T eRTState);
+  void drawUpdateOpModeMenu(RT_Events_T eRTState);
 
 //variables from here
   volatile STATE _dpState = STATUS_MENU;
@@ -230,6 +246,7 @@ private:
   unsigned short _newPeep = 5;  
   bool _bRefreshEditScreen = false;
   bool _o2LineSelect = CYLINDER;
+  bool _oPModeSelect = ACV;
   sensorManager *m_sM;
   float m_display_tve = 0;
   float m_display_tvi = 0;
