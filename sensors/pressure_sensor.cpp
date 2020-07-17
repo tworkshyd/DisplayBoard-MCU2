@@ -127,7 +127,7 @@ void pressure_sensor::capture_and_store(void) {
 	  this->m_sample_index = 0;
   }
   if(m_dp == 1) {
-      this->m_data.current_data.flowvolume += get_spyro_volume_MPX7002DP();
+      this->m_data.current_data.flowvolume += (get_spyro_volume_MPX7002DP()*1000)/(float)60000;
       this->samples[this->m_sample_index] = this->m_data.current_data.flowvolume;
     } else {
       this->m_data.current_data.pressure = get_pressure_MPX5010() - this->m_calibrationinpressure;
@@ -316,7 +316,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
     present_ts = millis();
     accumlated_time = (present_ts - _prev_samplecollection_ts);
       if(flowrate > FLOWRATE_MIN_THRESHOLD) {
-        accflow = (((flowrate *1000)/60000)* (float)accumlated_time);
+        accflow = (flowrate * (float)accumlated_time);
       }
       _prev_samplecollection_ts = present_ts;
     }
@@ -352,6 +352,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
     }
 #else if DEBUG_DP_PRESSURE_SENSOR_SHORTLOG
     if(m_dp == 1) {
+      Serial.println(" ");
       Serial.print("sensorType->");
       Serial.print(sensorId2String(m_sensor_id));
       Serial.print(", acc_time  ");

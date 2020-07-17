@@ -82,5 +82,7 @@ private:
   static void capture_sensor_data();
   unsigned long _timervalueMs = -1; // starting with -1
   unsigned long _extraLoadMs = -1;
+  
+  unsigned long _endTime = 0;
  
 };

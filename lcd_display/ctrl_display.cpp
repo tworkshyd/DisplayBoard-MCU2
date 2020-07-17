@@ -16,7 +16,7 @@ extern bool refreshfullscreen_exhale ;
 extern unsigned long exhale_refresh_timeout ;
 
 // display refreshing is time consuming , so allowing timer to halt for some time during that time
-#define DISPLAY_REFRESH_OVERLOAD 60
+#define DISPLAY_REFRESH_OVERLOAD 48
 
 byte fiChar[] = {
   B11110,

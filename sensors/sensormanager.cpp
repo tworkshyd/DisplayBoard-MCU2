@@ -120,7 +120,7 @@ void sensorManager::sensor_poll_timer(unsigned int value) {
       MsTimer2::stop();
       MsTimer2::set(_timervalueMs, capture_sensor_data);
       MsTimer2::start();
-      VENT_DEBUG_ERROR("Started timer with", _timervalueMs);
+      VENT_DEBUG_ERROR("Started timer with: ", _timervalueMs);
     }
   }
   VENT_DEBUG_FUNC_END();
@@ -245,6 +245,8 @@ void sensorManager::capture_sensor_data(void)
   interrupts(); // Called to enable other interrupts.
   VENT_DEBUG_FUNC_START();
   unsigned long starttime = millis();
+
+  VENT_DEBUG_ERROR("S:re-entrant time:", (starttime - sM._endTime));
   
   VENT_DEBUG_FUNC_START();
   
@@ -264,7 +266,8 @@ void sensorManager::capture_sensor_data(void)
     sM._o2S.capture_and_store();
   }
 
-VENT_DEBUG_ERROR("Time Taken for Sensors Capture :", (millis()-starttime));
+  sM._endTime = millis();
+  VENT_DEBUG_ERROR("Sensors Capture time :", (sM._endTime -starttime));
   VENT_DEBUG_FUNC_END();
 }
 
