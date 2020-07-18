@@ -203,6 +203,7 @@ float data_sensors[MAX_SENSORS] = {0};
 
 
 #define PRINT_PROCESSING_TIME 1
+ unsigned long endtime = 0;
 /* Project Main loop */
 void loop() {
   
@@ -210,6 +211,8 @@ void loop() {
   int err = 0;
 #if PRINT_PROCESSING_TIME
   unsigned long starttime = millis();
+  Serial.print("loop reentrant time :");
+  Serial.println(starttime -endtime);
 #endif
   checkAlarms();
   wdt_reset();
@@ -280,6 +283,7 @@ void loop() {
 #if PRINT_PROCESSING_TIME  
   Serial.print("Main loop processing time:");
   Serial.println((millis()-starttime));
+  endtime = millis();
 #endif  
   VENT_DEBUG_FUNC_END();
 }
