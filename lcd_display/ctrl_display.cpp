@@ -1115,7 +1115,7 @@ void displayManager::displayRunTime(float *sensor_data)
     if (true == _refreshRunTimeDisplay)
     {
       lcd.clear();
-      lcd.setCursor(0, 0);
+      //lcd.setCursor(0, 0);
       _refreshRunTimeDisplay = false;
     }
     {
@@ -1125,7 +1125,7 @@ void displayManager::displayRunTime(float *sensor_data)
       lcd.setCursor(0, 0);
       lcd.print(row);
     }
-    {
+    {  //row1 start
       row[0] = '\0';
       dtostrf(m_display_pip, 4, 1, str_temp);
       sprintf(buffer, "%s", str_temp);
@@ -1172,7 +1172,7 @@ void displayManager::displayRunTime(float *sensor_data)
         sprintf(row, "%s", buffer);
         lcd.print(row);
       }
-    //3rd row
+    //2rd row
     {
       row[0] = '\0';
       dtostrf(m_display_plat, 4, 1, str_temp);
@@ -1182,7 +1182,7 @@ void displayManager::displayRunTime(float *sensor_data)
       lcd.print("TVe");
       lcd.print(row);
     }
-    {
+    {  //3rd row
       row[0] = '\0';
       dtostrf(m_display_peep, 4, 1, str_temp);
       sprintf(buffer, "%s", str_temp);
@@ -1261,8 +1261,58 @@ void displayManager::displayRunTime(float *sensor_data)
      digitalWrite(BUZZER_PIN, LOW);
   }
 }
-
-
+#define DISPLAY_PROCESSING_TIME_TESTING 1
+void displayManager::displayRunTimeTesting(){
+ #if DISPLAY_PROCESSING_TIME_TESTING
+  Serial.print("displayModule  for Testing:");
+  unsigned long dstarttime = millis();
+#endif
+        lcd.clear();
+        
+        {
+          lcd.setCursor(0, 0);
+           lcd.print("TV  350 RR 19 IE 1:1"); //row0
+        }
+        
+        
+        { //row1
+        lcd.setCursor(0, 1);
+        lcd.print("TVi 350 ");
+        lcd.setCursor(8,1);
+        lcd.print("PIP ");
+        lcd.print("PIP ");
+        digitalWrite(BUZZER_PIN, HIGH);
+        lcd.write(DP_EM_DN_TR);
+        digitalWrite(BUZZER_PIN, LOW);
+        lcd.print(" ");
+        }
+        
+        {
+         lcd.setCursor(0, 2); 
+         lcd.print("TVe 350 Plat 23.7"); //row2
+        }
+         
+        {                        //row3
+          lcd.setCursor(0, 3);
+          lcd.write(DP_FI);
+          lcd.print("O2");
+          lcd.write(DP_UP_TR);
+          lcd.setCursor(8, 3);
+          lcd.print("PEEP");
+           digitalWrite(BUZZER_PIN, HIGH);
+           lcd.write(DP_UP_TR);
+            digitalWrite(BUZZER_PIN, LOW);
+            lcd.print(" 23.7");
+             lcd.setCursor(19,3);
+             lcd.print("R");
+        }
+        
+#if DISPLAY_PROCESSING_TIME_TESTING
+ Serial.print("display module processing time for testing:");
+  Serial.println((millis()-dstarttime));
+#endif    
+  
+}
 void displayManager::displayManagerSetup() {
   // set to edit menu state and trigger state machine
     _dpState = STATUS_MENU_TO_EDIT_MENU;
@@ -1290,7 +1340,8 @@ void displayManager::displayManagerloop(float *sensor_data, sensorManager &sM)
   m_sM = &sM;
   volatile STATE dpStateTemp = _dpState;
   if (STATUS_MENU == _dpState) {
-    displayRunTime(sensor_data);
+    //displayRunTime(sensor_data);
+    displayRunTimeTesting();
     eRTState = encoderScanUnblocked();
   }
   
