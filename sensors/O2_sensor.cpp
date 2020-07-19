@@ -19,6 +19,8 @@
 #define NUM_OF_SAMPLES_O2		5
 #define EEPROM_O2_CALIB_ADDR	0xC
 
+#define DEBUG_O2_SENSOR 0
+
 int const x_samples[NUM_OF_SAMPLES_O2] = {0, 216, 280, 400, 1000};
 int yO2VoltX1000[NUM_OF_SAMPLES_O2] = {377, 1088, 1750, 2110, 4812};
 
@@ -184,7 +186,7 @@ void o2_sensor::capture_and_store()
   }
   m_raw_voltage = vout*1000;
   o2_value = ((vout ) +0.2034897959) /0.05099489796;
-#if DEBUG_PRESSURE_SENSOR
+#if DEBUG_O2_SENSOR
   if ((millis() - m_lasO2UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
   {  
     m_lasO2UpdatedTime = millis();
