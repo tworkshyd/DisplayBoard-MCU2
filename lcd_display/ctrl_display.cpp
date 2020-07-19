@@ -1273,13 +1273,15 @@ void displayManager::displayRunTimeTesting(){
  #if DISPLAY_PROCESSING_TIME_TESTING
   unsigned long dstarttime = millis();
 #endif
-    if (true == _refreshRunTimeDisplay)
+   // if (true == _refreshRunTimeDisplay)
     {
-      unsigned long lcdClearTime = millis();
+      unsigned long lcdClearTime = micros();
       lcd.clear();
-      lcdClearTime = millis()-lcdClearTime;
+      lcdClearTime = micros()-lcdClearTime;
       Serial.print("Time taken by lcd Clear :");
       Serial.println(lcdClearTime);
+
+     
       _refreshRunTimeDisplay = false;
     }
         
@@ -1287,9 +1289,9 @@ void displayManager::displayRunTimeTesting(){
            #if ROW0_PROCESSING_TIME_TESTING          
             unsigned long row1starttime = millis();
            #endif
-          unsigned long lcdSetCursorTime = millis(); 
+          unsigned long lcdSetCursorTime = micros(); 
           lcd.setCursor(0, 0);
-          lcdSetCursorTime = millis()-lcdSetCursorTime;
+          lcdSetCursorTime = micros()-lcdSetCursorTime;
           Serial.print("Time taken by setCursor:");
           Serial.println(lcdSetCursorTime);
 
@@ -1297,7 +1299,7 @@ void displayManager::displayRunTimeTesting(){
           unsigned long lcdPrint20CharsTime = millis();
            lcd.print("TV  350 RR 19 IE 1:1"); //row0
            lcdPrint20CharsTime = millis()-lcdPrint20CharsTime ;
-           Serial.print("Time taken by lcdPrint20CharsTime: ");
+           Serial.print("Time taken by lcd print for 20 chars: ");
            Serial.println(lcdPrint20CharsTime);
                    
          #if ROW0_PROCESSING_TIME_TESTING
@@ -1335,7 +1337,7 @@ void displayManager::displayRunTimeTesting(){
          lcd.setCursor(0, 2); 
          lcd.print("TVe 350 Plat 23.7"); //row2
            #if ROW2_PROCESSING_TIME_TESTING
-         Serial.print(" is :");
+       
          row3starttime = millis()-row3starttime;
          Serial.print("Time Taken by ROW3 is:");
          Serial.println(row3starttime);
@@ -1347,17 +1349,32 @@ void displayManager::displayRunTimeTesting(){
           unsigned long row4starttime = millis();
           #endif              //row3
           lcd.setCursor(0, 3);
-          lcd.write(DP_FI);
+        unsigned long lcdwritefrTime = micros();
+       lcd.write(DP_FI);
+      lcdwritefrTime = micros()-lcdwritefrTime;
+      Serial.print("Time taken by lcd write for 1 character :");
+      Serial.println(lcdwritefrTime);
+         
           lcd.print("O2");
           lcd.write(DP_UP_TR);
           lcd.setCursor(8, 3);
           lcd.print("PEEP");
-           digitalWrite(BUZZER_PIN, HIGH);
+
+      unsigned long lcddigitalwritefrTime = micros();
+       digitalWrite(BUZZER_PIN, HIGH);
+      lcddigitalwritefrTime = micros()-lcddigitalwritefrTime;
+      Serial.print("Time taken by lcd digital write  :");
+      Serial.println(lcddigitalwritefrTime);
+           
            lcd.write(DP_UP_TR);
             digitalWrite(BUZZER_PIN, LOW);
             lcd.print(" 23.7");
              lcd.setCursor(19,3);
-             lcd.print("R");
+      unsigned long lcdprintfrTime = micros();
+      lcd.print("R");
+      lcdprintfrTime = micros()-lcdprintfrTime;
+      Serial.print("Time taken by lcd print for 1 character :");
+      Serial.println(lcdprintfrTime);
          #if ROW3_PROCESSING_TIME_TESTING
          row4starttime = millis()-row4starttime;
          Serial.print(" Time Taken By ROW4 is:");
