@@ -1271,7 +1271,6 @@ void displayManager::displayRunTime(float *sensor_data)
 void displayManager::displayRunTimeTesting(){
  
  #if DISPLAY_PROCESSING_TIME_TESTING
-  Serial.println("displayModule  for Testing:");
   unsigned long dstarttime = millis();
 #endif
     if (true == _refreshRunTimeDisplay)
@@ -1279,14 +1278,13 @@ void displayManager::displayRunTimeTesting(){
       unsigned long lcdClearTime = millis();
       lcd.clear();
       lcdClearTime = millis()-lcdClearTime;
-      Serial.print("Time taken by lcdClear");
+      Serial.print("Time taken by lcd Clear :");
       Serial.println(lcdClearTime);
       _refreshRunTimeDisplay = false;
     }
         
         {
-           #if ROW0_PROCESSING_TIME_TESTING
-            Serial.print("ROW1:");
+           #if ROW0_PROCESSING_TIME_TESTING          
             unsigned long row1starttime = millis();
            #endif
           unsigned long lcdSetCursorTime = millis(); 
@@ -1303,7 +1301,7 @@ void displayManager::displayRunTimeTesting(){
            Serial.println(lcdPrint20CharsTime);
                    
          #if ROW0_PROCESSING_TIME_TESTING
-         Serial.print(" Time Taken By it:");
+         Serial.print("Time taken by ROW1 is:");
          row1starttime =  millis() - row1starttime;
          Serial.println(row1starttime);
           #endif 
@@ -1312,28 +1310,26 @@ void displayManager::displayRunTimeTesting(){
         
         { //row1
         #if ROW1_PROCESSING_TIME_TESTING
-            Serial.print("ROW2:");
             unsigned long row2starttime = millis();
            #endif
         lcd.setCursor(0, 1);
         lcd.print("TVi 350 ");
         lcd.setCursor(8,1);
         lcd.print("PIP ");
-        lcd.print("PIP ");
         digitalWrite(BUZZER_PIN, HIGH);
         lcd.write(DP_EM_DN_TR);
         digitalWrite(BUZZER_PIN, LOW);
         lcd.print(" ");
+        lcd.print("23.7");
         #if ROW1_PROCESSING_TIME_TESTING
-         Serial.print(" Time Taken By it:");
+         Serial.print(" Time taken by ROW2 is:");
          row2starttime =  millis() - row2starttime;
          Serial.println(row2starttime);
           #endif 
         }
         
         {
-           #if ROW2_PROCESSING_TIME_TESTING
-            Serial.print("Time Taken by ROW2:");
+           #if ROW2_PROCESSING_TIME_TESTING   
             unsigned long row3starttime = millis();
            #endif
          lcd.setCursor(0, 2); 
@@ -1341,13 +1337,13 @@ void displayManager::displayRunTimeTesting(){
            #if ROW2_PROCESSING_TIME_TESTING
          Serial.print(" is :");
          row3starttime = millis()-row3starttime;
+         Serial.print("Time Taken by ROW3 is:");
          Serial.println(row3starttime);
           #endif
         }
          
         {   
-          #if ROW3_PROCESSING_TIME_TESTING
-          Serial.print(" Time Taken By ROW3:");
+          #if ROW3_PROCESSING_TIME_TESTING 
           unsigned long row4starttime = millis();
           #endif              //row3
           lcd.setCursor(0, 3);
@@ -1363,8 +1359,8 @@ void displayManager::displayRunTimeTesting(){
              lcd.setCursor(19,3);
              lcd.print("R");
          #if ROW3_PROCESSING_TIME_TESTING
-         Serial.print("is : ");
          row4starttime = millis()-row4starttime;
+         Serial.print(" Time Taken By ROW4 is:");
          Serial.println(row4starttime);
           #endif
         }

@@ -311,6 +311,10 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   flowrate = get_flowrate_spyro(pressure);
 
   present_ts = millis();
+  Serial.print("present_ts  ");
+  Serial.print(present_ts, 6);  
+  Serial.print("present_ts  ");
+  Serial.print(_prev_samplecollection_ts, 6);
   accumlated_time = (present_ts - _prev_samplecollection_ts);
     if(flowrate > FLOWRATE_MIN_THRESHOLD) {
       accflow = (((flowrate *1000)/60000)* (float)accumlated_time);

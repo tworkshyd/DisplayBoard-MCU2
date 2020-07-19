@@ -211,8 +211,12 @@ void loop() {
   int err = 0;
 #if PRINT_PROCESSING_TIME
   unsigned long starttime = millis();
-  Serial.print("loop reentrant time :");
-  Serial.println(starttime -endtime);
+    Serial.print("starttime  ");
+  Serial.print(starttime, 6);  
+  Serial.print("endtime  ");
+  Serial.print(endtime, 6); 
+  Serial.print("loop reentrant time :");  
+  Serial.println(starttime - endtime);
 #endif
   checkAlarms();
   wdt_reset();
