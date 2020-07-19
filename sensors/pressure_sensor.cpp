@@ -55,11 +55,11 @@ String sensorId2String(sensor_e type) {
   case SENSOR_PRESSURE_A1:
     return "SENSOR_PRESSURE_A1";
   case SENSOR_DP_A0:
-    return "SENSOR_DP_A0      ";
+    return "SENSOR_DP_A0  ";
   case SENSOR_DP_A1:
-    return "SENSOR_DP_A1      ";      
+    return "SENSOR_DP_A1  ";      
   case SENSOR_O2:
-    return "SENSOR_O2         "; 
+    return "SENSOR_O2  "; 
   default:
     return "WRONG SENSOR TYPE";
   }        
@@ -79,18 +79,6 @@ int pressure_sensor::init()
   this->m_data.current_data.pressure = 0.0;
   this->m_data.previous_data.pressure = 0.0;
   
-  if(m_dp == 1) 
-  {
-    this->m_data.actual_at_zero = MPX7002DP_ZERO_READING;
-    this->m_data.error_threshold = MPX7002DP_ERROR_THRESHOLD;
-  } 
-  else 
-  {
-    this->m_data.actual_at_zero = MPX5010_ZERO_READING;
-    this->m_data.error_threshold = MPX5010_ERROR_THRESHOLD;
-  }
-  
-  this->m_data.error_at_zero = 0;
   //int needs 2 byes , so index multiplied by 2
   this->m_calibrationinpressure = retrieve_sensor_data_long(EEPROM_CALIBRATION_STORE_ADDR + (m_sensor_id * sizeof(long int)));
   this->m_calibrationinpressure /= SENSOR_DATA_PRECISION;
@@ -198,7 +186,7 @@ float pressure_sensor::get_pressure_MPX5010() {
 
   VENT_DEBUG_FUNC_START();
   
-  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, &vout);
   if(ERROR_I2C_TIMEOUT == err) 
   {
     VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", err);
@@ -242,7 +230,7 @@ int pressure_sensor::sensor_zero_calibration()
   
   for(int index = 0; index < CALIBRATION_COUNT; index++) 
   {
-      err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+      err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, &vout);
 	  if(ERROR_I2C_TIMEOUT == err) 
 	  {
 		VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
@@ -293,7 +281,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   if ( 0 == _prev_samplecollection_ts) {
     _prev_samplecollection_ts = millis();
   } else {
-  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+  err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, &vout);
   if(ERROR_I2C_TIMEOUT == err) 
   {
     VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
@@ -302,27 +290,33 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   } else {
      this->set_error(SUCCESS);
   }
-  
   m_raw_voltage = vout * 1000;
   pressure = get_pressure_MPXV7002DP(vout);
   //add the correction done with calibration
   pressure -= m_calibrationinpressure;
   m_value = pressure;
-  flowrate = get_flowrate_spyro(pressure);
+  flowrate = SPYRO_KSYSTEM * sqrt(abs(pressure));
+  if(pressure > 0)
+    flowrate = -1*flowrate;
 
   present_ts = millis();
+
+#if DEBUG_DP_PRESSURE_SENSOR_SHORTLOG  
+  Serial.print("present_ts:");
+  Serial.print(present_ts);  
+  Serial.print(", _prev_samplecollection_ts:");
+  Serial.print(_prev_samplecollection_ts);  
+#endif
+
   accumlated_time = (present_ts - _prev_samplecollection_ts);
     if(flowrate > FLOWRATE_MIN_THRESHOLD) {
-      accflow = (((flowrate *1000)/60000)* (float)accumlated_time);
+      accflow = (accumlated_time*flowrate*1000)/60000;
     }
     _prev_samplecollection_ts = present_ts;
 
 
-#if DEBUG_PRESSURE_SENSOR
-  //if ((millis() - m_lastmpx7002UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
-    {
-      m_lastmpx7002UpdatedTime = millis();
-      Serial.print("sensorType->");
+#if DEBUG_DP_PRESSURE_SENSOR
+      Serial.print(" sensorType->");
       Serial.print(sensorId2String(m_sensor_id));
       Serial.print("::");
       Serial.print("C");
@@ -344,22 +338,22 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
       Serial.print(" ");
       Serial.print(accflow, 6);
       Serial.print(", acc_time  ");
-      Serial.print(accumlated_time, 6);
+      Serial.print(accumlated_time);
       if(m_dp == 1) {
         Serial.print(", Total AF");
         Serial.print(" ");
         Serial.println(this->m_data.current_data.flowvolume, 6);
       }
-    }
-#endif
-  }
-      if(m_dp == 1) {
+#elif DEBUG_DP_PRESSURE_SENSOR_SHORTLOG
+      Serial.print(" sensorType->");
+      Serial.print(sensorId2String(m_sensor_id));
       Serial.print(", acc_time  ");
-      Serial.print(accumlated_time, 6);        
+      Serial.print(accumlated_time);        
       Serial.print(", Total AF");
       Serial.print(" ");
       Serial.println(this->m_data.current_data.flowvolume, 6);
-      }  
+#endif
+  }
   VENT_DEBUG_FUNC_END();
   return accflow;
 }
@@ -380,15 +374,4 @@ float pressure_sensor::get_pressure_MPXV7002DP(float vout) {
     return tmppressure;
   else 
     return tmppressure;
-}
-
-/*
-* Flowrate = Ksystem * sqrt(pressuredifference)
-* API to return flow rate in liters per minute
-*/
-float pressure_sensor::get_flowrate_spyro(float pressure) {
-  float flowrate = SPYRO_KSYSTEM * sqrt(abs(pressure));
-  if(pressure > 0)
-	return -flowrate;
-  return flowrate;
 }

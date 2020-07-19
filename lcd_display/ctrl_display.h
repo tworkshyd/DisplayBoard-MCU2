@@ -193,11 +193,11 @@ enum eDisplayPrm {
 #define CYLINDER 0
 #define HOSPITAL_LINE 1
 
-#define ACV 0
+#define CMV 0
 #define SIMV 1
 
 const char * o2LineString[2] = {"Cylinder", "HospitalLine"};
-const char * oPModeString[2] = {"  ACV", "  SIMV"};
+const char * oPModeString[2] = {"  CMV", "  SIMV"};
 
 class displayManager {
 public:
@@ -246,7 +246,7 @@ private:
   unsigned short _newPeep = 5;  
   bool _bRefreshEditScreen = false;
   bool _o2LineSelect = CYLINDER;
-  bool _oPModeSelect = ACV;
+  bool _oPModeSelect = CMV;
   sensorManager *m_sM;
   float m_display_tve = 0;
   float m_display_tvi = 0;

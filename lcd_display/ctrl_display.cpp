@@ -88,6 +88,41 @@ byte emUpChar[] = {
   B00000
 };
 
+#if 0
+byte InvertedC[] = {
+  B11000,
+  B10111,
+  B01111,
+  B01111,
+  B01111,
+  B10111,
+  B11000,
+  B11111
+};
+
+byte InvertedS[] = {
+  B11111,
+  B10000,
+  B01111,
+  B01111,
+  B10001,
+  B11110,
+  B11110,
+  B00001
+};
+
+byte InvertedM[] = {
+  B11111,
+  B01110,
+  B00100,
+  B01010,
+  B01110,
+  B01110,
+  B01110,
+  B11111
+};
+#endif
+
 typedef enum 
 {
   DP_FI=0,
@@ -96,7 +131,12 @@ typedef enum
   DP_DW_TR,
   DP_EM_DN_TR,
   DP_UP_INV,
-   DP_EM_UP_TR
+  DP_EM_UP_TR,
+#if 0
+  DP_INV_C,
+  DP_INV_S,
+  DP_INV_M
+#endif  
 }DP_CH_T;
 
 static char str_temp[6];
@@ -503,7 +543,7 @@ void displayManager::drawUpdateOpModeMenu(RT_Events_T eRTState) {
       _oPModeSelect = SIMV;
       break;
     case   RT_DEC:
-      _oPModeSelect = ACV;
+      _oPModeSelect = CMV;
       break;
     case   RT_BT_PRESS:
       bSave = true;
@@ -519,15 +559,15 @@ void displayManager::drawUpdateOpModeMenu(RT_Events_T eRTState) {
   {
     _lastDisplayTime = millis();
     lcd.setCursor(0, 1);
-    if (_oPModeSelect == ACV)
+    if (_oPModeSelect == CMV)
     {
-      lcd.print("    < ACV >     ");
+      lcd.print("    < CMV >     ");
       lcd.setCursor(0, 2);
       lcd.print("      SIMV       ");
     }
     else
     {
-      lcd.print("      ACV        ");
+      lcd.print("      CMV        ");
       lcd.setCursor(0, 2);
       lcd.print("    < SIMV >     ");
     }
@@ -1038,6 +1078,17 @@ void displayManager::displayRunTime(float *sensor_data)
       lcd.setCursor(0, 2);
       lcd.print("TVe");
       lcd.print(row);
+      lcd.setCursor(18,2);
+      // display CMV or SIMV
+      if (CMV == params[E_OP_MODE].value_curr_mem) {
+        lcd.write("CV");
+      }
+      else if (SIMV == params[E_OP_MODE].value_curr_mem) {
+        lcd.write("SV");
+      }
+      else {
+        lcd.write("**");
+      }
     }
     {
       row[0] = '\0';

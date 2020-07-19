@@ -21,6 +21,8 @@
 #include "sensors.h"
 
 #define DEBUG_PRESSURE_SENSOR 0
+#define DEBUG_DP_PRESSURE_SENSOR 0
+#define DEBUG_DP_PRESSURE_SENSOR_SHORTLOG 0
 
 /**************************************************************************/
 /*!
@@ -58,12 +60,6 @@ class pressure_sensor : public sensor {
 		 *   @return returns the spyro volume as float
 		 **/
 		float get_spyro_volume_MPX7002DP(void);
-		/**
-		 *   @brief  Utility function to read volume of air from spyro
-		 *   @param None
-		 *   @return returns the spyro volume as float
-		 **/
-		float get_flowrate_spyro(float pressure);
   public:
 		/**
 		 *   @brief  Constructor for pressure sensors

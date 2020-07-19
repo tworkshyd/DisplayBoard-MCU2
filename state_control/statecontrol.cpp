@@ -226,30 +226,22 @@ void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
         refreshfullscreen_exhale = true;
         exhale_refresh_timeout = millis() + 500;
       }
-      /*When the sensor measured Peek PressureValue is less than peek pressure set in the UI*/
-      if ((sensor_data[SENSOR_PRESSURE_A1] < params[E_PEEP].value_curr_mem) && bSendPeepLowDetected == false) {
-        bSendPeepLowDetected = true;
-        //Serial3.print(commands[EXH_SOLE_OFF]);
+        Serial.println("Deep checking................");
         if (SIMV == params[E_OP_MODE].value_curr_mem) {
-          if (sM.check_for_dip_in_pressure(SENSOR_DP_A0)) {
+          if (sM.check_for_dip_in_pressure(SENSOR_PRESSURE_A1)) {
+            Serial.println("Deep detected................");
             Serial3.print(commands[INIT_BREATH_DET]);
           }
         }
-      } else {
-        if (SIMV == params[E_OP_MODE].value_curr_mem) {
-          if (sM.check_for_dip_in_pressure(SENSOR_DP_A0)) {
-            Serial3.print(commands[INIT_BREATH_DET]);
-          }
-        }
-      }
+      //}
       //geCtrlState = CTRL_DO_NOTHING;
     }
     break;
     case CTRL_INHALE_DETECTION:
     {
       if (bBreathDetectedFlag == false) {
-        Serial.println(sM.check_for_dip_in_pressure(SENSOR_DP_A0));
-        if (sM.check_for_dip_in_pressure(SENSOR_DP_A0)) {
+        Serial.println(sM.check_for_dip_in_pressure(SENSOR_PRESSURE_A1));
+        if (sM.check_for_dip_in_pressure(SENSOR_PRESSURE_A1)) {
           bBreathDetectedFlag = true;
           Serial3.print(commands[INIT_BREATH_DET]);
         }
