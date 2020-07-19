@@ -1275,13 +1275,7 @@ void displayManager::displayRunTimeTesting(){
 #endif
    // if (true == _refreshRunTimeDisplay)
     {
-      unsigned long lcdClearTime = micros();
       lcd.clear();
-      lcdClearTime = micros()-lcdClearTime;
-      Serial.print("Time taken by lcd Clear :");
-      Serial.println(lcdClearTime);
-
-     
       _refreshRunTimeDisplay = false;
     }
         
@@ -1289,18 +1283,8 @@ void displayManager::displayRunTimeTesting(){
            #if ROW0_PROCESSING_TIME_TESTING          
             unsigned long row1starttime = millis();
            #endif
-          unsigned long lcdSetCursorTime = micros(); 
           lcd.setCursor(0, 0);
-          lcdSetCursorTime = micros()-lcdSetCursorTime;
-          Serial.print("Time taken by setCursor:");
-          Serial.println(lcdSetCursorTime);
-
-
-          unsigned long lcdPrint20CharsTime = millis();
            lcd.print("TV  350 RR 19 IE 1:1"); //row0
-           lcdPrint20CharsTime = millis()-lcdPrint20CharsTime ;
-           Serial.print("Time taken by lcd print for 20 chars: ");
-           Serial.println(lcdPrint20CharsTime);
                    
          #if ROW0_PROCESSING_TIME_TESTING
          Serial.print("Time taken by ROW1 is:");
@@ -1349,32 +1333,19 @@ void displayManager::displayRunTimeTesting(){
           unsigned long row4starttime = millis();
           #endif              //row3
           lcd.setCursor(0, 3);
-        unsigned long lcdwritefrTime = micros();
-       lcd.write(DP_FI);
-      lcdwritefrTime = micros()-lcdwritefrTime;
-      Serial.print("Time taken by lcd write for 1 character :");
-      Serial.println(lcdwritefrTime);
-         
+          lcd.write(DP_FI); 
           lcd.print("O2");
           lcd.write(DP_UP_TR);
           lcd.setCursor(8, 3);
           lcd.print("PEEP");
-
-      unsigned long lcddigitalwritefrTime = micros();
        digitalWrite(BUZZER_PIN, HIGH);
-      lcddigitalwritefrTime = micros()-lcddigitalwritefrTime;
-      Serial.print("Time taken by lcd digital write  :");
-      Serial.println(lcddigitalwritefrTime);
+
            
            lcd.write(DP_UP_TR);
             digitalWrite(BUZZER_PIN, LOW);
             lcd.print(" 23.7");
-             lcd.setCursor(19,3);
-      unsigned long lcdprintfrTime = micros();
-      lcd.print("R");
-      lcdprintfrTime = micros()-lcdprintfrTime;
-      Serial.print("Time taken by lcd print for 1 character :");
-      Serial.println(lcdprintfrTime);
+             lcd.setCursor(19,3); 
+            lcd.print("R");
          #if ROW3_PROCESSING_TIME_TESTING
          row4starttime = millis()-row4starttime;
          Serial.print(" Time Taken By ROW4 is:");
