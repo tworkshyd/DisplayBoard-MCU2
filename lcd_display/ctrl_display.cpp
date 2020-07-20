@@ -1273,84 +1273,47 @@ void displayManager::displayRunTimeTesting(){
  #if DISPLAY_PROCESSING_TIME_TESTING
   unsigned long dstarttime = millis();
 #endif
-   // if (true == _refreshRunTimeDisplay)
+    if (true == _refreshRunTimeDisplay)
     {
       lcd.clear();
       _refreshRunTimeDisplay = false;
-    }
-        
+    }     
         {
-           #if ROW0_PROCESSING_TIME_TESTING          
-            unsigned long row1starttime = millis();
-           #endif
           lcd.setCursor(0, 0);
-           lcd.print("TV  350 RR 19 IE 1:1"); //row0
-                   
-         #if ROW0_PROCESSING_TIME_TESTING
-         Serial.print("Time taken by ROW1 is:");
-         row1starttime =  millis() - row1starttime;
-         Serial.println(row1starttime);
-          #endif 
-        }
-        
-        
+           lcd.write("TV  350 RR 19 IE 1:1"); //row0
+        }   
         { //row1
-        #if ROW1_PROCESSING_TIME_TESTING
-            unsigned long row2starttime = millis();
-           #endif
         lcd.setCursor(0, 1);
-        lcd.print("TVi 350 ");
+        lcd.write("TVi 350 ");
         lcd.setCursor(8,1);
-        lcd.print("PIP ");
+        lcd.write("PIP ");
         digitalWrite(BUZZER_PIN, HIGH);
         lcd.write(DP_EM_DN_TR);
         digitalWrite(BUZZER_PIN, LOW);
-        lcd.print(" ");
-        lcd.print("23.7");
-        #if ROW1_PROCESSING_TIME_TESTING
-         Serial.print(" Time taken by ROW2 is:");
-         row2starttime =  millis() - row2starttime;
-         Serial.println(row2starttime);
-          #endif 
+        lcd.write(" ");
+        lcd.write("23.7");
         }
         
         {
-           #if ROW2_PROCESSING_TIME_TESTING   
-            unsigned long row3starttime = millis();
-           #endif
+
          lcd.setCursor(0, 2); 
-         lcd.print("TVe 350 Plat 23.7"); //row2
-           #if ROW2_PROCESSING_TIME_TESTING
-       
-         row3starttime = millis()-row3starttime;
-         Serial.print("Time Taken by ROW3 is:");
-         Serial.println(row3starttime);
-          #endif
+         lcd.write("TVe 350 Plat 23.7"); //row2
         }
          
         {   
-          #if ROW3_PROCESSING_TIME_TESTING 
-          unsigned long row4starttime = millis();
-          #endif              //row3
+          //row3
           lcd.setCursor(0, 3);
           lcd.write(DP_FI); 
-          lcd.print("O2");
+          lcd.write("O2");
           lcd.write(DP_UP_TR);
           lcd.setCursor(8, 3);
-          lcd.print("PEEP");
-       digitalWrite(BUZZER_PIN, HIGH);
-
-           
+          lcd.write("PEEP");
+       digitalWrite(BUZZER_PIN, HIGH);  
            lcd.write(DP_UP_TR);
             digitalWrite(BUZZER_PIN, LOW);
-            lcd.print(" 23.7");
+            lcd.write(" 23.7");
              lcd.setCursor(19,3); 
-            lcd.print("R");
-         #if ROW3_PROCESSING_TIME_TESTING
-         row4starttime = millis()-row4starttime;
-         Serial.print(" Time Taken By ROW4 is:");
-         Serial.println(row4starttime);
-          #endif
+            lcd.write("R");
         }
         
 #if DISPLAY_PROCESSING_TIME_TESTING
