@@ -339,7 +339,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
       Serial.print(" ");
       Serial.print(accflow, 6);
       Serial.print(", acc_time  ");
-      Serial.print(accumlated_time, 6);
+      Serial.print(accumlated_time);
       if(m_dp == 1) {
         Serial.print(", Total AF");
         Serial.print(" ");
