@@ -176,7 +176,7 @@ void o2_sensor::capture_and_store()
   
   VENT_DEBUG_FUNC_START();
 
- err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, m_data.actual_at_zero, m_data.error_at_zero, &vout);
+ err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, &vout);
   if(ERROR_I2C_TIMEOUT == err) {
     VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
     this->set_error(ERROR_SENSOR_READ);

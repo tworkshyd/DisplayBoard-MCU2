@@ -21,6 +21,8 @@
 #include "sensors.h"
 
 #define DEBUG_PRESSURE_SENSOR 0
+#define DEBUG_DP_PRESSURE_SENSOR 0
+#define DEBUG_DP_PRESSURE_SENSOR_SHORTLOG 1
 
 /**************************************************************************/
 /*!

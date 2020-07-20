@@ -48,17 +48,13 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vou
 	@param ads ads board used for reading samples
 	
 	@param channel channel in ads board for reading samples
-	
-	@param base actual value expected from sensor @ zero activity
-	
-	@param error (base - actual) returned from sensor @ zero activity
 
 	@param vout vout read from the sensors as digital value
 
     @return returns 0 for success and error code for other errors
 */
 /**************************************************************************/
-int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int error, float *vout);
+int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, float *vout);
 /**************************************************************************/
 /*!
 

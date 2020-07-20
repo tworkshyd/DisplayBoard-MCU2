@@ -201,7 +201,7 @@ int freeMemory() {
 
 float data_sensors[MAX_SENSORS] = {0};
 
-
+static unsigned long endtime = 0;
 #define PRINT_PROCESSING_TIME 1
 /* Project Main loop */
 void loop() {
@@ -210,6 +210,8 @@ void loop() {
   int err = 0;
 #if PRINT_PROCESSING_TIME
   unsigned long starttime = millis();
+  Serial.print("L:strt_ts ");
+  Serial.println(starttime);
 #endif
   checkAlarms();
   wdt_reset();
@@ -243,7 +245,8 @@ void loop() {
   }
 #if PRINT_PROCESSING_TIME
   Serial.print("display module processing time:");
-  Serial.println((millis()-dstarttime));
+  unsigned long ctrlsm_starttime = millis();  
+  Serial.println((ctrlsm_starttime-dstarttime));
 #endif
   if (gCntrlSerialEventRecvd == true) {
     gCntrlSerialEventRecvd = false;
@@ -251,7 +254,10 @@ void loop() {
   }
   
   Ctrl_StateMachine_Manager(&data_sensors[0], sM, dM);
-  
+#if PRINT_PROCESSING_TIME
+  Serial.print("Ctrl_StateMachine_Manager processing time:");
+  Serial.println(millis()- ctrlsm_starttime);
+#endif  
   if (digitalRead(RESET_SWITCH) == LOW) 
   {
     //reset switch.
@@ -279,7 +285,10 @@ void loop() {
   VENT_DEBUG_ERROR("End of main process loop ", 0);
 #if PRINT_PROCESSING_TIME  
   Serial.print("Main loop processing time:");
-  Serial.println((millis()-starttime));
+  endtime = millis();
+  Serial.println((endtime - starttime));
+  Serial.print("L:stp_ts ");
+  Serial.println(endtime);
 #endif  
   VENT_DEBUG_FUNC_END();
 }
