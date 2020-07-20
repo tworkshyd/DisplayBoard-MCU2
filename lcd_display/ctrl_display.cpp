@@ -1273,16 +1273,27 @@ void displayManager::displayRunTimeTesting(){
  #if DISPLAY_PROCESSING_TIME_TESTING
   unsigned long dstarttime = millis();
 #endif
-    if (true == _refreshRunTimeDisplay)
+   // if (true == _refreshRunTimeDisplay)
     {
       lcd.clear();
       _refreshRunTimeDisplay = false;
     }     
         {
+          #if ROW0_PROCESSING_TIME_TESTING 
+          unsigned long row1starttime = millis();
+          #endif
           lcd.setCursor(0, 0);
            lcd.write("TV  350 RR 19 IE 1:1"); //row0
+           #if ROW0_PROCESSING_TIME_TESTING
+           Serial.print("Time taken by ROW1 is:");
+           row1starttime = millis() - row1starttime;
+           Serial.println(row1starttime);
+          #endif 
         }   
         { //row1
+        #if ROW1_PROCESSING_TIME_TESTING
+        unsigned long row2starttime = millis();
+        #endif
         lcd.setCursor(0, 1);
         lcd.write("TVi 350 ");
         lcd.setCursor(8,1);
@@ -1292,6 +1303,11 @@ void displayManager::displayRunTimeTesting(){
         digitalWrite(BUZZER_PIN, LOW);
         lcd.write(" ");
         lcd.write("23.7");
+        #if ROW1_PROCESSING_TIME_TESTING
+        Serial.print(" Time taken by ROW2 is:");
+        row2starttime = millis() - row2starttime;
+        Serial.println(row2starttime);
+        #endif 
         }
         
         {
