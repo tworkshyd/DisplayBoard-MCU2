@@ -1302,7 +1302,7 @@ void displayManager::displayRunTimeTesting(){
         lcd.write(DP_EM_DN_TR);
         digitalWrite(BUZZER_PIN, LOW);
         lcd.write(" ");
-        lcd.write("23.7");
+        lcd.write("23.7  ");
         #if ROW1_PROCESSING_TIME_TESTING
         Serial.print(" Time taken by ROW2 is:");
         row2starttime = micros() - row2starttime;
@@ -1311,13 +1311,23 @@ void displayManager::displayRunTimeTesting(){
         }
         
         {
-
+        #if ROW2_PROCESSING_TIME_TESTING 
+        unsigned long row3starttime = micros();
+         #endif   //row2
          lcd.setCursor(0, 2); 
-         lcd.write("TVe 350 Plat 23.7"); //row2
+         lcd.write("TVe 350");
+         lcd.write(" Plat 23.7"); 
+         #if ROW2_PROCESSING_TIME_TESTING
+         row3starttime = micros()-row3starttime;
+        Serial.print("Time Taken by ROW3 is:");
+        Serial.println(row3starttime);
+        #endif
         }
          
         {   
-          //row3
+          #if ROW3_PROCESSING_TIME_TESTING 
+unsigned long row4starttime = micros();
+#endif //row3
           lcd.setCursor(0, 3);
           lcd.write(DP_FI); 
           lcd.write("O2");
@@ -1330,6 +1340,11 @@ void displayManager::displayRunTimeTesting(){
             lcd.write(" 23.7");
              lcd.setCursor(19,3); 
             lcd.write("R");
+            #if ROW3_PROCESSING_TIME_TESTING
+row4starttime = micros()-row4starttime;
+Serial.print(" Time Taken By ROW4 is:");
+Serial.println(row4starttime);
+#endif
         }
         
 #if DISPLAY_PROCESSING_TIME_TESTING
