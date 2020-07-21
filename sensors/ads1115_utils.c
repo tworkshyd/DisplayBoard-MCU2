@@ -82,15 +82,13 @@ int ADS1115_ReadAvgSamplesOverI2C(Adafruit_ADS1115 *ads, int channel, float *vou
   return 0;
 }
 
-int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, int base, int correction, float *value) {
+int ADS1115_ReadVoltageOverI2C(Adafruit_ADS1115 *ads, int channel, float *value) {
   float PressSensorVolts = 0.0;
   int err = ADS1115_ReadAvgSamplesOverI2C(ads, channel, &PressSensorVolts);
-  (void)base;
   if (err) {
 	  *value = 0;
 	  return err;
   }
-  PressSensorVolts -= correction;
   *value = (PressSensorVolts * ADS115_MULTIPLIER);
   return 0;
 }
