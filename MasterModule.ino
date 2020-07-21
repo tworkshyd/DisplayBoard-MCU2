@@ -201,16 +201,23 @@ int freeMemory() {
 
 float data_sensors[MAX_SENSORS] = {0};
 
-
-
+static unsigned long endtime = 0;
+#define PRINT_PROCESSING_TIME 1
 /* Project Main loop */
 void loop() {
   
   int index = 0;
   int err = 0;
+#if PRINT_PROCESSING_TIME
+  unsigned long starttime = millis();
+  Serial.print("L:strt_ts ");
+  Serial.println(starttime);
+#endif
   checkAlarms();
   wdt_reset();
   VENT_DEBUG_FUNC_START();
+
+  sM.capture_sensor_data();
 
   for (; index < MAX_SENSORS; index++) 
   {
@@ -221,8 +228,12 @@ void loop() {
       VENT_DEBUG_ERROR("Error Code", err);
     }
   }
-
-  VENT_DEBUG_ERROR("Error State: ", gErrorState);
+#if PRINT_PROCESSING_TIME
+  Serial.print("sensor module processing time:");
+  Serial.println((millis()-starttime));
+  unsigned long dstarttime = millis();
+#endif
+  //VENT_DEBUG_ERROR("Error State: ", gErrorState);
   if (NO_ERR == gErrorState) 
   {
     dM.displayManagerloop(&data_sensors[0], sM);
@@ -232,14 +243,21 @@ void loop() {
     dM.errorDisplay(gErrorState);
     gErrorState = NO_ERR;
   }
-
+#if PRINT_PROCESSING_TIME
+  Serial.print("display module processing time:");
+  unsigned long ctrlsm_starttime = millis();  
+  Serial.println((ctrlsm_starttime-dstarttime));
+#endif
   if (gCntrlSerialEventRecvd == true) {
     gCntrlSerialEventRecvd = false;
     Ctrl_ProcessRxData();
   }
   
   Ctrl_StateMachine_Manager(&data_sensors[0], sM, dM);
-  
+#if PRINT_PROCESSING_TIME
+  Serial.print("Ctrl_StateMachine_Manager processing time:");
+  Serial.println(millis()- ctrlsm_starttime);
+#endif  
   if (digitalRead(RESET_SWITCH) == LOW) 
   {
     //reset switch.
@@ -265,7 +283,13 @@ void loop() {
   
   wdt_reset();  //Reset watchdog timer in case there is no failure in the loop
   VENT_DEBUG_ERROR("End of main process loop ", 0);
-  //Serial.print("End of the main process loop ");
+#if PRINT_PROCESSING_TIME  
+  Serial.print("Main loop processing time:");
+  endtime = millis();
+  Serial.println((endtime - starttime));
+  Serial.print("L:stp_ts ");
+  Serial.println(endtime);
+#endif  
   VENT_DEBUG_FUNC_END();
 }
 

@@ -21,36 +21,36 @@
 
 #define MAX_PS2_SAMPLES 		10
 #define THRESHOLD_COMPARE_INDEX 	2
-#define DIP_THRESHOLD 			15 //better to be lower than PEEP
+#define DIP_THRESHOLD 			1 //better to be lower than PEEP
 
 sensorManager sM;
 
 /*
  * Function to read last few samples collected/measured
  */
-int sensor::read_sensor_samples(float *samples, int sample_count)
+bool sensor::check_for_dip()
 {
-	int index = 0, sample_index = 0;
-	
-	VENT_DEBUG_FUNC_START();
-	
-	if(samples == NULL || sample_count > MAX_SENSOR_SAMPLES)
-	{
-		VENT_DEBUG_ERROR ("ERROR: Sample is null or sample_count > MAX_SENSOR_SAMPLES", 0);
-		VENT_DEBUG_FUNC_END();
-		return ERROR_BAD_PARAM;
-	}
-	for(index = 0, sample_index = m_sample_index; index < MAX_SENSOR_SAMPLES && index < sample_count; index++, sample_index++) 
-	{
-		if(sample_index >= MAX_SENSOR_SAMPLES) 
-		{
-			sample_index = 0;
-		}
-		samples[index] = this->samples[sample_index];
-	}
-	
-    VENT_DEBUG_FUNC_END();	
-	return index;
+  int index = 0, sample_index = 0;
+  VENT_DEBUG_FUNC_START();
+  float prev_sample = 0;
+
+  for(index = 0, sample_index = m_sample_index; index < MAX_SENSOR_SAMPLES; index++, sample_index++) 
+  {
+    if(sample_index >= MAX_SENSOR_SAMPLES) 
+    {
+      sample_index = 0;
+    }
+    float diff = this->samples[sample_index] - prev_sample;
+    // don't compare the first value as prev_sample is reset
+    if ((diff < 0) && (index != 0)) {
+      if(abs(diff) > DIP_THRESHOLD) {
+        return 1;
+      }
+    }
+    prev_sample = this->samples[sample_index];
+  }
+  VENT_DEBUG_FUNC_END();
+  return 0;
 }
 
 /*
@@ -102,28 +102,7 @@ int sensorManager::init()
   return err;
 }
 
-void sensorManager::startTimer() {
-  int en_sensors;
-  
-  VENT_DEBUG_FUNC_START();
-  
-  en_sensors = no_of_sensorsenabled(_enabled_sensors);
-  if (en_sensors) 
-  {
-    unsigned long temp = _timervalueMs;
-    _timervalueMs = ADC_CONVERSIONTIME_PERSENSOR * en_sensors + MINREQUIRED_DISPLAYREFRESH_TIME;
-    if (temp != _timervalueMs) 
-	{
-      MsTimer2::stop();
-      MsTimer2::set(_timervalueMs, capture_sensor_data);
-      MsTimer2::start();
-      _dpS1.data_aquisitiontime(_timervalueMs);
-      _dpS2.data_aquisitiontime(_timervalueMs);
-	  VENT_DEBUG_INFO ("Started timer with", _timervalueMs);
-    }
-  }
-  VENT_DEBUG_FUNC_END();
-}
+
 /*
  * Function to enable specific sensors
  * Takes a parameter of different sensor combinations
@@ -148,7 +127,7 @@ void sensorManager::enable_sensor(unsigned int flag)
     _o2S.reset_sensor_data();
   }
   _enabled_sensors = flag;
-  startTimer();
+//  startTimer();
   
   VENT_DEBUG_FUNC_END();
 }
@@ -210,30 +189,17 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
  */
 int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
 {
-	float sensor_data[MAX_SENSOR_SAMPLES] = {99.99};
-	int count = 0;
-
-    VENT_DEBUG_FUNC_START();
-
-	if(sensor == SENSOR_PRESSURE_A0) {
-		count = _pS1.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
-	} else if(sensor == SENSOR_PRESSURE_A1) {
-		count = _pS2.read_sensor_samples(&sensor_data[0], MAX_SENSOR_SAMPLES);
-	} else {
-		return ERROR_SENSOR_UNSUPPORTED;
-	}
-	for(int index = 1; index < count; index++) {
-		float diff = (sensor_data[index] - sensor_data[index - 1]);
-		if(diff < 0) {
-			if(abs(diff) > DIP_THRESHOLD) {
-				return 1;
-			}
-		}
-	}
-	
+  VENT_DEBUG_FUNC_START();
+  if(sensor == SENSOR_PRESSURE_A0) {
     VENT_DEBUG_FUNC_END();
-  
-	return 0;
+    return _pS1.check_for_dip();
+  } else if(sensor == SENSOR_PRESSURE_A1) {
+    VENT_DEBUG_FUNC_END();
+    return _pS2.check_for_dip();
+  } else {
+    VENT_DEBUG_FUNC_END();
+    return ERROR_SENSOR_UNSUPPORTED;
+  }
 }
 
 /*
@@ -242,9 +208,9 @@ int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
  */
 void sensorManager::capture_sensor_data(void)
 {
-  interrupts(); // Called to enable other interrupts.
-   VENT_DEBUG_FUNC_START();
-  long int starttime = millis();
+ // interrupts(); // Called to enable other interrupts.
+  VENT_DEBUG_FUNC_START();
+  unsigned long starttime = millis();
   
   VENT_DEBUG_FUNC_START();
   
@@ -264,7 +230,7 @@ void sensorManager::capture_sensor_data(void)
     sM._o2S.capture_and_store();
   }
 
-VENT_DEBUG_INFO ("Time Taken for Sensors Capture", (millis()-starttime));
+VENT_DEBUG_ERROR("Time Taken for Sensors Capture :", (millis()-starttime));
   VENT_DEBUG_FUNC_END();
 }
 
