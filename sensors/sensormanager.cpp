@@ -58,16 +58,15 @@ bool sensor::check_for_dip()
  */
 int ads1115_init() 
 {
-	VENT_DEBUG_FUNC_START();
-	ads.begin();
-	ads.setGain(GAIN_ONE);
-	ads1.begin();
-	ads1.setGain(GAIN_ONE);
-	
-    VENT_DEBUG_INFO ("ADC Init Done", 0);
-	
-    VENT_DEBUG_FUNC_END();	
-	return 0;
+  VENT_DEBUG_FUNC_START();
+  ads.begin();
+  ads.setGain(GAIN_ONE);
+  ads1.begin();
+  ads1.setGain(GAIN_ONE);
+
+  VENT_DEBUG_INFO ("ADC Init Done", 0);
+  VENT_DEBUG_FUNC_END();	
+  return 0;
 }
 
 
@@ -138,6 +137,66 @@ unsigned int sensorManager::get_enable_sensors() {
 
 
 /*
+ * Checks the previous pressure readings and find
+ * if there are any dip in pressure
+ * returns -1 for invlaid sensors, 0 for no dip
+ * 1 for a dip in pressure
+ */
+int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
+{
+  VENT_DEBUG_FUNC_START();
+  if(sensor == SENSOR_PRESSURE_A0) {
+    VENT_DEBUG_FUNC_END();
+    return _pS1.check_for_dip();
+  } else if(sensor == SENSOR_PRESSURE_A1) {
+    VENT_DEBUG_FUNC_END();
+    return _pS2.check_for_dip();
+  } else {
+    VENT_DEBUG_FUNC_END();
+    return ERROR_SENSOR_UNSUPPORTED;
+  }
+}
+
+#ifndef TIMER_BASED_READING
+float sensorManager::capture_and_read_data(sensor_e s)
+  {
+    VENT_DEBUG_FUNC_START();
+    float data = 0.0;
+    switch(s) {
+      case SENSOR_PRESSURE_A0:
+        if(sM._enabled_sensors & PRESSURE_A0)
+         data =  sM._pS1.capture_and_read();
+        break;
+      case SENSOR_PRESSURE_A1:
+        if(sM._enabled_sensors & PRESSURE_A1)
+          data =  sM._pS2.capture_and_read();
+        break;
+      case SENSOR_DP_A0:
+        if(sM._enabled_sensors & DP_A0)
+          data =  sM._dpS1.capture_and_read();
+        break;
+      case SENSOR_DP_A1:
+        if(sM._enabled_sensors & DP_A1)
+          data =  sM._dpS1.capture_and_read();
+        break;
+      case SENSOR_O2:
+        if(sM._enabled_sensors & O2)
+          data =  sM._o2S.capture_and_read();
+        break;
+      default:
+        VENT_DEBUG_ERROR(" ERROR: Invalid Read Request for Sensor", s);
+        VENT_DEBUG_FUNC_END();
+        break;
+    }
+
+    VENT_DEBUG_FUNC_END();
+    // if any error occurs reset to 0 and return
+    if (data < 0) data = 0.0;
+    return data;
+  }
+
+#else
+/*
  * Wrapper API to get specific sensor readings
  */
 int sensorManager::read_sensor_data(sensor_e s, float *data) {
@@ -182,27 +241,6 @@ int sensorManager::read_sensor_data(sensor_e s, float *data) {
 }
 
 /*
- * Checks the previous pressure readings and find
- * if there are any dip in pressure
- * returns -1 for invlaid sensors, 0 for no dip
- * 1 for a dip in pressure
- */
-int sensorManager::check_for_dip_in_pressure(sensor_e sensor)
-{
-  VENT_DEBUG_FUNC_START();
-  if(sensor == SENSOR_PRESSURE_A0) {
-    VENT_DEBUG_FUNC_END();
-    return _pS1.check_for_dip();
-  } else if(sensor == SENSOR_PRESSURE_A1) {
-    VENT_DEBUG_FUNC_END();
-    return _pS2.check_for_dip();
-  } else {
-    VENT_DEBUG_FUNC_END();
-    return ERROR_SENSOR_UNSUPPORTED;
-  }
-}
-
-/*
  * Function to aggregate or read sensor data
  * in an timer interrupt
  */
@@ -230,9 +268,11 @@ void sensorManager::capture_sensor_data(void)
     sM._o2S.capture_and_store();
   }
 
-VENT_DEBUG_ERROR("Time Taken for Sensors Capture :", (millis()-starttime));
+  VENT_DEBUG_ERROR("Time Taken for Sensors Capture :", (millis()-starttime));
   VENT_DEBUG_FUNC_END();
 }
+
+#endif
 
 int sensorManager::start_calibration(void) 
 {

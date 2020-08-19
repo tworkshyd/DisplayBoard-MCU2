@@ -19,8 +19,6 @@
 #define NUM_OF_SAMPLES_O2		5
 #define EEPROM_O2_CALIB_ADDR	0xC
 
-#define DEBUG_O2_SENSOR 0
-
 int const x_samples[NUM_OF_SAMPLES_O2] = {0, 216, 280, 400, 1000};
 int yO2VoltX1000[NUM_OF_SAMPLES_O2] = {377, 1088, 1750, 2110, 4812};
 
@@ -144,17 +142,6 @@ int o2_sensor::sensor_zero_calibration()
   return result;
 }
 
-/*
- * Function to read stored sensor data from the
- * local data structres
- */
-float o2_sensor::read_sensor_data() {
-
-  this->m_data.previous_data.O2 = this->m_data.current_data.O2;
-  VENT_DEBUG_INFO("Sensor Data: ", this->m_data.previous_data.O2);
-
-  return this->m_data.previous_data.O2;
-}
 
 /*
  * Function to reset the local data structures
@@ -163,6 +150,53 @@ void o2_sensor::reset_sensor_data()
 {
 	this->m_data.current_data.O2 = this->m_data.previous_data.O2 = 0;
 }
+
+#ifndef TIMER_BASED_READING
+float o2_sensor::capture_and_read(void) 
+{
+  float o2_value = 0.0;
+  float vout = 0.0;
+  int err = 0;
+  
+  VENT_DEBUG_FUNC_START();
+
+ err = ADS1115_ReadVoltageOverI2C(m_ads, m_adc_channel, &vout);
+  if(ERROR_I2C_TIMEOUT == err) {
+    VENT_DEBUG_ERROR("Sensor read I2C timeout failure:", m_sensor_id);
+    return ERROR_SENSOR_READ;
+  } else {
+     this->set_error(SUCCESS);
+  }
+  m_raw_voltage = vout*1000;
+  o2_value = ((vout ) +0.2034897959) /0.05099489796;
+#if DEBUG_PRESSURE_SENSOR
+  if ((millis() - m_lasO2UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
+  {  
+    m_lasO2UpdatedTime = millis();
+    Serial.print("sensorType->");
+    Serial.print(sensorId2String(m_sensor_id));
+    Serial.print("::"); 
+    Serial.print("C");
+    Serial.print(" ");
+    Serial.print(m_adc_channel);
+    Serial.print(", V");
+    Serial.print(" ");
+    Serial.print(vout, 4);
+    Serial.print(" ");
+    Serial.print(", O2");
+    Serial.print(" ");
+    Serial.print((o2_value), 4);
+    Serial.print(", raw");
+    Serial.print(" ");
+    Serial.println((m_raw_voltage ), 4);
+  }
+#endif
+  this->m_data.current_data.O2 = o2_value ;
+  VENT_DEBUG_FUNC_END();
+  return this->m_data.current_data.O2;
+}
+
+#else
 
 /*
  * Function to be called from timer interrupt to read
@@ -186,7 +220,7 @@ void o2_sensor::capture_and_store()
   }
   m_raw_voltage = vout*1000;
   o2_value = ((vout ) +0.2034897959) /0.05099489796;
-#if DEBUG_O2_SENSOR
+#if DEBUG_PRESSURE_SENSOR
   if ((millis() - m_lasO2UpdatedTime) > SENSOR_DISPLAY_REFRESH_TIME)
   {  
     m_lasO2UpdatedTime = millis();
@@ -211,3 +245,17 @@ void o2_sensor::capture_and_store()
   this->m_data.current_data.O2 = o2_value ;
   VENT_DEBUG_FUNC_END();
 }
+
+/*
+ * Function to read stored sensor data from the
+ * local data structres
+ */
+float o2_sensor::read_sensor_data() {
+
+  this->m_data.previous_data.O2 = this->m_data.current_data.O2;
+  VENT_DEBUG_INFO("Sensor Data: ", this->m_data.previous_data.O2);
+
+  return this->m_data.previous_data.O2;
+}
+
+#endif

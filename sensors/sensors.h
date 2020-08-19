@@ -26,13 +26,13 @@
  */
 #define SUCCESS						0
 #define ERROR_OFFSET				(-1)
-#define ERROR_UNKNOWN				(ERROR_OFFSET+1)
-#define ERROR_I2C_TIMEOUT   		(ERROR_OFFSET+2)
-#define ERROR_TIMER_INIT    		(ERROR_OFFSET+3)
-#define ERROR_SENSOR_READ			(ERROR_OFFSET+4)
-#define ERROR_BAD_PARAM				(ERROR_OFFSET+5)
-#define ERROR_SENSOR_UNSUPPORTED	(ERROR_OFFSET+6)
-#define ERROR_SENSOR_CALIBRATION	(ERROR_OFFSET+7)
+#define ERROR_UNKNOWN				(ERROR_OFFSET-1)
+#define ERROR_I2C_TIMEOUT   		(ERROR_OFFSET-2)
+#define ERROR_TIMER_INIT    		(ERROR_OFFSET-3)
+#define ERROR_SENSOR_READ			(ERROR_OFFSET-4)
+#define ERROR_BAD_PARAM				(ERROR_OFFSET-5)
+#define ERROR_SENSOR_UNSUPPORTED	(ERROR_OFFSET-6)
+#define ERROR_SENSOR_CALIBRATION	(ERROR_OFFSET-7)
 
 
 #define SENSOR_DATA_PRECISION	100000
@@ -129,28 +129,39 @@ public:
 	 *   @return 0 on success and -1 on error
 	 **/
 	virtual int init(void) = 0;
-        /**
+
+#ifndef TIMER_BASED_READING
+/**
+ *   @brief  reads the value from ADC and coverts to pressure/acc_flow value
+ *   @param  None
+ *   @return returns sensor value
+ **/
+    float capture_and_read(void);
+#else
+      /**
 	 *   @brief  Function to read sensor data
 	 *			 Pure virtual function, child class should implement this
 	 *   @param  none
 	 *   @return Returns the readings from sensor as float
 	 **/
 	virtual float read_sensor_data(void) = 0;
-        /**
-	 *   @brief  Function to reset sensor data
-	 *           Pure virtual function, child class should implement this
-	 *   @param  none
-	 *   @return None
-
-	 **/
-	virtual void reset_sensor_data(void) = 0;
-        /**
+	 /**
 	 *   @brief  Function to update sensor data (called in timer interrupt)
 	 *           Pure virtual function, child class should implement this
 	 *   @param  none
 	 *   @return None
 	 **/
 	virtual void capture_and_store(void) = 0;
+#endif
+
+  /**
+  *   @brief  Function to reset sensor data
+  *           Pure virtual function, child class should implement this
+  *   @param  none
+  *   @return None
+  **/
+	virtual void reset_sensor_data(void) = 0;
+
 
   int read_rawvoltage() {
     return m_raw_voltage;
