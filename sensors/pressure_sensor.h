@@ -22,7 +22,7 @@
 
 #define DEBUG_PRESSURE_SENSOR 0
 #define DEBUG_DP_PRESSURE_SENSOR 0
-#define DEBUG_DP_PRESSURE_SENSOR_SHORTLOG 1
+#define DEBUG_DP_PRESSURE_SENSOR_SHORTLOG 0
 
 /**************************************************************************/
 /*!
@@ -60,12 +60,6 @@ class pressure_sensor : public sensor {
 		 *   @return returns the spyro volume as float
 		 **/
 		float get_spyro_volume_MPX7002DP(void);
-		/**
-		 *   @brief  Utility function to read volume of air from spyro
-		 *   @param None
-		 *   @return returns the spyro volume as float
-		 **/
-		float get_flowrate_spyro(float pressure);
   public:
 		/**
 		 *   @brief  Constructor for pressure sensors
@@ -83,30 +77,43 @@ class pressure_sensor : public sensor {
 		 *   @return 0 on success and -1 on error
 		 **/
 		int init(void);
-        /**
-		 *   @brief  Function to read sensor data
-		 *   @param None
-		 *   @return Returns the readings from sensor as float
-		 **/
-		float read_sensor_data(void);
-        /**
-		 *   @brief  Function to reset sensor data
-		 *   @param None
-		 *   @return None
-		 **/
+
+    /**
+    *   @brief  Function to reset sensor data
+    *   @param None
+    *   @return None
+    **/
 		void reset_sensor_data(void);
         /**
 		 *   @brief  Function to read and update sensor data in local data structures (called in timer interrupt)
 		 *   @param None
 		 *   @return None
 		 **/
+
+#ifndef TIMER_BASED_READING
+    float capture_and_read(void);
+#else
+    /**
+    *   @brief  reads the value from ADC and coverts to pressure/acc_flow value
+    *   @param  None
+    *   @return returns sensor value
+    **/
 		void capture_and_store(void);
+   /**
+*   @brief  Function to read sensor data
+*   @param None
+*   @return Returns the readings from sensor as float
+**/
+float read_sensor_data(void);
+
+#endif
 /**
  *   @brief  Calibrate the pressure sensor
  *   @param  None
  *   @return returns 0 on success and -1 on failure as integer
  **/
     int sensor_zero_calibration(void);
+
 
 };
 

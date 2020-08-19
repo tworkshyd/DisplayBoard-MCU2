@@ -217,8 +217,13 @@ void loop() {
   wdt_reset();
   VENT_DEBUG_FUNC_START();
 
-  sM.capture_sensor_data();
-
+#ifndef TIMER_BASED_READING
+  for (; index < MAX_SENSORS; index++) 
+  {
+    data_sensors[index] = 0.0;
+    data_sensors[index] = sM.capture_and_read_data(index);
+  }
+#else
   for (; index < MAX_SENSORS; index++) 
   {
     err = sM.read_sensor_data(index, (float *) &(data_sensors[index]));
@@ -228,6 +233,7 @@ void loop() {
       VENT_DEBUG_ERROR("Error Code", err);
     }
   }
+#endif
 #if PRINT_PROCESSING_TIME
   Serial.print("sensor module processing time:");
   Serial.println((millis()-starttime));
@@ -305,14 +311,19 @@ void displayChannelData(sensor_e sensor)
   VENT_DEBUG_FUNC_START();
   
   checkAlarms();
-  
+
+#ifndef TIMER_BASED_READING
+for (; index < MAX_SENSORS; index++) {
+  sensor_data[index] = sM.capture_and_read_data((sensor_e)index);
+}
+#else
   for (; index < MAX_SENSORS; index++) {
     err = sM.read_sensor_data((sensor_e)index, &(sensor_data[index]));
     if (err) {
        VENT_DEBUG_ERROR("Reading of Sensor Data Failed for Sensor", index);
     }
   }
-
+#endif
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Input for:");

@@ -55,36 +55,36 @@ unsigned long int breathCount = 0;
 
 int Ctrl_send_packet(int cmdIndex) 
 {
-	Serial3.print(commands[cmdIndex]);
-	return 0;
+  Serial3.print(commands[cmdIndex]);
+  return 0;
 }
 
 int Ctrl_send_packet(String name, int value) 
 {
   VENT_DEBUG_FUNC_START();
-  
-	String param = "";
-	String command = "";
-	if (name == tidl_volu.parm_name) {
-	   param = PARAM1;
-	} else if (name == inex_rati.parm_name) {
+
+  String param = "";
+  String command = "";
+  if (name == tidl_volu.parm_name) {
+     param = PARAM1;
+  } else if (name == inex_rati.parm_name) {
        param = PARAM5;
     } else if (name == resp_rate.parm_name) {
-	   param = PARAM2;
-	} else {
-	   VENT_DEBUG_ERROR("ERROR: Trying to send invalid packet", -1);
-	   return -1;
-	}
+     param = PARAM2;
+  } else {
+     VENT_DEBUG_ERROR("ERROR: Trying to send invalid packet", -1);
+     return -1;
+  }
     command = Ctrl_CreateCommand(param, value);
     Serial3.print(command);
-	VENT_DEBUG_INFO ("Command", command);
-	
+  VENT_DEBUG_INFO ("Command", command);
+
     VENT_DEBUG_FUNC_END();
-	return 0;
+  return 0;
 }
 
 void Ctrl_store_received_packet(String data) {
-	serial2_rxdata = data;
+  serial2_rxdata = data;
 }
 float plat = 0;
 void Ctrl_ProcessRxData(void) {
@@ -102,15 +102,15 @@ void Ctrl_ProcessRxData(void) {
 
   if (p1 == VENTSLAVE) {
     if (p2 == SYNCH) {
-	  state = payload.toInt();
-	  if ((ControlStatesDef_T(state)) >= CTRL_UNKNOWN_STATE)
-	  {
-		  VENT_DEBUG_ERROR("Payload with Incorrect State", state);
-	  }
-	  else
-	  {
-		  geCtrlState = ControlStatesDef_T(state);
-	  }
+      state = payload.toInt();
+      if ((ControlStatesDef_T(state)) >= CTRL_UNKNOWN_STATE)
+      {
+        VENT_DEBUG_ERROR("Payload with Incorrect State", state);
+      }
+      else
+      {
+        geCtrlState = ControlStatesDef_T(state);
+      }
     } else if (p2=="O2") {
       if(0 == params[E_O2_INPUT].value_curr_mem) {
         Ctrl_send_packet(OXY_SOLE_CYL_ONN);
@@ -165,14 +165,14 @@ void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
       Serial3.print(commands[INIT_MASTER]);
       Serial.println(commands[INIT_MASTER]);
       geCtrlState = CTRL_DO_NOTHING;
-	  //enable_sensor(0);
+      //enable_sensor(0);
      }
     break;
     case CTRL_EXPANSION_HOLD:
     case CTRL_COMPRESSION_HOLD:
     case CTRL_UNKNOWN_STATE:
-	case CTRL_DO_NOTHING: // Always enter this during idle scenarios.
-	break;
+    case CTRL_DO_NOTHING: // Always enter this during idle scenarios.
+      break;
     case CTRL_COMPRESSION:
     {
                
@@ -208,7 +208,6 @@ void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
       if (geCtrlPrevState != geCtrlState) {
         VENT_DEBUG_INFO("SC :EX ", sensor_data[SENSOR_DP_A1]);
  
- 
         tviErr = 0;
         dM.setDisplayParam(DISPLAY_PIP,pmax);       
         dM.setDisplayParam(DISPLAY_PLAT,sensor_data[SENSOR_PRESSURE_A1]);
@@ -227,30 +226,22 @@ void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
         refreshfullscreen_exhale = true;
         exhale_refresh_timeout = millis() + 500;
       }
-      /*When the sensor measured Peek PressureValue is less than peek pressure set in the UI*/
-      if ((sensor_data[SENSOR_PRESSURE_A1] < params[E_PEEP].value_curr_mem) && bSendPeepLowDetected == false) {
-        bSendPeepLowDetected = true;
-        //Serial3.print(commands[EXH_SOLE_OFF]);
-        if ((digitalRead(AUTO_MODE))) {
-          if (sM.check_for_dip_in_pressure(SENSOR_DP_A0)) {
-            //Serial3.print(commands[INIT_BREATH_DET]);
+        Serial.println("Deep checking................");
+        if (SIMV == params[E_OP_MODE].value_curr_mem) {
+          if (sM.check_for_dip_in_pressure(SENSOR_PRESSURE_A1)) {
+            Serial.println("Deep detected................");
+            Serial3.print(commands[INIT_BREATH_DET]);
           }
         }
-      } else {
-        if ((digitalRead(AUTO_MODE))) {
-          if (sM.check_for_dip_in_pressure(SENSOR_DP_A0)) {
-		   // Serial3.print(commands[INIT_BREATH_DET]);
-          }
-        }
-      }
+      //}
       //geCtrlState = CTRL_DO_NOTHING;
     }
     break;
     case CTRL_INHALE_DETECTION:
     {
       if (bBreathDetectedFlag == false) {
-        Serial.println(sM.check_for_dip_in_pressure(SENSOR_DP_A0));
-        if (sM.check_for_dip_in_pressure(SENSOR_DP_A0)) {
+        Serial.println(sM.check_for_dip_in_pressure(SENSOR_PRESSURE_A1));
+        if (sM.check_for_dip_in_pressure(SENSOR_PRESSURE_A1)) {
           bBreathDetectedFlag = true;
           Serial3.print(commands[INIT_BREATH_DET]);
         }
@@ -259,15 +250,15 @@ void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
     break;
     case CTRL_STOP:
     {
-		Serial3.print(commands[STPR_STP]);
-		geCtrlState = CTRL_DO_NOTHING;
-   peepErr = 0;
-   tviErr = 0;
-   pipErr = 0;
+      Serial3.print(commands[STPR_STP]);
+      geCtrlState = CTRL_DO_NOTHING;
+      peepErr = 0;
+      tviErr = 0;
+      pipErr = 0;
     }
     break;
     default:
-	   VENT_DEBUG_ERROR("ERROR: Unknown state received in State machine", 0);
+      VENT_DEBUG_ERROR("ERROR: Unknown state received in State machine", 0);
     break;
   }
   if (geCtrlPrevState != geCtrlState) {
@@ -276,11 +267,10 @@ void Ctrl_StateMachine_Manager(const float *sensor_data, sensorManager &sM, disp
     bSendPeepLowDetected = false;
     bBreathDetectedFlag = false;
     if (geCtrlState == CTRL_COMPRESSION ) { 
-		minPressureForMaskOn = false; 
-		
-	}
-	if (geCtrlState == CTRL_EXPANSION ) 
-	plat = sensor_data[SENSOR_PRESSURE_A1];
+      minPressureForMaskOn = false; 
+    }
+    if (geCtrlState == CTRL_EXPANSION ) 
+      plat = sensor_data[SENSOR_PRESSURE_A1];
   }
   VENT_DEBUG_FUNC_END();
 }

@@ -34,6 +34,10 @@ int init(void);
 */
 /**************************************************************************/
 void enable_sensor(unsigned int flag);
+
+#ifndef TIMER_BASED_READING
+float capture_and_read_data(sensor_e s);
+#else
 /**************************************************************************/
 /*!
 
@@ -47,6 +51,9 @@ void enable_sensor(unsigned int flag);
 */
 /**************************************************************************/
 int read_sensor_data(sensor_e sensor, float *data);
+void capture_sensor_data();
+#endif
+
 /**************************************************************************/
 /*!
 
@@ -59,35 +66,19 @@ int read_sensor_data(sensor_e sensor, float *data);
 */
 /**************************************************************************/
 int check_for_dip_in_pressure(sensor_e sensor);
-
 int read_sensor_rawvoltage(sensor_e s);
-
 float read_sensor_pressurevalues(sensor_e s);
-
 int start_calibration(void);
-
 unsigned int get_enable_sensors();
 
-void capture_sensor_data();
-
 private:
-#ifdef OPEN_BOARD
-  pressure_sensor _pS2 = pressure_sensor(&ads, 1, SENSOR_PRESSURE_A0);
-  pressure_sensor _pS1 = pressure_sensor(&ads1, 1, SENSOR_PRESSURE_A1);
-  dpressure_sensor _dpS1= dpressure_sensor(&ads, 0, SENSOR_DP_A0);
-  dpressure_sensor _dpS2 = dpressure_sensor(&ads1, 0, SENSOR_DP_A1);
-#else
   pressure_sensor _pS1 = pressure_sensor(&ads1, 0, SENSOR_PRESSURE_A0);
   pressure_sensor _pS2 = pressure_sensor(&ads, 0, SENSOR_PRESSURE_A1);
   dpressure_sensor _dpS1= dpressure_sensor(&ads, 1, SENSOR_DP_A0);
   dpressure_sensor _dpS2 = dpressure_sensor(&ads1, 1, SENSOR_DP_A1);
-#endif
-
   o2_sensor _o2S = o2_sensor(&ads, 2);
 
   unsigned int _enabled_sensors = 0;
-
-
   unsigned long _timervalueMs = -1; // starting with -1
  
 

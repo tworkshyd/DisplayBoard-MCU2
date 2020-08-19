@@ -57,24 +57,36 @@ class o2_sensor : public sensor {
 		 *   @param  None
 		 *   @return Returns the readings from sensor
 		 **/
-		float read_sensor_data(void);
-        /**
-		 *   @brief  Function to reset sensor data
-		 *   @param  None
-		 *   @return None
-		 **/
 		void reset_sensor_data(void);
         /**
 		 *   @brief  Function to read and update sensor data in local data structures (called in timer interrupt)
 		 *   @param  None
 		 *   @return None
 		 **/
+
+
+#ifndef TIMER_BASED_READING
+/**
+ *   @brief  reads the value from ADC and coverts to pressure/acc_flow value
+ *   @param  None
+ *   @return returns sensor value
+ **/
+    float capture_and_read(void);
+#else
 		void capture_and_store(void);
 /**
  *   @brief  Calibrate the O2 sensor during boot
  *   @param  None
  *   @return returns 0 on success and -1 on failure as integer
  **/
+float read_sensor_data(void);
+    /**
+ *   @brief  Function to reset sensor data
+ *   @param  None
+ *   @return None
+ **/
+ #endif
+
 int sensor_zero_calibration(void);
 
 };

@@ -103,6 +103,38 @@ int pressure_sensor::init()
   return 0;
 }
 
+#ifndef TIMER_BASED_READING
+
+/*
+* Function to be called to read sensor data and return
+* to caller
+*/
+float pressure_sensor::capture_and_read(void) {
+  VENT_DEBUG_FUNC_START();
+
+  if(m_error != 0) return m_error;
+
+  this->m_sample_index = this->m_sample_index + 1;
+  
+  if(this->m_sample_index >= MAX_SENSOR_SAMPLES) {
+    this->m_sample_index = 0;
+  }
+  if(m_dp == 1) {
+      this->m_data.current_data.flowvolume += get_spyro_volume_MPX7002DP();
+      this->samples[this->m_sample_index] = this->m_data.current_data.flowvolume;
+      return this->m_data.current_data.flowvolume;
+    } else {
+      this->m_data.current_data.pressure = get_pressure_MPX5010() - this->m_calibrationinpressure;
+      this->samples[this->m_sample_index] = this->m_data.current_data.pressure;
+      return this->m_data.current_data.pressure;
+    }
+  
+  VENT_DEBUG_FUNC_END();
+  return 0;
+}
+
+#else
+
 /*
 * Function to be called from timer interrupt to read
 * and update the samples in local data structures
@@ -120,11 +152,38 @@ void pressure_sensor::capture_and_store(void) {
       this->samples[this->m_sample_index] = this->m_data.current_data.flowvolume;
     } else {
       this->m_data.current_data.pressure = get_pressure_MPX5010() - this->m_calibrationinpressure;
+      if(this->m_sensor_id == PRESSURE_A1){
+       Serial.print("PRESSURE_A1 :");
+       Serial.println(this->m_data.current_data.pressure);
+      }
       this->samples[this->m_sample_index] = this->m_data.current_data.pressure;
     }
 
   VENT_DEBUG_FUNC_END();
 }
+
+/*
+* Function to read stored sensor data from the
+* local data structres
+*/
+float pressure_sensor::read_sensor_data() 
+{
+  VENT_DEBUG_FUNC_START();
+  if(m_dp == 1) 
+  {
+    this->m_data.previous_data.flowvolume = this->m_data.current_data.flowvolume;
+    this->m_data.previous_data.flowvolume = this->m_data.previous_data.flowvolume;
+    return this->m_data.previous_data.flowvolume;
+  }
+  else
+  {
+    this->m_data.previous_data.pressure = this->m_data.current_data.pressure;
+    return this->m_data.previous_data.pressure;
+  }
+   VENT_DEBUG_FUNC_END();
+}
+
+#endif
 
 /*
 * Function to reset the local data structures
@@ -148,25 +207,6 @@ void pressure_sensor::reset_sensor_data(void)
   VENT_DEBUG_FUNC_END();	
 }
 
-/*
-* Function to read stored sensor data from the
-* local data structres
-*/
-float pressure_sensor::read_sensor_data() 
-{
-  VENT_DEBUG_FUNC_START();
-  if(m_dp == 1) 
-  {
-    this->m_data.previous_data.flowvolume = this->m_data.current_data.flowvolume;
-    return this->m_data.previous_data.flowvolume;
-  }
-  else
-  {
-    this->m_data.previous_data.pressure = this->m_data.current_data.pressure;
-    return this->m_data.previous_data.pressure;
-  }
-   VENT_DEBUG_FUNC_END();
-}
 
 
 /*
@@ -285,7 +325,6 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   } else {
      this->set_error(SUCCESS);
   }
-  
   m_raw_voltage = vout * 1000;
   pressure = get_pressure_MPXV7002DP(vout);
   //add the correction done with calibration
@@ -295,14 +334,14 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
   if(pressure > 0)
     flowrate = -1*flowrate;
 
- present_ts = millis();
-#if DEBUG_DP_PRESSURE_SENSOR  
+  present_ts = millis();
+
+#if DEBUG_DP_PRESSURE_SENSOR_SHORTLOG  
   Serial.print("present_ts:");
   Serial.print(present_ts);  
   Serial.print(", _prev_samplecollection_ts:");
   Serial.print(_prev_samplecollection_ts);  
 #endif
-
 
   accumlated_time = (present_ts - _prev_samplecollection_ts);
     if(flowrate > FLOWRATE_MIN_THRESHOLD) {
@@ -340,7 +379,7 @@ float pressure_sensor::get_spyro_volume_MPX7002DP() {
         Serial.print(" ");
         Serial.println(this->m_data.current_data.flowvolume, 6);
       }
-#else if DEBUG_DP_PRESSURE_SENSOR_SHORTLOG
+#elif DEBUG_DP_PRESSURE_SENSOR_SHORTLOG
       Serial.print(" sensorType->");
       Serial.print(sensorId2String(m_sensor_id));
       Serial.print(", acc_time  ");
